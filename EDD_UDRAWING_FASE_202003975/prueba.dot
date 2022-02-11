@@ -1,0 +1,9 @@
+digraph G { 
+node[shape = box]; 
+Nodo21257599[label=0]; 
+Nodo1239548589[label=1]; 
+Nodo1795960102[label=2]; 
+Nodo21257599 -> Nodo1239548589 
+Nodo1239548589 -> Nodo1795960102 
+rankdir = TB;
+}
