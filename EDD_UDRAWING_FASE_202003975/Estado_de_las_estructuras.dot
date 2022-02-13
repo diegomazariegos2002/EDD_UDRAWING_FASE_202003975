@@ -1,0 +1,47 @@
+digraph G { 
+subgraph cluster_Clientes_Atendidos{ 
+label="LISTA CLIENTES ATENDIDOS"; 
+bgcolor="darkseagreen1"; 
+Start5 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}subgraph cluster_clientes_espera{ 
+label="LISTA DE CLIENTES EN ESPERA"; 
+bgcolor="mintcream"; 
+Start4 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}subgraph cluster_impresoras{ 
+label="COLA IMPRESORAS";
+bgcolor="mintcream"; 
+Start31 [shape="Mdiamond" label="COLOR"];
+Start32 [shape="Mdiamond" label="B&W"];
+node[shape = box];
+}subgraph cluster_ventanillas{ 
+label="LISTA VENTANILLA";
+bgcolor="mintcream";
+Start2 [shape="Mdiamond" label="Start"];
+node[shape = box];
+Nodo1783047508[label="1"];
+Nodo2146608740[label="2"];
+Nodo1381713434[label="3"];
+Nodo1489092624[label="4"];
+Nodo192881625[label="5"];
+Nodo1641313620[label="6"];
+Start2 -> Nodo1783047508;
+Nodo1783047508 -> Nodo2146608740;
+Nodo2146608740 -> Nodo1381713434;
+Nodo1381713434 -> Nodo1489092624;
+Nodo1489092624 -> Nodo192881625;
+Nodo192881625 -> Nodo1641313620;
+}subgraph cluster_recepcion{
+label="COLA RECEPCIÓN";
+bgcolor="bisque"; 
+Start1 [shape="Mdiamond" label="Start"];
+node[shape = box];
+Nodo1782148126[label="Andres Lopez"];
+Nodo477289012[label="Juan Perez"];
+Nodo1027591600[label="Luiz Higueros"];
+Start1 -> Nodo1782148126; 
+Nodo1782148126 -> Nodo477289012;
+Nodo477289012 -> Nodo1027591600;
+}rankdir = LR;
+}

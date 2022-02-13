@@ -1,5 +1,6 @@
 package app;
 
+import java.awt.Desktop;
 import java.io.*;
 import java.util.Scanner;
 import org.json.JSONArray;
@@ -13,12 +14,12 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static boolean carga_Masiva = false;
     static boolean carga_Ventanillas = false;
-    static ListaEnlazada<Cliente> cola_Clientes_Recepcion;
-    static ListaEnlazada<Ventanilla> lista_ventanillas;
-    static ListaEnlazada<Cliente> lista_Clientes_Espera;
-    static ListaEnlazada<Cliente>  lista_Clientes_Atendidos;
-    static ListaEnlazada<Imagen> cola_Imagenes_Color;
-    static ListaEnlazada<Imagen> cola_Imagenes_Bw;
+    static ListaEnlazada<Cliente> cola_Clientes_Recepcion = new ListaEnlazada<>();
+    static ListaEnlazada<Ventanilla> lista_ventanillas = new ListaEnlazada<>();
+    static ListaEnlazada<Cliente> lista_Clientes_Espera = new ListaEnlazada<>();
+    static ListaEnlazada<Cliente>  lista_Clientes_Atendidos = new ListaEnlazada<>();
+    static ListaEnlazada<Imagen> cola_Imagenes_Color = new ListaEnlazada<>();
+    static ListaEnlazada<Imagen> cola_Imagenes_Bw = new ListaEnlazada<>();
 
     static int num_Ventanillas = 0;
 
@@ -55,9 +56,8 @@ public class Main {
                                     reiniciarPrograma();
                                     System.out.println("Escogió la opción \"a\". Carga masiva de clientes");
                                     try {
-                                        cola_Clientes_Recepcion = new ListaEnlazada<>();
                                         String txt = leerFichero();
-                                        leerJSON(txt);
+                                        leerJSON(txt); //Este método hace toda la magia de crear los objetos y asignarlos a la lista.
                                         cola_Clientes_Recepcion.crearFicheroDot_ListaSimple("prueba");
                                         System.out.println("Archivo JSON cargado con éxito!!!!");
                                         carga_Masiva = true;
@@ -73,6 +73,10 @@ public class Main {
                                     try {
                                         System.out.println("Ingrese el número de ventanillas que desea: ");
                                         num_Ventanillas = Integer.valueOf(sc.nextLine());
+                                        for (int i = 1; i <= num_Ventanillas; i++) {
+                                            Ventanilla new_Ventanilla = new Ventanilla(i);
+                                            lista_ventanillas.insertElement_AtEnding(new_Ventanilla);
+                                        }
                                         System.out.println("Número de ventanillas ingresado con éxito!!!");
                                         carga_Ventanillas = true;
                                     } catch (Exception e) {
@@ -114,6 +118,7 @@ public class Main {
                         } else {
                             try {
                                 crearFicheroDot_ListaSimple("Estado_de_las_estructuras");
+                                abrirarchivo("./Estado_de_las_estructuras.svg");
                                 System.out.println("Se creo el archivo \"Estado_de_las_estructuras\" con éxito!!! ");
                             } catch (Exception e) {
                                 System.out.println("Error al imprimir los datos!!! Intente Otra vez :(");
@@ -198,7 +203,6 @@ public class Main {
     }
 
     public static void reiniciarPrograma(){
-        cola_Clientes_Recepcion = new ListaEnlazada<>();
         lista_ventanillas = new ListaEnlazada<>();
         lista_Clientes_Espera = new ListaEnlazada<>();
         lista_Clientes_Atendidos = new ListaEnlazada<>();
@@ -225,12 +229,12 @@ public class Main {
 
         ListaEnlazada.Nodo actual = lista_Clientes_Atendidos.getCabezaLista();
         while(actual != null){
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+((Cliente)actual.getValor()).getNombre()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+((Cliente)actual.getValor()).getNombre()+"\"];\n";
             if(actual == lista_Clientes_Atendidos.getCabezaLista()){
-                conexiones += String.format("Start5 -> Nodo%d\n", actual.hashCode());
+                conexiones += String.format("Start5 -> Nodo%d;\n", actual.hashCode());
             }
             if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(), actual.siguiente.hashCode());
             }
             actual = actual.siguiente;
         }
@@ -249,12 +253,12 @@ public class Main {
 
         actual = lista_Clientes_Espera.getCabezaLista();
         while(actual != null){
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+((Cliente)actual.getValor()).getNombre()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+((Cliente)actual.getValor()).getNombre()+"\"];\n";
             if(actual == lista_Clientes_Espera.getCabezaLista()){
-                conexiones += String.format("Start4 -> Nodo%d \n", actual.hashCode());
+                conexiones += String.format("Start4 -> Nodo%d;\n", actual.hashCode());
             }
             if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d; \n", actual.hashCode(), actual.siguiente.hashCode());
             }
             actual = actual.siguiente;
         }
@@ -268,31 +272,31 @@ public class Main {
         dot.append("subgraph cluster_impresoras{ \n");
         dot.append("label=\"COLA IMPRESORAS\";\n");
         dot.append("bgcolor=\"mintcream\"; \n");
-        dot.append("Start31 [shape=\"Mdiamond\" label=\"Start\"];\n");
-        dot.append("Start32 [shape=\"Mdiamond\" label=\"Start\"];\n");
+        dot.append("Start31 [shape=\"Mdiamond\" label=\"COLOR\"];\n");
+        dot.append("Start32 [shape=\"Mdiamond\" label=\"B&W\"];\n");
         dot.append("node[shape = box];\n");
 
         actual = cola_Imagenes_Color.getCabezaLista();
         while(actual != null){
             Imagen imagenActual = (Imagen) actual.getValor();
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+imagenActual.getTipo()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+imagenActual.getTipo()+"\"];\n";
             if(actual == cola_Imagenes_Color.getCabezaLista()){
-                conexiones += String.format("Start31 -> Nodo%d\n", actual.hashCode());
+                conexiones += String.format("Start31 -> Nodo%d;\n", actual.hashCode());
             }
             if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d; \n", actual.hashCode(), actual.siguiente.hashCode());
             }
             actual = actual.siguiente;
         }
         actual = cola_Imagenes_Bw.getCabezaLista();
         while(actual != null){
             Imagen imagenActual = (Imagen) actual.getValor();
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+imagenActual.getTipo()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+imagenActual.getTipo()+"\"];\n";
             if(actual == cola_Imagenes_Bw.getCabezaLista()){
-                conexiones += String.format("Start31 -> Nodo%d\n", actual.hashCode());
+                conexiones += String.format("Start31 -> Nodo%d;\n", actual.hashCode());
             }
             if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(), actual.siguiente.hashCode());
             }
             actual = actual.siguiente;
         }
@@ -309,9 +313,9 @@ public class Main {
 
         actual = lista_ventanillas.getCabezaLista();
         while(actual != null){
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+((Ventanilla)actual.getValor()).getId_Ventanilla()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+((Ventanilla)actual.getValor()).getId_Ventanilla()+"\"];\n";
             if(actual == lista_ventanillas.getCabezaLista()){
-                conexiones += String.format("Start4 -> Nodo%d:\n", actual.hashCode());
+                conexiones += String.format("Start2 -> Nodo%d;\n", actual.hashCode());
             }
             if(actual.siguiente != null){
                 conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(), actual.siguiente.hashCode());
@@ -320,7 +324,7 @@ public class Main {
             //Aquí se obtiene la cola porque en un pila el último que se ingresa es el primero en salir.
             ListaEnlazada.Nodo actual2 = ((Ventanilla)lista_ventanillas.getCabezaLista().getValor()).getPila_Imagenes().getColaLista();
             while(actual2 != null){
-                nombresNodos += "Nodo"+ actual2.hashCode() + "[Label="+((Imagen)actual2.getValor()).getTipo()+"];\n";
+                nombresNodos += "Nodo"+ actual2.hashCode() + "[label=\""+((Imagen)actual2.getValor()).getTipo()+"\"];\n";
                 if(actual2 == (lista_ventanillas.getCabezaLista().getValor()).getPila_Imagenes().getColaLista()){
                     conexiones += String.format("Nodo%d -> Nodo%d [constraint = false];\n", actual.hashCode(), actual2.hashCode());
                 }
@@ -336,8 +340,10 @@ public class Main {
         dot.append(nombresNodos);
         dot.append(conexiones);
         dot.append(rankSame); // el atributo rank=same de Graphviz lo utilizo para poder apilar de forma correcta las ventanillas con su pila de imagenes.
-        dot.append("}"); //FIN LISTA CLIENTES EN ESPERA
+        dot.append("}"); //FIN LISTA DE VENTANILLAS CON PILAS DE IMAGENES
 
+        nombresNodos = "";
+        conexiones = "";
         //Sección de LISTA DE CLIENTES EN ESPERA
         dot.append("subgraph cluster_recepcion{\n");
         dot.append("label=\"COLA RECEPCIÓN\";\n");
@@ -347,17 +353,18 @@ public class Main {
 
         actual = cola_Clientes_Recepcion.getCabezaLista();
         while(actual != null){
-            nombresNodos += "Nodo"+ actual.hashCode() + "[Label="+((Cliente)actual.getValor()).getNombre()+"];\n";
+            nombresNodos += "Nodo"+ actual.hashCode() + "[label=\""+((Cliente)actual.getValor()).getNombre()+"\"];\n";
             if(actual == cola_Clientes_Recepcion.getCabezaLista()){
-                conexiones += String.format("Start1 -> Nodo%d \n", actual.hashCode());
+                conexiones += String.format("Start1 -> Nodo%d; \n", actual.hashCode());
             }
             if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(), actual.siguiente.hashCode());
             }
             actual = actual.siguiente;
         }
         dot.append(nombresNodos);
         dot.append(conexiones);
+        dot.append(rankSame);
         dot.append("}"); //FIN COLA CLIENTES EN RECEPCIÓN
 
         dot.append("rankdir = LR;\n");
@@ -406,4 +413,9 @@ public class Main {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
+    //Método para abrir el archivo .svg generado por graphviz directamente desde el programa
+    public static void abrirarchivo(String archivo) throws IOException {
+        File objetofile = new File (archivo);
+        Desktop.getDesktop().open(objetofile);
+    }
 }

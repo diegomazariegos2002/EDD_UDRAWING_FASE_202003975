@@ -1,5 +1,7 @@
 package estructuras;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -270,6 +272,21 @@ public class ListaEnlazada<E> {
             pbuilder.start();
 
         } catch (Exception e) { e.printStackTrace(); }
+    }
+    //Método para abrir el archivo .svg generado por graphviz directamente desde el programa
+    public void abrirarchivo(String archivo){
+
+        try {
+
+            File objetofile = new File (archivo);
+            Desktop.getDesktop().open(objetofile);
+
+        }catch (Exception ex) {
+
+            System.out.println(ex);
+
+        }
+
     }
 
     //-------------------------------Elementos para trabajar con ColumnMajor------------------

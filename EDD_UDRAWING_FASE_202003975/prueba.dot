@@ -1,9 +1,9 @@
 digraph G { 
 node[shape = box]; 
-Nodo1816089958[label=0]; 
-Nodo1795960102[label=1]; 
-Nodo1678854096[label=2]; 
-Nodo1816089958 -> Nodo1795960102 
-Nodo1795960102 -> Nodo1678854096 
+Nodo1782148126[label=0]; 
+Nodo477289012[label=1]; 
+Nodo1027591600[label=2]; 
+Nodo1782148126 -> Nodo477289012 
+Nodo477289012 -> Nodo1027591600 
 rankdir = TB;
 }
