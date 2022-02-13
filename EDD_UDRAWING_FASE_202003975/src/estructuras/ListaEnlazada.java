@@ -201,7 +201,7 @@ public class ListaEnlazada<E> {
     }
 
     //--------------------------------Métodos para imprimir en un archivo .dot (Graphviz)--------------------------------
-    //Nota: Impresión en forma básica
+    //Nota: Impresión de todas las listas en un archivo cada sección del método específica para cada lista, pila, cola, etc...
     public void crearFicheroDot_ListaSimple(String nombreFichero){
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
