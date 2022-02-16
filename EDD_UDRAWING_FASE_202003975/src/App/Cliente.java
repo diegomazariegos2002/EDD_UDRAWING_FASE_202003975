@@ -8,7 +8,8 @@ public class Cliente {
     private int cont_Pasos_Sistema;
     private int cont_img_color;
     private int cont_img_bw;
-
+    private int num_Img_Color;
+    private int num_Img_Bw;
 
     public Cliente(int id, String nombre, int img_color, int img_bw) {
         this.id = id;
@@ -18,8 +19,27 @@ public class Cliente {
         this.cont_Pasos_Sistema = 0;
         this.cont_img_color = img_color;
         this.cont_img_bw = img_bw;
+        this.setNum_Img_Color(img_color);
+        this.setNum_Img_Bw(img_bw);
     }
 
+
+
+    public void sumar_Cont_Img_Color(){
+        this.cont_img_color++;
+    }
+
+    public void sumar_Cont_Img_Bw(){
+        this.cont_img_bw++;
+    }
+
+    public void restar_Cont_Img_Color(){
+        this.cont_img_color--;
+    }
+
+    public void restar_Cont_Img_Bw(){
+        this.cont_img_bw--;
+    }
 
     public int getId() {
         return id;
@@ -78,5 +98,21 @@ public class Cliente {
 
     public void setCont_img_bw(int cont_img_bw) {
         this.cont_img_bw = cont_img_bw;
+    }
+
+    public int getNum_Img_Color() {
+        return num_Img_Color;
+    }
+
+    public void setNum_Img_Color(int num_Img_Color) {
+        this.num_Img_Color = num_Img_Color;
+    }
+
+    public int getNum_Img_Bw() {
+        return num_Img_Bw;
+    }
+
+    public void setNum_Img_Bw(int num_Img_Bw) {
+        this.num_Img_Bw = num_Img_Bw;
     }
 }

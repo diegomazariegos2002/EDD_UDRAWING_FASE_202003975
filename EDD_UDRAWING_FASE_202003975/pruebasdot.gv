@@ -1,17 +1,34 @@
 digraph G { 
+subgraph cluster_Clientes_Atendidos{ 
+label="LISTA CLIENTES ATENDIDOS"; 
+bgcolor="darkseagreen1"; 
+Start5 [shape="Mdiamond" label="Startdafd"];
 node[shape = box];
-Nodo1[label=1];
-Nodo2[label=2];
-Nodo3[label=3];
-Nodo4[label=4];
-Nodo11[label = 1.1];
-
-Nodo2 -> Nodo3;
-Nodo1 -> Nodo2;
-Nodo2 -> Nodo11 [constraint = false]; 
-Nodo3 -> Nodo4 [constraint = false];
-
-{rank=same; Nodo2; Nodo11}
+}subgraph cluster_clientes_espera{ 
+label="LISTA DE CLIENTES EN ESPERA"; 
+bgcolor="mintcream"; 
+Start4 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}subgraph cluster_impresoras{ 
+label="COLA IMPRESORAS";
+bgcolor="mintcream"; 
+Start31 [shape="Mdiamond" label="Start"];
+Start32 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}subgraph cluster_ventanillas{ 
+label="LISTA VENTANILLA";
+bgcolor="mintcream";
+Start2 [shape="Mdiamond" label="Start2"];
+node[shape = box];
+Nodo1889248251[label="444"];
+Nodo1027007693[label="3"];
+Nodo1783047508[label="2"];
+Nodo2146608740[label="1"];
+Start4 -> Nodo1889248251:
+Nodo1889248251 -> Nodo1027007693;
+Nodo1027007693 -> Nodo1783047508;
+Nodo1783047508 -> Nodo2146608740;
+}
 
 rankdir = LR;
 }

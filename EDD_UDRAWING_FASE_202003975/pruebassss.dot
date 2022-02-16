@@ -10,7 +10,7 @@ subgraph cluster_Clientes_Atendidos{
         label="LISTA CLIENTES ATENDIDOS";
         bgcolor="darkseagreen1";
         Start5 [shape="Mdiamond" label="Start"];
-        node[shape = box];
+        node[shape = folder];
         Nodo1[label = 0];
         Start5 -> Nodo;
         }
@@ -20,7 +20,7 @@ subgraph cluster_clientes_espera{
         label="LISTA DE CLIENTES EN ESPERA";
         bgcolor="mintcream";
         Start4 [shape="Mdiamond" label="Start"];
-        node[shape = box];
+        node[shape = folder];
         
         }
 
@@ -38,11 +38,11 @@ subgraph cluster_impresoras{
 subgraph cluster_ventanillas{
         label="LISTA VENTANILLA";
         bgcolor="mintcream";
-        Start2 [shape="Mdiamond" label="Start"];
+        Start2 [shape=folder label="Start"];
         node[shape = box];
-        Nodo11[label = 0];
-        NodoPila[label = 0.1];
-        Start2 -> Nodo11;
+        Nodo11[shape = box3d label = "Ventanilla \n 0"];
+        NodoPila[shape = note label = 0.11111];
+        Start2 -> Nodo11 [constraint = false];
         Nodo11 -> NodoPila [constraint = false];
 
         {rank = same; Nodo11; NodoPila};

@@ -1,0 +1,71 @@
+digraph G { 
+subgraph cluster_Clientes_Atendidos{ 
+label="LISTA CLIENTES ATENDIDOS"; 
+bgcolor="darkseagreen1"; 
+Start5 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}subgraph cluster_clientes_espera{ 
+label="LISTA DE CLIENTES EN ESPERA"; 
+bgcolor="mintcream"; 
+Start4 [shape="Mdiamond" label="Start"];
+node[shape = box];
+Nodo154482552[shape=folder label="Juan Perez \n Color: 0\n B&W: 0"];
+Start4 -> Nodo154482552;
+}subgraph cluster_impresoras{ 
+label="COLA IMPRESORAS";
+bgcolor="mintcream"; 
+Start31 [shape="Mdiamond" label="COLOR"];
+Start32 [shape="Mdiamond" label="B&W"];
+node[shape = box];
+Nodo825658265[shape = note label="COLOR\n 2 "];
+Nodo1034568234[shape = note label="COLOR\n 2 "];
+Nodo835227336[shape = note label="COLOR\n 2 "];
+Start31 -> Nodo825658265;
+Nodo825658265 -> Nodo1034568234; 
+Nodo1034568234 -> Nodo835227336; 
+}subgraph cluster_ventanillas{ 
+label="LISTA VENTANILLA";
+bgcolor="mintcream";
+node[shape = box];
+Nodo482082765[shape = folder label="Andres Lopez\n Color: 0\n B&W: 0"];
+Nodo607932305[shape = folder label="Luiz Higueros\n Color: 2\n B&W: 1"];
+Nodo825658265[shape = note label="COLOR\n 2 "];
+Nodo1034568234[shape = note label="COLOR\n 2 "];
+Nodo835227336[shape = note label="COLOR\n 2 "];
+Nodo667821226[shape = box3d label=" Ventanilla \n 1"];
+Nodo1028780142[shape = note label="COLOR"];
+Nodo1888442711[shape = note label="COLOR"];
+Nodo1754894440[shape = note label="COLOR"];
+Nodo1998767043[shape = note label="B&W"];
+Nodo787738361[shape = note label="B&W"];
+Nodo1209702763[shape = box3d label=" Ventanilla \n 2"];
+Start31 -> Nodo825658265;
+Nodo825658265 -> Nodo1034568234; 
+Nodo1034568234 -> Nodo835227336; 
+Nodo482082765 -> Nodo667821226 [constraint = false];
+Nodo667821226 -> Nodo1209702763;
+Nodo667821226 -> Nodo1028780142 [constraint = false];
+Nodo1028780142 -> Nodo1888442711 [constraint = false];
+Nodo1888442711 -> Nodo1754894440 [constraint = false];
+Nodo1754894440 -> Nodo1998767043 [constraint = false];
+Nodo1998767043 -> Nodo787738361 [constraint = false];
+Nodo607932305 -> Nodo1209702763 [constraint = false];
+{rank = same; Nodo482082765; Nodo667821226};
+{rank = same; Nodo667821226; Nodo1028780142};
+{rank = same; Nodo1028780142; Nodo1888442711};
+{rank = same; Nodo667821226; Nodo1028780142};
+{rank = same; Nodo1888442711; Nodo1754894440};
+{rank = same; Nodo667821226; Nodo1888442711};
+{rank = same; Nodo1754894440; Nodo1998767043};
+{rank = same; Nodo667821226; Nodo1754894440};
+{rank = same; Nodo1998767043; Nodo787738361};
+{rank = same; Nodo667821226; Nodo1998767043};
+{rank = same; Nodo667821226; Nodo787738361};
+{rank = same; Nodo607932305; Nodo1209702763};
+}subgraph cluster_recepcion{
+label="COLA RECEPCIÓN";
+bgcolor="bisque"; 
+Start1 [shape="Mdiamond" label="Start"];
+node[shape = box];
+}rankdir = LR;
+}

@@ -146,26 +146,55 @@ public class ListaEnlazada<E> {
         }
         return nodoActual;
     }
+    //aplicando concepto de polimorfismo
+    public Nodo getNodo(E valor){
+        Nodo nodoActual = cabeza;
+        while(nodoActual != null){
+                if(nodoActual.valor == valor){
+                    return nodoActual;
+                }
+            nodoActual = nodoActual.siguiente;
+        }
+
+        return null;
+    }
 
     //------------------------------------------------------Método de eliminación------------------------------
     public void deleteElement_AtBeggining(){
-        cabeza = cabeza.siguiente;
-        cabeza.anterior = null;
-        longitud--;
+        if(longitud==1){
+            cabeza = null;
+            cola = null;
+            longitud=0;
+        }else {
+            cabeza = cabeza.siguiente;
+            cabeza.anterior = null;
+            longitud--;
+        }
     }
 
     public void deleteElement_AtEnding(){
-        cola = cola.anterior;
-        cola.siguiente = null;
-        longitud--;
+        if(longitud==1){
+            cabeza = null;
+            cola = null;
+            longitud=0;
+        }else {
+            cola = cola.anterior;
+            cola.siguiente = null;
+            longitud--;
+        }
     }
 
     public void deleteElement_AtPosition(int position){
         Nodo nodoEliminado = getNodo(position);
-        nodoEliminado.anterior.siguiente = nodoEliminado.siguiente;
-        nodoEliminado.siguiente.anterior = nodoEliminado.anterior;
-        longitud--;
-
+        if (nodoEliminado == cabeza) {
+            deleteElement_AtBeggining();
+        }else if(nodoEliminado == cola){
+            deleteElement_AtEnding();
+        }else {
+            nodoEliminado.anterior.siguiente = nodoEliminado.siguiente;
+            nodoEliminado.siguiente.anterior = nodoEliminado.anterior;
+            longitud--;
+        }
     }
 
     public Nodo extractElement_AtBeggining(){
