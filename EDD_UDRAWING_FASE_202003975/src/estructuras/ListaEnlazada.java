@@ -1,5 +1,7 @@
 package estructuras;
 
+import app.Cliente;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
@@ -159,6 +161,19 @@ public class ListaEnlazada<E> {
         return null;
     }
 
+    //Extra de busqueda (Clase Cliente) se busca por medio de su atributo id
+    public Nodo getNodoEspecifico(int id_Busqueda){
+        Nodo nodoActual = cabeza;
+        while(nodoActual != null){
+            if(((Cliente)nodoActual.valor).getId() == id_Busqueda){
+                return nodoActual;
+            }
+            nodoActual = nodoActual.siguiente;
+        }
+
+        return null;
+    }
+
     //------------------------------------------------------Método de eliminación------------------------------
     public void deleteElement_AtBeggining(){
         if(longitud==1){
@@ -231,6 +246,49 @@ public class ListaEnlazada<E> {
         nodoModificar.valor = valor;
     }
 
+    //--------------------------------Métodos de ordenamiento de la lista enlazada (Clase cliente) ----------------------------------------
+    public void ordenar_InsertionSort_MenorMayorBw(){
+        for (int i = 0; i < longitud; i++) {
+            int min = i;
+            for (int j = i + 1; j < longitud; j++) {
+                if (((Cliente)this.getNodo(j).getValor()).getNum_Img_Bw() < ((Cliente)this.getNodo(min).getValor()).getNum_Img_Bw()){
+                    min = j;
+                }
+            }
+            E aux = (this.getNodo(i).getValor());
+            this.modifyElement_AtPosition(this.getNodo(min).getValor(), i);
+            this.modifyElement_AtPosition(aux, min);
+        }
+    }
+
+    public void ordenar_InsertionSort_MayorMenorColor(){
+        for (int i = 0; i < longitud; i++) {
+            int max = i;
+            for (int j = i + 1; j < longitud; j++) {
+                if (((Cliente)this.getNodo(j).getValor()).getNum_Img_Color() > ((Cliente)this.getNodo(max).getValor()).getNum_Img_Color()){
+                    max = j;
+                }
+            }
+            E aux = (this.getNodo(i).getValor());
+            this.modifyElement_AtPosition(this.getNodo(max).getValor(), i);
+            this.modifyElement_AtPosition(aux, max);
+        }
+    }
+
+    public void ordenar_InsertionSort_MayorMenorPasos(){
+        for (int i = 0; i < longitud; i++) {
+            int max = i;
+            for (int j = i + 1; j < longitud; j++) {
+                if (((Cliente)this.getNodo(j).getValor()).getCont_Pasos_Sistema() > ((Cliente)this.getNodo(max).getValor()).getCont_Pasos_Sistema()){
+                    max = j;
+                }
+            }
+            E aux = (this.getNodo(i).getValor());
+            this.modifyElement_AtPosition(this.getNodo(max).getValor(), i);
+            this.modifyElement_AtPosition(aux, max);
+        }
+    }
+
     //--------------------------------Métodos para imprimir en un archivo .dot (Graphviz)--------------------------------
     //Nota: Impresión de todas las listas en un archivo cada sección del método específica para cada lista, pila, cola, etc...
     public void crearFicheroDot_ListaSimple(String nombreFichero){
@@ -282,11 +340,11 @@ public class ListaEnlazada<E> {
                 e2.printStackTrace();
             }
         }
-        dibujar("./"+nombreFichero+".dot", "./"+nombreFichero+".png");
+        dibujar("./"+nombreFichero+".dot", "./"+nombreFichero+".svg");
     }
 
     //Método para pasar del archivo .dot a Imagen(png, jpg, etc...)
-    public void dibujar( String direccionDot, String direccionPng ){
+    public void dibujar( String direccionDot, String direccionSvg ){
         try
         {
             ProcessBuilder pbuilder;
@@ -295,7 +353,7 @@ public class ListaEnlazada<E> {
              * en la linea de comandos esto es:
              * dot -Tpng -o archivo.png archivo.dot
              */
-            pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o", direccionPng, direccionDot );
+            pbuilder = new ProcessBuilder( "dot", "-Tsvg", "-o", direccionSvg, direccionDot );
             pbuilder.redirectErrorStream( true );
             //Ejecuta el proceso
             pbuilder.start();
@@ -316,6 +374,50 @@ public class ListaEnlazada<E> {
 
         }
 
+    }
+
+    //Imprimir para una clase Cliente OJO
+    public void crearFicheroDot_DatosCliente(String nombreFichero, Cliente cliente){
+        //Parte del String o texto que va a llevar el fichero
+        // (en este caso un archivo .dot)
+        StringBuilder dot = new StringBuilder();
+        String nombresNodos = "";
+        dot.append("digraph G { \n");
+        dot.append("subgraph cluster_Clientes_Datos{ \n");
+        dot.append("label=\"DATOS DEL CLIENTE\"; \n");
+        dot.append("bgcolor=\"darkseagreen1\"; \n");
+        dot.append("node[shape = folder]; \n");
+
+        nombresNodos += "Nodo" + cliente.hashCode() + "[label=\"Cliente "+cliente.getId()+"\\n "+cliente.getNombre()+" \\nImagenes Color: "+cliente.getNum_Img_Color()+"\\nImagenes B&W: "+cliente.getNum_Img_Bw()+"\\nPasos en el sistema: "+cliente.getCont_Pasos_Sistema()+"\"]; \n";
+
+        dot.append(nombresNodos);
+        dot.append("}");
+        dot.append("rankdir = TB;\n");
+        dot.append("}");
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        //Parte de la creación de un fichero
+        try
+        {
+            fichero = new FileWriter("./"+nombreFichero+".dot");
+            pw = new PrintWriter(fichero);
+
+            pw.println(dot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero)
+                    fichero.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        dibujar("./"+nombreFichero+".dot", "./"+nombreFichero+".svg");
     }
 
     //-------------------------------Elementos para trabajar con ColumnMajor------------------

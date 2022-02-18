@@ -3,7 +3,7 @@ package app;
 import java.awt.Desktop;
 import java.io.*;
 import java.util.Scanner;
-
+import com.github.cliftonlabs.json_simple.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import estructuras.ListaEnlazada;
@@ -31,10 +31,11 @@ public class Main {
     static String[] apellidos_Clientes = {"Mazariegos", "Barrientos", "Morales", "Betancourt", "Molina", "Mcklay", "Smith", "Murdock", "Clay", "Flanders"};
     static ListaEnlazada<Cliente> lista_top5_ClientesImagenesColor = new ListaEnlazada<>();
     static ListaEnlazada<Cliente> lista_top5_ClientesImagenesBw = new ListaEnlazada<>();
-    static Cliente cliente_MasPasos;
+    static ListaEnlazada<Cliente> lista_MasPasos = new ListaEnlazada<>();
 
 
     public static void main(String[] args) {
+        boolean salida = false;
         while (true) {
             try {
                 int menu;
@@ -149,34 +150,35 @@ public class Main {
                                 System.out.println("""
                                         a. Reporte top 5 de clientes con mayor cantidad de imágenes.\s
                                         b. Reporte top 5 de clientes con menor cantidad de imágenes en blanco y negro.\s
-                                        d. Reporte información del cliente que más pasos estuvo en el sistema.\s
-                                        c. Reporte de Datos de un cliente en específico.\s
+                                        c. Reporte información del cliente que más pasos estuvo en el sistema.\s
+                                        d. Reporte de Datos de un cliente en específico.\s
                                         e. Regresar""");
                                 System.out.print("Ingrese una opción para continuar: ");
                                 submenu = sc.nextLine();
                                 switch(submenu){
                                     case "a" -> {
                                         System.out.println("Escogió la opción \"a\".  Reporte top 5 de clientes con mayor cantidad de imágenes.");
-
+                                        getLista_top5_ClientesImagenesColor();
+                                        System.out.println("Se creo el Top 5 de clientes atendidos con mayor cantidad de imagenes a color con éxito!!!");
                                     }
                                     case "b" -> {
                                         System.out.println("Escogió la opción \"b\". Reporte top 5 de clientes con menor cantidad de imágenes en blanco y negro.");
+                                        getLista_top5_ClientesImagenesBw();
+                                        System.out.println("Se creo el Top 5 de clientes atendidos con menor cantidad de imagenes a blanco y negro con éxito!!!");
                                     }
                                     case "c" -> {
                                         System.out.println("Escogió la opción \"c\". Reporte información del cliente que más pasos estuvo en el sistema.");
-
+                                        getCliente_MasPasos();
                                     }
                                     case "d" -> {
                                         System.out.println("Escogió la opción \"d\". Reporte de Datos de un cliente en específico.");
                                         System.out.print("Ingrese el id del cliente que desea buscar: ");
                                         int id_Cliente = Integer.parseInt(sc.nextLine());
-
+                                        getCliente(id_Cliente);
                                     }
                                     case "e" -> {
                                         System.out.println("Escogió la opción \"e\". Regresar");
                                         regresar = true;
-                                        System.out.println("Presione Enter para continuar....");
-                                        sc.nextLine();
                                     }
                                     default -> {
                                         System.out.println("Ingrese una opción válida.");
@@ -192,26 +194,29 @@ public class Main {
                         sc.nextLine();
                     }
                     case 5 -> {
-                        System.out.println("Escogio la opción 5. \n");
-                        if (!carga_Masiva || !carga_Ventanillas) {
-                            System.out.println("Para seleccionar esta opción debe cumplir con los parametros iniciales.");
-                        } else {
-
-                        }
+                        System.out.println("Escogio la opción 5. Acerca del estudiante\n");
+                        System.out.println("""
+                                Diego André Mazariegos Barrientos
+                                Carnet: 202003975
+                                CUI: 3016552860101
+                                5to. Semestre Universidad de San Carlos de Guatemala
+                                Trabajo: Proyecto 1 fase 1 
+                                Curso: Laboratorio de estructuras de datos
+                                Sección: A""");
                         System.out.println("Presione Enter para continuar....");
                         sc.nextLine();
                     }
                     case 6 -> {
-                        System.out.println("Escogio la opción 6. \n");
-                        if (!carga_Masiva || !carga_Ventanillas) {
-                            System.out.println("Para seleccionar esta opción debe cumplir con los parametros iniciales.");
-                        } else {
-
-                        }
+                        System.out.println("Escogio la opción 6. Salir\n");
+                        salida = true;
+                        System.out.println("Que tenga feliz día :DDD");
                         System.out.println("Presione Enter para continuar....");
                         sc.nextLine();
                     }
                     default -> System.out.println("Ingrese un numero valido. \n");
+                }
+                if (salida == true){
+                    break;
                 }
             } catch (Exception e) {
                 System.out.println("Ingrese un caracter valido. \n");
@@ -384,6 +389,7 @@ public class Main {
         }
 
     }
+
 
     //-----------------------------------------Método para leer ficheros e interpretarlo----------------------------------
 
@@ -649,12 +655,117 @@ public class Main {
 
     //---------------------------------Métodos de reportes solicitados en el proyecto------------------------------------
     public static void getLista_top5_ClientesImagenesColor(){
-
+        lista_top5_ClientesImagenesColor = new ListaEnlazada<>();
+        ListaEnlazada.Nodo nodo_Actual = lista_Clientes_Atendidos.getCabezaLista();
+        while(nodo_Actual != null){
+            Cliente clienteClon = (Cliente) nodo_Actual.getValor();
+            lista_top5_ClientesImagenesColor.insertElement_AtEnding(clienteClon);
+            nodo_Actual = nodo_Actual.siguiente;
+        }
+        lista_top5_ClientesImagenesColor.ordenar_InsertionSort_MayorMenorColor();
+        crearGrafico_Tops("Top5_ImagenesColor", lista_top5_ClientesImagenesColor, "TOP 5 CLIENTES CON MAYOR CANTIDAD DE IMAGENES A COLOR");
+        lista_top5_ClientesImagenesColor.abrirarchivo("./Top5_ImagenesColor.svg");
     }
     public static void getLista_top5_ClientesImagenesBw(){
+        lista_top5_ClientesImagenesBw = new ListaEnlazada<>();
+        ListaEnlazada.Nodo nodo_Actual = lista_Clientes_Atendidos.getCabezaLista();
+        while(nodo_Actual != null){
+            Cliente clienteClon = (Cliente) nodo_Actual.getValor();
+            lista_top5_ClientesImagenesBw.insertElement_AtEnding(clienteClon);
+            nodo_Actual = nodo_Actual.siguiente;
+        }
+        lista_top5_ClientesImagenesBw.ordenar_InsertionSort_MenorMayorBw();
+        crearGrafico_Tops("Top5_ImagenesBw", lista_top5_ClientesImagenesBw, "TOP 5 CLIENTES CON MENOR CANTIDAD DE IMAGENES EN BlANCO Y NEGRO");
+        lista_top5_ClientesImagenesBw.abrirarchivo("./Top5_ImagenesBw.svg");
+    }
+    public static void getCliente_MasPasos(){
+        try {
+            lista_MasPasos = new ListaEnlazada<>();
+            ListaEnlazada.Nodo nodo_Actual = lista_Clientes_Atendidos.getCabezaLista();
+            while (nodo_Actual != null) {
+                Cliente clienteClon = (Cliente) nodo_Actual.getValor();
+                lista_MasPasos.insertElement_AtEnding(clienteClon);
+                nodo_Actual = nodo_Actual.siguiente;
+            }
+            lista_MasPasos.ordenar_InsertionSort_MayorMenorPasos();
+            lista_MasPasos.crearFicheroDot_DatosCliente("Cliente_Mas_Pasos", lista_MasPasos.getCabezaLista().getValor());
+            lista_MasPasos.abrirarchivo("./Cliente_Mas_Pasos.svg");
+        }catch (Exception e){
+            System.out.println("Todavía no hay clientes registrados intente de nuevo más tarde, gracias :D");
+        }
+    }
+    public static void getCliente(int id_ClienteBuscar){
+        try {
+            Cliente cliente = (Cliente) lista_Clientes_Atendidos.getNodoEspecifico(id_ClienteBuscar).getValor();
+            if (cliente != null) {
+
+                lista_Clientes_Atendidos.crearFicheroDot_DatosCliente("Datos_Cliente_"+cliente.getId(), cliente);
+                lista_Clientes_Atendidos.abrirarchivo("./Datos_Cliente_"+cliente.getId()+".svg");
+                System.out.println("Reporte del cliente buscado creado con éxito!!!!");
+            } else {
+                System.out.println("Todavía no hay clientes o ingrese un id válido en el sistema intente de nuevo más tarde :D");
+            }
+        }catch (Exception e){
+            System.out.println("Todavía no hay clientes o ingrese un id válido en el sistema intente de nuevo más tarde :D");
+        }
 
     }
-    public static void getCliente_MasPasos(int id_Cliente){
-            //Crear una lista clon y esta lista clon aplicarle los metodos de ordenamiento y de ahí extraerlo todo.
+
+    public static void crearGrafico_Tops(String nombreFichero, ListaEnlazada listaEnlazada, String titulo){
+        //Parte del String o texto que va a llevar el fichero
+        // (en este caso un archivo .dot)
+        StringBuilder dot = new StringBuilder();
+
+        dot.append("digraph G { \n");
+        dot.append("subgraph cluster_ClientesTOP{ \n");
+        dot.append("label=\""+titulo+"\"; \n");
+        dot.append("bgcolor=\"darkseagreen1\"; \n");
+        dot.append("node[shape = box]; \n");
+        String nombresNodos = "";
+        String conexiones = "";
+        ListaEnlazada.Nodo actual = listaEnlazada.getCabezaLista();
+        int i = 0;
+        while (actual !=  null && i < 5){
+            Cliente cliente_Actual = (Cliente)actual.getValor();
+            nombresNodos += "Nodo" + actual.hashCode() + "[shape=folder label=\"Cliente " + cliente_Actual.getId() + "\\n" + cliente_Actual.getNombre() + " \\n Color: " + cliente_Actual.getCont_img_color() + "\\n B&W: " + cliente_Actual.getCont_img_bw() + "\\nPasos en espera: "+cliente_Actual.getCont_Pasos_Sistema()+"\"];\n";
+            // Aquí es el punto donde se define si el método es para una lista simple, doble, etc...
+            if(actual.siguiente != null){
+                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+            }
+            i++;
+            actual = actual.siguiente;
+        }
+
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("}");
+        dot.append("rankdir = TB;\n");
+        dot.append("}");
+
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        //Parte de la creación de un fichero
+        try
+        {
+            fichero = new FileWriter("./"+nombreFichero+".dot");
+            pw = new PrintWriter(fichero);
+
+            pw.println(dot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero)
+                    fichero.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        listaEnlazada.dibujar("./"+nombreFichero+".dot", "./"+nombreFichero+".svg");
     }
+
 }

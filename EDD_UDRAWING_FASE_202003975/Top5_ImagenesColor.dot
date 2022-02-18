@@ -1,0 +1,14 @@
+digraph G { 
+subgraph cluster_ClientesTOP{ 
+label="TOP 5 CLIENTES CON MAYOR CANTIDAD DE IMAGENES A COLOR"; 
+bgcolor="darkseagreen1"; 
+node[shape = box]; 
+Nodo1699113578[shape=folder label="Cliente 2\nJuan Perez \n Color: 3\n B&W: 0\nPasos en espera: 6"];
+Nodo1306324352[shape=folder label="Cliente 1\nAndres Lopez \n Color: 3\n B&W: 2\nPasos en espera: 11"];
+Nodo355790875[shape=folder label="Cliente 3\nLuiz Higueros \n Color: 2\n B&W: 1\nPasos en espera: 15"];
+Nodo2028017635[shape=folder label="Cliente 1415507480\nBen 10 Smith \n Color: 2\n B&W: 3\nPasos en espera: 12"];
+Nodo1699113578 -> Nodo1306324352 
+Nodo1306324352 -> Nodo355790875 
+Nodo355790875 -> Nodo2028017635 
+}rankdir = TB;
+}

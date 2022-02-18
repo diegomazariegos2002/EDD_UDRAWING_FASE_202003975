@@ -1,0 +1,8 @@
+digraph G { 
+subgraph cluster_Clientes_Datos{ 
+label="DATOS DEL CLIENTE"; 
+bgcolor="darkseagreen1"; 
+node[shape = folder]; 
+Nodo1552978964[label="Cliente 1552978964\n Luiz Higueros \nImagenes Color: 2\nImagenes B&W: 1\nPasos en el sistema: 15"]; 
+}rankdir = TB;
+}
