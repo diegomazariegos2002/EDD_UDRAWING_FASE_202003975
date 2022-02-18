@@ -3,9 +3,11 @@ package app;
 import java.awt.Desktop;
 import java.io.*;
 import java.util.Scanner;
-import com.github.cliftonlabs.json_simple.JsonObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.json.JSONArray;
-import org.json.JSONObject;
+
 import estructuras.ListaEnlazada;
 
 import java.util.Random;
@@ -68,8 +70,7 @@ public class Main {
                                     reiniciarPrograma();
                                     System.out.println("Escogió la opción \"a\". Carga masiva de clientes");
                                     try {
-                                        String txt = leerFichero();
-                                        leerJSON(txt); //Este método hace toda la magia de crear los objetos y asignarlos a la lista.
+                                        leerJSON(); //Este método hace toda la magia de crear los objetos y asignarlos a la lista.
                                         cola_Clientes_Recepcion.crearFicheroDot_ListaSimple("prueba");
                                         System.out.println("Archivo JSON cargado con éxito!!!!");
                                         carga_Masiva = true;
@@ -394,40 +395,41 @@ public class Main {
     //-----------------------------------------Método para leer ficheros e interpretarlo----------------------------------
 
     //Método para leer un fichero y pasar el fichero a un String.
-    public static String leerFichero() throws FileNotFoundException {
-        JFileChooser chooser = new JFileChooser(); // Crear un objeto para seleccionar un archivo
-        String txt = "";
+    public static File leerFichero() throws FileNotFoundException {
+        JFileChooser chooser = new JFileChooser("./"); // Crear un objeto para seleccionar un archivo
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile(); // Crea un objeto de archivo, que es el archivo seleccionado
-            InputStream ins = new FileInputStream(file);//Crea un objeto de contenido de archivo leído
-            Scanner input = new Scanner(ins); //  lee el contenido del archivo seleccionado
-
-            while (input.hasNextLine()) {
-                txt += input.nextLine();
-            }
-            input.close(); // Cierra el archivo de entrada y libera los recursos ocupados por el archivo
-            return txt;
+            return file;
         } else {
             System.out.println("¡Ningún archivo seleccionado!");
-            return txt;
+            return null;
         }
     }
 
     //Método para leer un JSON recibe un String y lo convierte a objetos.
-    public static void leerJSON(String txt) {
-        JSONArray arrayJson = new JSONArray(txt); //se crea el array Json del txt
-        for (int i = 0; i < arrayJson.length(); i++) {
-            JSONObject clienteJson = arrayJson.getJSONObject(i); //Se selecciona solo un objeto del array
+    public static void leerJSON() {
+        JSONParser file = new JSONParser();
+        try(FileReader reader = new FileReader(leerFichero());) {
+            Object obj = new JSONParser().parse(reader);
+            JSONObject json = (JSONObject) obj;
+            Object cliente = json.get("Cliente1");
+            int i = 1;
+            while(cliente != null){
+                JSONObject datos_Cliente = (JSONObject) cliente;
+                //iNGRESO DE DATOS
+                int id = Integer.parseInt(datos_Cliente.get("id_cliente").toString());
+                String nombre = datos_Cliente.get("nombre_cliente").toString();
+                int img_color = Integer.parseInt(datos_Cliente.get("img_color").toString());
+                int img_bw = Integer.parseInt(datos_Cliente.get("img_bw").toString());
 
-            int id = Integer.parseInt(clienteJson.getString("id_cliente"));
-            String nombre = clienteJson.getString("nombre_cliente");
-            int img_color = Integer.parseInt(clienteJson.getString("img_color"));
-            int img_bw = Integer.parseInt(clienteJson.getString("img_bw"));
+                Cliente nuevo_cliente = new Cliente(id, nombre, img_color, img_bw);
+                cola_Clientes_Recepcion.insertElement_AtEnding(nuevo_cliente);
+                i++;
+                cliente = json.get("Cliente"+i);
+            }
+        }catch (Exception e){
 
-            Cliente cliente = new Cliente(id, nombre, img_color, img_bw);
-            cola_Clientes_Recepcion.insertElement_AtEnding(cliente);
         }
-
     }
 
 
@@ -479,10 +481,18 @@ public class Main {
             nombresNodos += "Nodo" + actual.hashCode() + "[shape=folder label=\"Cliente " + cliente_Actual.getId() + "\\n" + cliente_Actual.getNombre() + " \\n Color: " + cliente_Actual.getCont_img_color() + "\\n B&W: " + cliente_Actual.getCont_img_bw() + "\"];\n";
             if (actual == lista_Clientes_Espera.getCabezaLista()) {
                 conexiones += String.format("Start4 -> Nodo%d;\n", actual.hashCode());
+                conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(),lista_Clientes_Espera.getColaLista().hashCode());
             }
             if (actual.siguiente != null) {
                 conexiones += String.format("Nodo%d -> Nodo%d; \n", actual.hashCode(), actual.siguiente.hashCode());
             }
+            if (actual.anterior != null) {
+                conexiones += String.format("Nodo%d -> Nodo%d; \n", actual.hashCode(), actual.anterior.hashCode());
+            }
+            if (actual == lista_Clientes_Espera.getColaLista()) {
+                conexiones += String.format("Nodo%d -> Nodo%d;\n", actual.hashCode(),lista_Clientes_Espera.getCabezaLista().hashCode());
+            }
+
             actual = actual.siguiente;
         }
         dot.append(nombresNodos);
@@ -729,7 +739,7 @@ public class Main {
             Cliente cliente_Actual = (Cliente)actual.getValor();
             nombresNodos += "Nodo" + actual.hashCode() + "[shape=folder label=\"Cliente " + cliente_Actual.getId() + "\\n" + cliente_Actual.getNombre() + " \\n Color: " + cliente_Actual.getCont_img_color() + "\\n B&W: " + cliente_Actual.getCont_img_bw() + "\\nPasos en espera: "+cliente_Actual.getCont_Pasos_Sistema()+"\"];\n";
             // Aquí es el punto donde se define si el método es para una lista simple, doble, etc...
-            if(actual.siguiente != null){
+            if(actual.siguiente != null && i != 4){
                 conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
             }
             i++;

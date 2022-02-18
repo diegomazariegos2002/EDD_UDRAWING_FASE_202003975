@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/src/app/json-simple-tag_release_1_1_1.zip!/json-simple-tag_release_1_1_1/src/main/java" />
+      <root url="jar://$PROJECT_DIR$/src/app/json-simple-tag_release_1_1_1.zip!/json-simple-tag_release_1_1_1/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

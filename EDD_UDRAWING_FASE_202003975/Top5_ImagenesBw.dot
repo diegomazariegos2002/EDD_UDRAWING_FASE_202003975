@@ -3,12 +3,14 @@ subgraph cluster_ClientesTOP{
 label="TOP 5 CLIENTES CON MENOR CANTIDAD DE IMAGENES EN BlANCO Y NEGRO"; 
 bgcolor="darkseagreen1"; 
 node[shape = box]; 
-Nodo2081191879[shape=folder label="Cliente 2\nJuan Perez \n Color: 3\n B&W: 0\nPasos en espera: 6"];
-Nodo2061347276[shape=folder label="Cliente 3\nLuiz Higueros \n Color: 2\n B&W: 1\nPasos en espera: 15"];
-Nodo1559122513[shape=folder label="Cliente 1\nAndres Lopez \n Color: 3\n B&W: 2\nPasos en espera: 11"];
-Nodo1128096251[shape=folder label="Cliente 1415507480\nBen 10 Smith \n Color: 2\n B&W: 3\nPasos en espera: 12"];
-Nodo2081191879 -> Nodo2061347276 
-Nodo2061347276 -> Nodo1559122513 
-Nodo1559122513 -> Nodo1128096251 
+Nodo1990160809[shape=folder label="Cliente 10\nShannon Johnston \n Color: 0\n B&W: 0\nPasos en espera: 0"];
+Nodo1285524499[shape=folder label="Cliente 15\nElinor Ford \n Color: 0\n B&W: 0\nPasos en espera: 0"];
+Nodo1524960486[shape=folder label="Cliente 25\nJolene Mccall \n Color: 0\n B&W: 0\nPasos en espera: 0"];
+Nodo117009527[shape=folder label="Cliente 6\nStefanie Wise \n Color: 1\n B&W: 0\nPasos en espera: 9"];
+Nodo199640888[shape=folder label="Cliente 12\nAlyce Alford \n Color: 3\n B&W: 0\nPasos en espera: 18"];
+Nodo1990160809 -> Nodo1285524499 
+Nodo1285524499 -> Nodo1524960486 
+Nodo1524960486 -> Nodo117009527 
+Nodo117009527 -> Nodo199640888 
 }rankdir = TB;
 }
