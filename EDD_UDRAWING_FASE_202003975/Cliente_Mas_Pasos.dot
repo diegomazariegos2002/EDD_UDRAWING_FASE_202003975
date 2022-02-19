@@ -3,6 +3,6 @@ subgraph cluster_Clientes_Datos{
 label="DATOS DEL CLIENTE"; 
 bgcolor="darkseagreen1"; 
 node[shape = folder]; 
-Nodo1000975683[label="Cliente 12\n Alyce Alford \nImagenes Color: 3\nImagenes B&W: 0\nPasos en el sistema: 18"]; 
+Nodo1405747618[label="Cliente 8\n Tabatha Pickett \nImagenes Color: 3\nImagenes B&W: 2\nPasos en el sistema: 22"]; 
 }rankdir = TB;
 }

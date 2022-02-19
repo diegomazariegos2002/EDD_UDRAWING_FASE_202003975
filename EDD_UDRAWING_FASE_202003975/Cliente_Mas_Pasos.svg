@@ -14,15 +14,15 @@
 <polygon fill="#c1ffc1" stroke="black" points="8,-8 8,-130 170,-130 170,-8 8,-8"/>
 <text text-anchor="middle" x="89" y="-114.8" font-family="Times New Roman,serif" font-size="14.00">DATOS DEL CLIENTE</text>
 </g>
-<!-- Nodo1000975683 -->
+<!-- Nodo1405747618 -->
 <g id="node1" class="node">
-<title>Nodo1000975683</title>
+<title>Nodo1405747618</title>
 <polygon fill="none" stroke="black" points="161.5,-99 158.5,-103 137.5,-103 134.5,-99 16.5,-99 16.5,-16 161.5,-16 161.5,-99"/>
-<text text-anchor="middle" x="89" y="-83.8" font-family="Times New Roman,serif" font-size="14.00">Cliente 12</text>
-<text text-anchor="middle" x="89" y="-68.8" font-family="Times New Roman,serif" font-size="14.00"> Alyce Alford </text>
+<text text-anchor="middle" x="89" y="-83.8" font-family="Times New Roman,serif" font-size="14.00">Cliente 8</text>
+<text text-anchor="middle" x="89" y="-68.8" font-family="Times New Roman,serif" font-size="14.00"> Tabatha Pickett </text>
 <text text-anchor="middle" x="89" y="-53.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes Color: 3</text>
-<text text-anchor="middle" x="89" y="-38.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes B&amp;W: 0</text>
-<text text-anchor="middle" x="89" y="-23.8" font-family="Times New Roman,serif" font-size="14.00">Pasos en el sistema: 18</text>
+<text text-anchor="middle" x="89" y="-38.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes B&amp;W: 2</text>
+<text text-anchor="middle" x="89" y="-23.8" font-family="Times New Roman,serif" font-size="14.00">Pasos en el sistema: 22</text>
 </g>
 </g>
 </svg>

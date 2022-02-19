@@ -3,14 +3,14 @@ subgraph cluster_ClientesTOP{
 label="TOP 5 CLIENTES CON MAYOR CANTIDAD DE IMAGENES A COLOR"; 
 bgcolor="darkseagreen1"; 
 node[shape = box]; 
-Nodo293907205[shape=folder label="Cliente 1\nPolly Rodriguez \n Color: 3\n B&W: 2\nPasos en espera: 6"];
-Nodo1989184704[shape=folder label="Cliente 12\nAlyce Alford \n Color: 3\n B&W: 0\nPasos en espera: 18"];
-Nodo611572016[shape=folder label="Cliente 2\nYang Wiggins \n Color: 1\n B&W: 4\nPasos en espera: 8"];
-Nodo889486595[shape=folder label="Cliente 6\nStefanie Wise \n Color: 1\n B&W: 0\nPasos en espera: 9"];
-Nodo77269878[shape=folder label="Cliente 4\nFaith Hopkins \n Color: 1\n B&W: 3\nPasos en espera: 10"];
-Nodo293907205 -> Nodo1989184704 
-Nodo1989184704 -> Nodo611572016 
-Nodo611572016 -> Nodo889486595 
-Nodo889486595 -> Nodo77269878 
+Nodo726950788[shape=folder label="Cliente 1\nPolly Rodriguez \n Color: 3\n B&W: 2\nPasos en espera: 6"];
+Nodo125881207[shape=folder label="Cliente 12\nAlyce Alford \n Color: 3\n B&W: 0\nPasos en espera: 18"];
+Nodo1763344271[shape=folder label="Cliente 8\nTabatha Pickett \n Color: 3\n B&W: 2\nPasos en espera: 22"];
+Nodo1353170030[shape=folder label="Cliente 2\nYang Wiggins \n Color: 1\n B&W: 4\nPasos en espera: 8"];
+Nodo370869802[shape=folder label="Cliente 6\nStefanie Wise \n Color: 1\n B&W: 0\nPasos en espera: 9"];
+Nodo726950788 -> Nodo125881207 
+Nodo125881207 -> Nodo1763344271 
+Nodo1763344271 -> Nodo1353170030 
+Nodo1353170030 -> Nodo370869802 
 }rankdir = TB;
 }
