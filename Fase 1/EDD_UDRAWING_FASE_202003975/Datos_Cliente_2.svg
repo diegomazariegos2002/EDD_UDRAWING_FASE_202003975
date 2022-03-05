@@ -14,15 +14,15 @@
 <polygon fill="#c1ffc1" stroke="black" points="8,-8 8,-130 163,-130 163,-8 8,-8"/>
 <text text-anchor="middle" x="85.5" y="-114.8" font-family="Times New Roman,serif" font-size="14.00">DATOS DEL CLIENTE</text>
 </g>
-<!-- Nodo1259652483 -->
+<!-- Nodo660017404 -->
 <g id="node1" class="node">
-<title>Nodo1259652483</title>
+<title>Nodo660017404</title>
 <polygon fill="none" stroke="black" points="154,-99 151,-103 130,-103 127,-99 16,-99 16,-16 154,-16 154,-99"/>
-<text text-anchor="middle" x="85" y="-83.8" font-family="Times New Roman,serif" font-size="14.00">Cliente 1259652483</text>
-<text text-anchor="middle" x="85" y="-68.8" font-family="Times New Roman,serif" font-size="14.00"> Juan Perez </text>
-<text text-anchor="middle" x="85" y="-53.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes Color: 3</text>
-<text text-anchor="middle" x="85" y="-38.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes B&amp;W: 0</text>
-<text text-anchor="middle" x="85" y="-23.8" font-family="Times New Roman,serif" font-size="14.00">Pasos en el sistema: 6</text>
+<text text-anchor="middle" x="85" y="-83.8" font-family="Times New Roman,serif" font-size="14.00">Cliente 2</text>
+<text text-anchor="middle" x="85" y="-68.8" font-family="Times New Roman,serif" font-size="14.00"> Hudson Lancaster </text>
+<text text-anchor="middle" x="85" y="-53.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes Color: 1</text>
+<text text-anchor="middle" x="85" y="-38.8" font-family="Times New Roman,serif" font-size="14.00">Imagenes B&amp;W: 1</text>
+<text text-anchor="middle" x="85" y="-23.8" font-family="Times New Roman,serif" font-size="14.00">Pasos en el sistema: 2</text>
 </g>
 </g>
 </svg>

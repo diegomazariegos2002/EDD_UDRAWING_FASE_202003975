@@ -1,0 +1,69 @@
+{
+    "Cliente1": {
+        "id_cliente": 1,
+        "nombre_cliente": "Long Meyer",
+        "img_color": 3,
+        "img_bw": 1
+    },
+    "Cliente2": {
+        "id_cliente": 2,
+        "nombre_cliente": "Hudson Lancaster",
+        "img_color": 1,
+        "img_bw": 1
+    },
+    "Cliente3": {
+        "id_cliente": 3,
+        "nombre_cliente": "Ellison Hood",
+        "img_color": 3,
+        "img_bw": 3
+    },
+    "Cliente4": {
+        "id_cliente": 4,
+        "nombre_cliente": "Whitney Clayton",
+        "img_color": 1,
+        "img_bw": 4
+    },
+    "Cliente5": {
+        "id_cliente": 5,
+        "nombre_cliente": "Moore Horton",
+        "img_color": 2,
+        "img_bw": 4
+    },
+    "Cliente6": {
+        "id_cliente": 6,
+        "nombre_cliente": "Maggie Levine",
+        "img_color": 4,
+        "img_bw": 2
+    },
+    
+    "Cliente7": {
+        "id_cliente": 7,
+        "nombre_cliente": "Mabel Nicholson",
+        "img_color": 2,
+        "img_bw": 2
+    },
+    "Cliente8": {
+        "id_cliente": 8,
+        "nombre_cliente": "Maddox Frazier",
+        "img_color": 1,
+        "img_bw": 3
+    },
+    "Cliente9": {
+        "id_cliente": 9,
+        "nombre_cliente": "Washington Dickerson",
+        "img_color": 3,
+        "img_bw": 1
+    },
+    "Cliente10": {
+        "id_cliente": 10,
+        "nombre_cliente": "Ethel Cortez",
+        "img_color": 3,
+        "img_bw": 2
+    },
+    "Cliente11": {
+        "id_cliente": 11,
+        "nombre_cliente": "Shana Burke",
+        "img_color": 2,
+        "img_bw": 4
+    }
+}

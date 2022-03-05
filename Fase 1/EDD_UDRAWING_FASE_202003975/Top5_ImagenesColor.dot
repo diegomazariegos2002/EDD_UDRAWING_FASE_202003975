@@ -1,0 +1,16 @@
+digraph G { 
+subgraph cluster_ClientesTOP{ 
+label="TOP 5 CLIENTES CON MAYOR CANTIDAD DE IMAGENES A COLOR"; 
+bgcolor="darkseagreen1"; 
+node[shape = box]; 
+Nodo492079624[shape=folder label="Cliente 6\nMaggie Levine \n Color: 4\n B&W: 2\nPasos en espera: 20"];
+Nodo630074945[shape=folder label="Cliente 1\nLong Meyer \n Color: 3\n B&W: 1\nPasos en espera: 7"];
+Nodo64133603[shape=folder label="Cliente 3\nEllison Hood \n Color: 3\n B&W: 3\nPasos en espera: 9"];
+Nodo1436901839[shape=folder label="Cliente 5\nMoore Horton \n Color: 2\n B&W: 4\nPasos en espera: 12"];
+Nodo999522307[shape=folder label="Cliente 7\nMabel Nicholson \n Color: 2\n B&W: 2\nPasos en espera: 13"];
+Nodo492079624 -> Nodo630074945 
+Nodo630074945 -> Nodo64133603 
+Nodo64133603 -> Nodo1436901839 
+Nodo1436901839 -> Nodo999522307 
+}rankdir = TB;
+}

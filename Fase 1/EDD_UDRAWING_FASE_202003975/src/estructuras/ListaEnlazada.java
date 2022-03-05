@@ -212,6 +212,25 @@ public class ListaEnlazada<E> {
         }
     }
 
+    public void deleteElement_Nodo(Nodo nodoExtraer){
+        Nodo nodoActual = cabeza;
+        while(nodoActual != null){
+            if(nodoActual == nodoExtraer){
+                if (nodoActual == cabeza) {
+                    deleteElement_AtBeggining();
+                }else if(nodoActual == cola){
+                    deleteElement_AtEnding();
+                }else {
+                    nodoActual.anterior.siguiente = nodoActual.siguiente;
+                    nodoActual.siguiente.anterior = nodoActual.anterior;
+                    longitud--;
+                }
+            }
+            nodoActual = nodoActual.siguiente;
+        }
+
+    }
+
     public Nodo extractElement_AtBeggining(){
         Nodo nodoExtraer = getNodo(0);
         deleteElement_AtBeggining();
@@ -228,6 +247,12 @@ public class ListaEnlazada<E> {
         Nodo nodoExtraer = getNodo(position);
         deleteElement_AtPosition(position);
         return nodoExtraer;
+    }
+
+    public Nodo extractElementValor(E valor){
+        Nodo nodoExtraer = getNodo(valor);
+        deleteElement_Nodo(nodoExtraer);
+        return  nodoExtraer;
     }
 
     //----------------------------------------------------Métodos de modificación----------------------------------
@@ -290,56 +315,56 @@ public class ListaEnlazada<E> {
     }
 
     //--------------------------------Métodos para imprimir en un archivo .dot (Graphviz)--------------------------------
-    //Nota: Impresión de todas las listas en un archivo cada sección del método específica para cada lista, pila, cola, etc...
+    //Nota: Impresión de todas las listas en un archivo cada sección del métod//Parte del String o texto que va a llevar el fichero
+    //        // (en este caso un archivo .dot)
+    //        StringBuilder dot = new StringBuilder();
+    //
+    //        dot.append("digraph G { \n");
+    //        dot.append("node[shape = box]; \n");
+    //        String nombresNodos = "";
+    //        String conexiones = "";
+    //        Nodo actual = this.cabeza;
+    //        int i = 0;
+    //        while (actual !=  null){
+    //            nombresNodos += "Nodo" + actual.hashCode() + "[label="+i+"]; \n";
+    //            // Aquí es el punto donde se define si el método es para una lista simple, doble, etc...
+    //            if(actual.siguiente != null){
+    //                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
+    //            }
+    //            i++;
+    //            actual = actual.siguiente;
+    //        }
+    //
+    //        dot.append(nombresNodos);
+    //        dot.append(conexiones);
+    //        dot.append("rankdir = TB;\n");
+    //        dot.append("}");
+    //
+    //
+    //        FileWriter fichero = null;
+    //        PrintWriter pw = null;
+    //        //Parte de la creación de un fichero
+    //        try
+    //        {
+    //            fichero = new FileWriter("./"+nombreFichero+".dot");
+    //            pw = new PrintWriter(fichero);
+    //
+    //            pw.println(dot);
+    //
+    //        } catch (Exception e) {
+    //            e.printStackTrace();
+    //        } finally {
+    //            try {
+    //                // Nuevamente aprovechamos el finally para
+    //                // asegurarnos que se cierra el fichero.
+    //                if (null != fichero)
+    //                    fichero.close();
+    //            } catch (Exception e2) {
+    //                e2.printStackTrace();
+    //            }
+    //        }o específica para cada lista, pila, cola, etc...
     public void crearFicheroDot_ListaSimple(String nombreFichero){
-        //Parte del String o texto que va a llevar el fichero
-        // (en este caso un archivo .dot)
-        StringBuilder dot = new StringBuilder();
 
-        dot.append("digraph G { \n");
-        dot.append("node[shape = box]; \n");
-        String nombresNodos = "";
-        String conexiones = "";
-        Nodo actual = this.cabeza;
-        int i = 0;
-        while (actual !=  null){
-            nombresNodos += "Nodo" + actual.hashCode() + "[label="+i+"]; \n";
-            // Aquí es el punto donde se define si el método es para una lista simple, doble, etc...
-            if(actual.siguiente != null){
-                conexiones += String.format("Nodo%d -> Nodo%d \n", actual.hashCode(), actual.siguiente.hashCode());
-            }
-            i++;
-            actual = actual.siguiente;
-        }
-
-        dot.append(nombresNodos);
-        dot.append(conexiones);
-        dot.append("rankdir = TB;\n");
-        dot.append("}");
-
-
-        FileWriter fichero = null;
-        PrintWriter pw = null;
-        //Parte de la creación de un fichero
-        try
-        {
-            fichero = new FileWriter("./"+nombreFichero+".dot");
-            pw = new PrintWriter(fichero);
-
-            pw.println(dot);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                // Nuevamente aprovechamos el finally para
-                // asegurarnos que se cierra el fichero.
-                if (null != fichero)
-                    fichero.close();
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
         dibujar("./"+nombreFichero+".dot", "./"+nombreFichero+".svg");
     }
 
