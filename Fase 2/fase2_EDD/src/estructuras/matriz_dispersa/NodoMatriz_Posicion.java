@@ -10,6 +10,7 @@ public class NodoMatriz_Posicion<E> {
     public int fila, columna;
     public E valor;
     public NodoMatriz_Posicion derecha, izquierda, arriba, abajo;
+    public NodoMatriz_Encabezado accesoFila, accesoColumna;
 
     /**
      * Constructor de mi clase NodoMatriz_Posicion
