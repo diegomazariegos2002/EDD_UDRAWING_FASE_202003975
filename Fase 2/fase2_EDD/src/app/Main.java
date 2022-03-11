@@ -8,7 +8,7 @@ import estructuras.matriz_dispersa.Matriz;
  */
 public class Main {
     public static void main(String[] args) {
-        Matriz<Integer> matriz = new Matriz<>();
+        /*Matriz<Integer> matriz = new Matriz<>();
         matriz.insertar(0, 0, 4, "#FF0376");
         matriz.insertar(0, 3, 22, "#FF0000");
         matriz.insertar(0, 1, 2, "#FF0000");
@@ -29,6 +29,8 @@ public class Main {
         matriz.crearFicheroDot_MatrizConexiones("MatrizPrueba");
         System.out.println("Se genero imagen MATRIZ.");
         matriz.crearFicheroDot_MatrizSinConexiones("MatrizSinConexiones");
-        System.out.println("Se genero imagen MATRIZ SIN");
+        System.out.println("Se genero imagen MATRIZ SIN");*/
+        Modulo_Admin ma = new Modulo_Admin();
+        ma.setVisible(true);
     }
 }

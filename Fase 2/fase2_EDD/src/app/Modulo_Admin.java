@@ -5,11 +5,18 @@
  */
 package app;
 
+//Librerías para leer JSON
+import java.io.FileReader;
+import com.google.gson.*;
+
 /**
  *
  * @author Melissa
  */
 public class Modulo_Admin extends javax.swing.JFrame {
+
+    /*=========================DECLARACIONES DE VARIABLES===============================*/
+    Funciones_Ficheros fFicheros = new Funciones_Ficheros();
 
     /**
      * Creates new form Modulo_Admin
@@ -43,6 +50,8 @@ public class Modulo_Admin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldDPI1 = new javax.swing.JTextField();
         jButtonModificarCliente = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabelNombreArchivoEntrada = new javax.swing.JLabel();
 
         jButton2.setText("jButton1");
 
@@ -74,6 +83,10 @@ public class Modulo_Admin extends javax.swing.JFrame {
 
         jButtonModificarCliente.setText("Modificar cliente con DPI");
 
+        jLabel8.setText("Ruta: ");
+
+        jLabelNombreArchivoEntrada.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +94,16 @@ public class Modulo_Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonCargaMasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(220, 220, 220))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(409, 409, 409))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButtonModificarCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -104,24 +126,24 @@ public class Modulo_Admin extends javax.swing.JFrame {
                             .addComponent(jButtonInsertarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButtonCargaMasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(220, 220, 220))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(409, 409, 409))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNombreArchivoEntrada))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(46, 46, 46)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabelNombreArchivoEntrada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -159,8 +181,51 @@ public class Modulo_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
-        // TODO add your handling code here:
+        try{
+        leerJSON_Capas();
+        }catch(Exception e){
+            System.out.println("Error en el método JSON.");
+        }
     }//GEN-LAST:event_jButtonCargaMasivaActionPerformed
+
+    public void leerJSON_Capas(){
+        try {
+            //Make object JSON
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            FileReader fr;
+            
+            JsonElement datos = parser.parse(new FileReader("./Archivos_prueba/Mario.json"));
+            
+            for (JsonElement capa : datos.getAsJsonArray()) {
+                JsonObject jObjCapa = (JsonObject)capa;
+                jObjCapa.get("id_capa");
+                System.out.println(jObjCapa.get("id_capa"));
+                JsonArray pixeles = (JsonArray)jObjCapa.get("pixeles");
+                for (JsonElement pixel : pixeles) {
+                    JsonObject jObjPixel = (JsonObject)pixel;
+                    System.out.println(jObjPixel.get("fila"));
+                    System.out.println(jObjPixel.get("columna"));
+                    System.out.println(jObjPixel.get("color"));
+                }
+            }
+            
+            System.out.println(datos.getAsJsonArray());
+            
+            //Obteniendo el id de la capa
+            
+            /*for (Object pixele : pixeles) {
+            
+            int fila = (int)pixel.get("fila");
+            int columna = (int)pixel.get("columna");
+            String color = (String)pixel.get("color");
+            System.out.println(pixel.toJSONString());
+            }*/
+            
+        } catch (Exception e) {
+            System.out.println("Error en la carga del JSON.");
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -209,6 +274,8 @@ public class Modulo_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabelNombreArchivoEntrada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldDPI;
