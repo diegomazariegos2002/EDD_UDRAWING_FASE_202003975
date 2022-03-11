@@ -5,14 +5,19 @@ import java.io.PrintWriter;
 
 /**
  * Clase Graphviz que me sirve para poder usar el método
- * de dibujar en cada una de mis estructuras y así
- * no repetir este método.
+ de dibujar en cada una de mis estructuras y así
+ no repetir este método.
  * @author Melissa
  */
 public class Graphviz {
     
-    //Método para pasar del archivo .dot a Imagen(png, jpg, etc...)
-    public void dibujar(String direccionDot, String direccionSvg) {
+    
+    /**
+     * Método para pasar del archivo (.dot, .neato, etc...) a Imagen(png, jpg, svg, etc...)
+     * @param direccionDot
+     * @param direccionSvg 
+     */
+    public void dibujar(String formatoEntrada, String formatoSalida, String direccionDot, String direccionSvg) {
         try {
             ProcessBuilder pbuilder;
             /*
@@ -20,7 +25,7 @@ public class Graphviz {
              * en la linea de comandos esto es:
              * dot -Tpng -o archivo.png archivo.dot
              */
-            pbuilder = new ProcessBuilder("dot", "-Tsvg", "-o", direccionSvg, direccionDot);
+            pbuilder = new ProcessBuilder(formatoEntrada, formatoSalida, "-o", direccionSvg, direccionDot);
             pbuilder.redirectErrorStream(true);
             //Ejecuta el proceso
             pbuilder.start();

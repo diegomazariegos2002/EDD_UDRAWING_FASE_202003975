@@ -11,6 +11,10 @@ public class NodoMatriz_Posicion<E> {
     public E valor;
     public NodoMatriz_Posicion derecha, izquierda, arriba, abajo;
     public NodoMatriz_Encabezado accesoFila, accesoColumna;
+    /*
+        Variable propia del proyecto, en una matriz dispersa normal no tendría que agregarla
+    */
+    String colorNodo;
 
     /**
      * Constructor de mi clase NodoMatriz_Posicion
@@ -18,10 +22,11 @@ public class NodoMatriz_Posicion<E> {
      * @param columna
      * @param valor 
      */
-    public NodoMatriz_Posicion(int fila, int columna, E valor) {
+    public NodoMatriz_Posicion(int fila, int columna, E valor, String colorNodo) {
         this.fila = fila;
         this.columna = columna;
         this.valor = valor;
+        this.colorNodo = colorNodo;
     }
     
     

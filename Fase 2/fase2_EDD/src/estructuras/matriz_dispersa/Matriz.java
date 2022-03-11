@@ -27,6 +27,79 @@ public class Matriz<E> {
         this.eColumnas = new ListaEncabezado();
     }
 
+    /**
+     * ===============================================Métodos propios del
+     * proyecto=======================================
+     */
+    /**
+     * Método para crear el fichero .Dot de mi Matriz con las conexiones y
+     * encabezados. Dot.
+     *
+     * @param nombreFichero
+     */
+    public void crearFicheroDot_MatrizSinConexiones(String nombreFichero) {
+        //Parte del String o texto que va a llevar el fichero
+        // (en este caso un archivo .dot)
+        StringBuilder dot = new StringBuilder();
+        dot.append("/* DIEGO ANDRÉ MAZARIEGOS BARRIENTOS */\n");
+        dot.append("digraph Sparce_Matrix {   \n");
+        dot.append("node [shape=box]\n\n");
+        dot.append("/* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */\n\n");
+        
+        /**
+         * Parte declaración de la matriz dispersa sin conexiones.
+         */
+        String cuerpoTabla = crearCuerpoTabla();
+        
+        dot.append(cuerpoTabla);
+        dot.append("}");
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        //Parte de la creación de un fichero
+        try {
+            fichero = new FileWriter("./" + nombreFichero + ".neato");
+            pw = new PrintWriter(fichero);
+
+            pw.println(dot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        Graphviz gv = new Graphviz();
+        gv.dibujar("neato", "-Tpng", "./" + nombreFichero + ".neato", "./" + nombreFichero + ".png");
+    }
+
+    private String crearCuerpoTabla() {
+        String cadena = "";
+        /*
+            Recordar que para el gráfico de esta matriz dispersa que no posee direcciones me es útil
+            utilizar neato que es otra herramienta parecida a dot en Graphviz.
+        */
+        NodoMatriz_Encabezado eFila = eFilas.primero;
+        while (eFila != null) {
+            NodoMatriz_Posicion actual = eFila.accesoNodo;
+            while (actual != null) {
+                 cadena += "N"+actual.fila+""+actual.columna+" [label = \"\",width = 1, height = 1,"
+                         + " style = filled, fillcolor = \""+actual.colorNodo+"\", "
+                         + "pos = \""+actual.fila+",-"+actual.columna+"!\" ]; \n";
+                actual = actual.derecha;
+            }
+            eFila = eFila.siguiente;
+        }
+        return cadena;
+    }
+
     //==============================================Métodos Fundamentales==================================
     //---------------------------------------Métodos de inserción------------------------------------
     /**
@@ -35,9 +108,11 @@ public class Matriz<E> {
      * @param fila
      * @param columna
      * @param valor
+     * @param colorNodo recordar que este atributo es extra del proyecto en una
+     * matriz normal no se agrega.
      */
-    public void insertar(int fila, int columna, E valor) {
-        NodoMatriz_Posicion<E> nuevo = new NodoMatriz_Posicion<E>(fila, columna, valor);
+    public void insertar(int fila, int columna, E valor, String colorNodo) {
+        NodoMatriz_Posicion<E> nuevo = new NodoMatriz_Posicion<>(fila, columna, valor, colorNodo);
         //Parte de las filas
         NodoMatriz_Encabezado eFila = eFilas.getEncabezado(fila);
         if (eFila == null) {
@@ -65,6 +140,7 @@ public class Matriz<E> {
                         actual.derecha.izquierda = nuevo;
                         nuevo.izquierda = actual;
                         actual.derecha = nuevo;
+                        break;
                     }
                     actual = actual.derecha;
                 }
@@ -165,7 +241,7 @@ public class Matriz<E> {
         dot.append("node [shape=box] \n");
         dot.append("\n");
         dot.append("/* La matriz se envía al grupo 1 */\n");
-        dot.append("Mt[ label = \"Matriz\", width = 1.5, style = filled, fillcolor = firebrick1, group = 1 ];\n");
+        dot.append("Mt[ label = \"Matriz\", width = 1.5, group = 1 ];\n");
         dot.append("\n");
 
         /**
@@ -241,7 +317,7 @@ public class Matriz<E> {
             }
         }
         Graphviz gv = new Graphviz();
-        gv.dibujar("./" + nombreFichero + ".dot", "./" + nombreFichero + ".svg");
+        gv.dibujar("dot", "-Tpng", "./" + nombreFichero + ".dot", "./" + nombreFichero + ".png");
     }
 
     /*====================================Métodos auxiliares para generar la gráfica de mi matriz================================*/
@@ -250,7 +326,7 @@ public class Matriz<E> {
         NodoMatriz_Encabezado actualColumna = this.eColumnas.primero;
         int i = 0;
         while (actualColumna != null) {
-            cadena += "C" + actualColumna.id + " [label = \"Column " + actualColumna.id + "\"    pos = \"5.3,3.5!\" width = 1.5 style = filled, fillcolor = bisque1, group = " + actualColumna.id + " ];\n";
+            cadena += "C" + actualColumna.id + " [label = \"Column " + actualColumna.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = " + (actualColumna.id+1) + " ];\n";
             i++;
             actualColumna = actualColumna.siguiente;
         }
@@ -284,7 +360,7 @@ public class Matriz<E> {
         NodoMatriz_Encabezado actualFila = this.eFilas.primero;
         int i = 0;
         while (actualFila != null) {
-            cadena += "F" + actualFila.id + " [label = \"Row " + actualFila.id + "\"    pos = \"5.3,3.5!\" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];\n";
+            cadena += "F" + actualFila.id + " [label = \"Row " + actualFila.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = 0 ];\n";
             i++;
             actualFila = actualFila.siguiente;
         }
@@ -315,7 +391,7 @@ public class Matriz<E> {
         while (eFila != null) {
             NodoMatriz_Posicion actual = eFila.accesoNodo;
             while (actual != null) {
-                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"" + actual.valor + "\" width = 1.5, group = " + (actual.columna) + " ]; \n";
+                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 1.5, group = " + (actual.columna+1) + " ]; \n";
 
                 actual = actual.derecha;
             }
@@ -349,23 +425,23 @@ public class Matriz<E> {
                     conexionesNodosAccesoColumna += "C" + actual.columna + " -> N" + actual.fila + "" + actual.columna + ";\n";
                     conexionesNodosAccesoColumna += "N" + actual.fila + "" + actual.columna + " -> C" + actual.columna + ";\n";
                 }
-                
+
                 /* Conexiones con el resto de nodos */
-                if (actual.arriba!=null) {
-                    conexionesNodosPosicion += "N"+actual.fila+""+actual.columna+" -> N"+actual.arriba.fila+""+actual.arriba.columna+";\n";
+                if (actual.arriba != null) {
+                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.arriba.fila + "" + actual.arriba.columna + ";\n";
                 }
-                if (actual.abajo!=null) {
-                    conexionesNodosPosicion += "N"+actual.fila+""+actual.columna+" -> N"+actual.abajo.fila+""+actual.abajo.columna+";\n";
+                if (actual.abajo != null) {
+                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.abajo.fila + "" + actual.abajo.columna + ";\n";
                 }
-                if (actual.derecha!=null) {
-                    conexionesNodosPosicion += "N"+actual.fila+""+actual.columna+" -> N"+actual.derecha.fila+""+actual.derecha.columna+";\n";
-                    rank += "{ rank = same; N" + actual.fila +""+actual.columna+";";
+                if (actual.derecha != null) {
+                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.derecha.fila + "" + actual.derecha.columna + ";\n";
+                    rank += "{ rank = same; N" + actual.fila + "" + actual.columna + ";";
                     rank += "N" + actual.derecha.fila + "" + actual.derecha.columna + ";";
                     rank += " }\n";
                 }
-                if (actual.izquierda!=null) {
-                    conexionesNodosPosicion += "N"+actual.fila+""+actual.columna+" -> N"+actual.izquierda.fila+""+actual.izquierda.columna+";\n";
-                    rank += "{ rank = same; N" + actual.fila +""+actual.columna+";";
+                if (actual.izquierda != null) {
+                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.izquierda.fila + "" + actual.izquierda.columna + ";\n";
+                    rank += "{ rank = same; N" + actual.fila + "" + actual.columna + ";";
                     rank += "N" + actual.izquierda.fila + "" + actual.izquierda.columna + ";";
                     rank += " }\n";
                 }

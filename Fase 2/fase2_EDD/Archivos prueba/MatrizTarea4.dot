@@ -3,7 +3,7 @@ digraph Sparce_Matrix {
 node [shape=box] 
 
 /* La matriz se envía al grupo 1 */
-Mt[ label = "Matriz", width = 1.5, style = filled, fillcolor = firebrick1, group = 1 ];
+Mt[ label = "Matriz", width = 1.5, style = filled, fillcolor = "#FF0060", group = 1 ];
 
 //............ ............ ............ ............ COLUMNAS 
 /* se incrementan los grupos porque son columnas */ 

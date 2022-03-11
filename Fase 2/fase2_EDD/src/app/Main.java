@@ -9,21 +9,25 @@ import estructuras.matriz_dispersa.Matriz;
 public class Main {
     public static void main(String[] args) {
         Matriz<Integer> matriz = new Matriz<>();
-        matriz.insertar(0, 3, 22);
-        matriz.insertar(0, 1, 2);
-        matriz.insertar(1, 1, 0);
-        matriz.insertar(2, 2, 2);
-        matriz.insertar(3, 2, 278);
-        matriz.insertar(3, 3, 0);
-        matriz.insertar(4, 4, 0);
-        matriz.insertar(5, 5, 3);
-        matriz.insertar(6, 6, 9);
-        matriz.insertar(7, 7, 7);
-        matriz.insertar(8, 8, 5);
-        matriz.insertar(10, 10, 10);
+        matriz.insertar(0, 0, 4, "#FF0060");
+        matriz.insertar(0, 3, 22, "#FF0000");
+        matriz.insertar(0, 1, 2, "#FF0000");
+        matriz.insertar(2, 1, 2, "#FF0000");
+        matriz.insertar(3, 1, 0, "#FF0000");
+        matriz.insertar(2, 2, 2, "#FF0000");
+        matriz.insertar(3, 2, 278, "#FF0000");
+        matriz.insertar(3, 3, 0, "#FF0000");
+        matriz.insertar(4, 4, 0, "#FF0000");
+        matriz.insertar(5, 5, 3, "#FF0000");
+        matriz.insertar(6, 6, 9, "#FF0000");
+        matriz.insertar(7, 7, 7, "#FF0000");
+        matriz.insertar(8, 8, 5, "#FF0000");
+        matriz.insertar(10, 10, 10, "#FF0000");
         matriz.mostrarMatrizColumnas();
         matriz.mostrarMatrizFilas();
-        matriz.crearFicheroDot_MatrizConexiones("MatrizTarea4");
-        System.out.println("Se genero imagen.");
+        matriz.crearFicheroDot_MatrizConexiones("MatrizPrueba");
+        System.out.println("Se genero imagen MATRIZ.");
+        matriz.crearFicheroDot_MatrizSinConexiones("MatrizSinConexiones");
+        System.out.println("Se genero imagen MATRIZ SIN");
     }
 }
