@@ -73,10 +73,10 @@ F8 -> F10;
 F10 -> F8;
 
 //............ ............DECLARACIÓN NODOS POSICIÓN............................
-N00 [label = "", style = filled, fillcolor = "#FF0060", width = 1.5, group = 1 ]; 
+N00 [label = "", style = filled, fillcolor = "#FF0376", width = 1.5, group = 1 ]; 
 N01 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 2 ]; 
 N03 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 4 ]; 
-N21 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 2 ]; 
+N21 [label = "", style = filled, fillcolor = "#00FF00", width = 1.5, group = 2 ]; 
 N22 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 3 ]; 
 N31 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 2 ]; 
 N32 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 3 ]; 

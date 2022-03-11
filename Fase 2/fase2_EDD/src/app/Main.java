@@ -9,10 +9,11 @@ import estructuras.matriz_dispersa.Matriz;
 public class Main {
     public static void main(String[] args) {
         Matriz<Integer> matriz = new Matriz<>();
-        matriz.insertar(0, 0, 4, "#FF0060");
+        matriz.insertar(0, 0, 4, "#FF0376");
         matriz.insertar(0, 3, 22, "#FF0000");
         matriz.insertar(0, 1, 2, "#FF0000");
         matriz.insertar(2, 1, 2, "#FF0000");
+        matriz.insertar(2, 1, 2, "#00FF00");
         matriz.insertar(3, 1, 0, "#FF0000");
         matriz.insertar(2, 2, 2, "#FF0000");
         matriz.insertar(3, 2, 278, "#FF0000");

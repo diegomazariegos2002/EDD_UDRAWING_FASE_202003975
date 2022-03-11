@@ -4,10 +4,10 @@ node [shape=box]
 
 /* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */
 
-N00 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0060", pos = "0,-0!" ]; 
+N00 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0376", pos = "0,-0!" ]; 
 N01 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "0,-1!" ]; 
 N03 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "0,-3!" ]; 
-N21 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-1!" ]; 
+N21 [label = "",width = 1, height = 1, style = filled, fillcolor = "#00FF00", pos = "2,-1!" ]; 
 N22 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-2!" ]; 
 N31 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-1!" ]; 
 N32 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-2!" ]; 

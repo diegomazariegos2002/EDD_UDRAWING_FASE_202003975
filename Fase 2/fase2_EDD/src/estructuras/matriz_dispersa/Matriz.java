@@ -45,12 +45,12 @@ public class Matriz<E> {
         dot.append("digraph Sparce_Matrix {   \n");
         dot.append("node [shape=box]\n\n");
         dot.append("/* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */\n\n");
-        
+
         /**
          * Parte declaración de la matriz dispersa sin conexiones.
          */
         String cuerpoTabla = crearCuerpoTabla();
-        
+
         dot.append(cuerpoTabla);
         dot.append("}");
 
@@ -85,14 +85,14 @@ public class Matriz<E> {
         /*
             Recordar que para el gráfico de esta matriz dispersa que no posee direcciones me es útil
             utilizar neato que es otra herramienta parecida a dot en Graphviz.
-        */
+         */
         NodoMatriz_Encabezado eFila = eFilas.primero;
         while (eFila != null) {
             NodoMatriz_Posicion actual = eFila.accesoNodo;
             while (actual != null) {
-                 cadena += "N"+actual.fila+""+actual.columna+" [label = \"\",width = 1, height = 1,"
-                         + " style = filled, fillcolor = \""+actual.colorNodo+"\", "
-                         + "pos = \""+actual.fila+",-"+actual.columna+"!\" ]; \n";
+                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\",width = 1, height = 1,"
+                        + " style = filled, fillcolor = \"" + actual.colorNodo + "\", "
+                        + "pos = \"" + actual.fila + ",-" + actual.columna + "!\" ]; \n";
                 actual = actual.derecha;
             }
             eFila = eFila.siguiente;
@@ -134,19 +134,37 @@ public class Matriz<E> {
                 eFila.accesoNodo = nuevo;
             } else {
                 NodoMatriz_Posicion actual = eFila.accesoNodo;
-                while (actual.derecha != null) {
-                    if (nuevo.columna < actual.derecha.columna) {
-                        nuevo.derecha = actual.derecha;
-                        actual.derecha.izquierda = nuevo;
-                        nuevo.izquierda = actual;
-                        actual.derecha = nuevo;
-                        break;
+                boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
+                if (nuevo.columna == actual.columna) { // si la superposición se da en un nodo acceso.
+                    actual.valor = nuevo.valor;
+                    actual.colorNodo = nuevo.colorNodo;
+                    superPosicion = true;
+                } else {
+                    while (actual.derecha != null) {
+                        if (nuevo.columna == actual.columna) {  // si la superposición se da en un nodo cualquiera.
+                            actual.valor = nuevo.valor;
+                            actual.colorNodo = nuevo.colorNodo;
+                            superPosicion = true;
+                            break;
+                        }
+                        if (nuevo.columna < actual.derecha.columna) {
+                            nuevo.derecha = actual.derecha;
+                            actual.derecha.izquierda = nuevo;
+                            nuevo.izquierda = actual;
+                            actual.derecha = nuevo;
+                            break;
+                        }
+                        actual = actual.derecha;
                     }
-                    actual = actual.derecha;
-                }
-                if (actual.derecha == null) {
-                    actual.derecha = nuevo;
-                    nuevo.izquierda = actual;
+                    if (nuevo.columna == actual.columna) {  // si la superposición se da en un nodo cualquiera.
+                            actual.valor = nuevo.valor;
+                            actual.colorNodo = nuevo.colorNodo;
+                            superPosicion = true;
+                        }
+                    if (actual.derecha == null && superPosicion == false) {
+                        actual.derecha = nuevo;
+                        nuevo.izquierda = actual;
+                    }
                 }
             }
         }
@@ -171,19 +189,37 @@ public class Matriz<E> {
                 eColumna.accesoNodo = nuevo;
             } else {
                 NodoMatriz_Posicion actual = eColumna.accesoNodo;
-                while (actual.abajo != null) {
-                    if (nuevo.fila < actual.abajo.fila) {
-                        nuevo.abajo = actual.abajo;
-                        actual.abajo.arriba = nuevo;
-                        nuevo.arriba = actual;
-                        actual.abajo = nuevo;
-                        break;
+                boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
+                if (nuevo.fila == actual.fila) { // si la superposición se da en un nodo acceso.
+                    actual.valor = nuevo.valor;
+                    actual.colorNodo = nuevo.colorNodo;
+                    superPosicion = true;
+                } else {
+                    while (actual.abajo != null) {
+                        if (nuevo.fila == actual.fila) { // si la superposición se da en un nodo cualquiera
+                            actual.valor = nuevo.valor;
+                            actual.colorNodo = nuevo.colorNodo;
+                            superPosicion = true;
+                            break;
+                        }
+                        if (nuevo.fila < actual.abajo.fila) {
+                            nuevo.abajo = actual.abajo;
+                            actual.abajo.arriba = nuevo;
+                            nuevo.arriba = actual;
+                            actual.abajo = nuevo;
+                            break;
+                        }
+                        actual = actual.abajo;
                     }
-                    actual = actual.abajo;
-                }
-                if (actual.abajo == null) {
-                    actual.abajo = nuevo;
-                    nuevo.arriba = actual;
+                    if (nuevo.fila == actual.fila) { // si la superposición se da en un nodo cualquiera
+                            actual.valor = nuevo.valor;
+                            actual.colorNodo = nuevo.colorNodo;
+                            superPosicion = true;
+                        }
+                    if (actual.abajo == null && superPosicion == false) {
+                        actual.abajo = nuevo;
+                        nuevo.arriba = actual;
+                    }
                 }
             }
         }
@@ -326,7 +362,7 @@ public class Matriz<E> {
         NodoMatriz_Encabezado actualColumna = this.eColumnas.primero;
         int i = 0;
         while (actualColumna != null) {
-            cadena += "C" + actualColumna.id + " [label = \"Column " + actualColumna.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = " + (actualColumna.id+1) + " ];\n";
+            cadena += "C" + actualColumna.id + " [label = \"Column " + actualColumna.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = " + (actualColumna.id + 1) + " ];\n";
             i++;
             actualColumna = actualColumna.siguiente;
         }
@@ -391,7 +427,7 @@ public class Matriz<E> {
         while (eFila != null) {
             NodoMatriz_Posicion actual = eFila.accesoNodo;
             while (actual != null) {
-                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 1.5, group = " + (actual.columna+1) + " ]; \n";
+                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 1.5, group = " + (actual.columna + 1) + " ]; \n";
 
                 actual = actual.derecha;
             }
