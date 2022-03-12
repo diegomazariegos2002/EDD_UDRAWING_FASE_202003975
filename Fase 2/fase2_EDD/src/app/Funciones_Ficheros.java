@@ -8,15 +8,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Clase para manejar las funciones de los ficheros.
+ *
  * @author Melissa
  */
 public class Funciones_Ficheros {
-    
+
     private JFileChooser accion = null;
     private File archivo = null;
     private Modulo_Admin admin;
-    
-    public FileReader archivo_Buscar(Modulo_Admin admin){
+
+    /**
+     * Método para buscar un fichero de tipo JSON.
+     *
+     * @param admin
+     * @return
+     */
+    public FileReader archivo_Buscar(Modulo_Admin admin) {
         accion = new JFileChooser("./");
         accion.setFileSelectionMode(0);
         FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JSON", "json");
@@ -39,9 +46,28 @@ public class Funciones_Ficheros {
                 System.out.println(ex.getMessage());
                 return null;
             }
-        }else{
+        } else {
             System.out.println("No se selecciono fichero");
             return null;
+        }
+    }
+
+    /**
+     * Método para borrar todos los ficheros dentro de una
+     * carpeta/archivo/directorio.
+     *
+     * @param nombreCarpeta
+     */
+    public void vaciar_Directorio(String rutaDirectorio) {
+        rutaDirectorio = "./ARBOLES_202003975/";
+        File carpeta = new File(rutaDirectorio);
+        if (carpeta.listFiles().length > 0) {
+            for (File fichero : carpeta.listFiles()) {
+                fichero.delete();
+            }
+            System.out.println("Carpeta vaciada con éxito.");
+        }else{
+            System.out.println("El directorio "+rutaDirectorio+" esta vacía.");
         }
     }
 }

@@ -121,7 +121,6 @@ public class Matriz<E> {
             eFila.accesoNodo = nuevo;
             nuevo.accesoFila = eFila;
             eFilas.setEncabezado(eFila);
-            nuevo.posY = eFila.posicion;
         } else {
             /*Si se llegase a insertar un nodo con menor nivel en columnas que la que tiene el acceso nodo*/
             if (nuevo.columna < eFila.accesoNodo.columna) {
@@ -135,8 +134,6 @@ public class Matriz<E> {
                 //Declarar al nuevo nodo de acceso.
                 eFila.accesoNodo = nuevo;
 
-                //Indicarle en que posición se encuentra el nodo ahora respecto a Y
-                nuevo.posY = eFila.posicion;
             } else {
                 NodoMatriz_Posicion actual = eFila.accesoNodo;
                 boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
@@ -157,8 +154,6 @@ public class Matriz<E> {
                             actual.derecha.izquierda = nuevo;
                             nuevo.izquierda = actual;
                             actual.derecha = nuevo;
-                            //Indicarle en que posición se encuentra el nodo ahora respecto a Y
-                            nuevo.posY = eFila.posicion;
                             break;
                         }
                         actual = actual.derecha;
@@ -171,8 +166,6 @@ public class Matriz<E> {
                     if (actual.derecha == null && superPosicion == false) {
                         actual.derecha = nuevo;
                         nuevo.izquierda = actual;
-                        //Indicarle en que posición se encuentra el nodo ahora respecto a Y
-                        nuevo.posY = eFila.posicion;
                     }
                 }
             }
@@ -184,7 +177,6 @@ public class Matriz<E> {
             eColumna.accesoNodo = nuevo;
             nuevo.accesoColumna = eColumna;
             eColumnas.setEncabezado(eColumna);
-            nuevo.posX = eColumna.posicion;
         } else {
             /*Si se llegase a insertar un nodo con menor nivel en filas que la que tiene el acceso nodo*/
             if (nuevo.fila < eColumna.accesoNodo.fila) {
@@ -198,8 +190,6 @@ public class Matriz<E> {
                 //Declarar al nuevo nodo de acceso.
                 eColumna.accesoNodo = nuevo;
 
-                //Indicarle en que posición se encuentra el nodo ahora respecto a X
-                nuevo.posX = eColumna.posicion;
             } else {
                 NodoMatriz_Posicion actual = eColumna.accesoNodo;
                 boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
@@ -220,8 +210,6 @@ public class Matriz<E> {
                             actual.abajo.arriba = nuevo;
                             nuevo.arriba = actual;
                             actual.abajo = nuevo;
-                            //Indicarle en que posición se encuentra el nodo ahora respecto a X
-                            nuevo.posX = eColumna.posicion;
                             break;
                         }
                         actual = actual.abajo;
@@ -234,8 +222,6 @@ public class Matriz<E> {
                     if (actual.abajo == null && superPosicion == false) {
                         actual.abajo = nuevo;
                         nuevo.arriba = actual;
-                        //Indicarle en que posición se encuentra el nodo ahora respecto a X
-                        nuevo.posX = eColumna.posicion;
                     }
                 }
             }
@@ -402,7 +388,7 @@ public class Matriz<E> {
             int j = 2;
             while (actual != null) {
                 cadena += "// Nodo F:" + actual.fila + " C:" + actual.columna + " \n";
-                cadena += "N" + actual.hashCode() + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 0.5, height=0.5 pos = \"" + (actual.posX) + ",-" + (actual.posY) + "!\" ]; \n";
+                cadena += "N" + actual.hashCode() + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 0.5, height=0.5 pos = \"" + (eColumnas.getEncabezado(actual.columna).posicion) + ",-" + (eFilas.getEncabezado(actual.fila).posicion) + "!\" ]; \n";
                 /*======================Conexiones del nodo==================================*/
  /* Si el nodo es un nodo de Acceso FILA */
                 if (actual.accesoFila != null) {

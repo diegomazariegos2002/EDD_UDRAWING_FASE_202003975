@@ -8,24 +8,13 @@ import estructuras.matriz_dispersa.Matriz;
  */
 public class Main {
     public static void main(String[] args) {
-        Matriz<Integer> matriz = new Matriz<>();
         
+        Funciones_Ficheros fF = new Funciones_Ficheros();
+        fF.vaciar_Directorio("./Capas/Imagenes_Con_Conexiones");
         
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 10; j++) {
-                 matriz.insertar(i, j, i*j, "#FF037"+i);
-            }
-        }
-       
-
-        matriz.mostrarMatrizColumnas();
-        matriz.mostrarMatrizFilas();
-        matriz.crearFicheroNeato_MatrizConexiones("MatrizPrueba");
-        System.out.println("Se genero imagen MATRIZ.");
-        matriz.crearFicheroNeato_MatrizSinConexiones("MatrizSinConexiones");
-        System.out.println("Se genero imagen MATRIZ SIN");
-        
-        Modulo_Admin ma = new Modulo_Admin();
-        ma.setVisible(true);
+//        Modulo_Admin ma = new Modulo_Admin();
+//        ma.setVisible(true);
     }
+    
+    
 }
