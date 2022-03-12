@@ -17,7 +17,9 @@ public class Modulo_Admin extends javax.swing.JFrame {
 
     /*=========================DECLARACIONES DE VARIABLES===============================*/
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
-
+    FuncionesJSON fJSON = new FuncionesJSON();
+    
+    
     /**
      * Creates new form Modulo_Admin
      */
@@ -181,52 +183,14 @@ public class Modulo_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
-        try{
-        leerJSON_Capas();
-        }catch(Exception e){
+        try {
+            fJSON.leerJSON_Capas(this, fFicheros);
+            System.out.println("Se generaron las capas con éxito.");
+        } catch (Exception e) {
             System.out.println("Error en el método JSON.");
         }
     }//GEN-LAST:event_jButtonCargaMasivaActionPerformed
-
-    public void leerJSON_Capas(){
-        try {
-            //Make object JSON
-            Gson gson = new Gson();
-            JsonParser parser = new JsonParser();
-            FileReader fr;
-            
-            JsonElement datos = parser.parse(new FileReader("./Archivos_prueba/Mario.json"));
-            
-            for (JsonElement capa : datos.getAsJsonArray()) {
-                JsonObject jObjCapa = (JsonObject)capa;
-                jObjCapa.get("id_capa");
-                System.out.println(jObjCapa.get("id_capa"));
-                JsonArray pixeles = (JsonArray)jObjCapa.get("pixeles");
-                for (JsonElement pixel : pixeles) {
-                    JsonObject jObjPixel = (JsonObject)pixel;
-                    System.out.println(jObjPixel.get("fila"));
-                    System.out.println(jObjPixel.get("columna"));
-                    System.out.println(jObjPixel.get("color"));
-                }
-            }
-            
-            System.out.println(datos.getAsJsonArray());
-            
-            //Obteniendo el id de la capa
-            
-            /*for (Object pixele : pixeles) {
-            
-            int fila = (int)pixel.get("fila");
-            int columna = (int)pixel.get("columna");
-            String color = (String)pixel.get("color");
-            System.out.println(pixel.toJSONString());
-            }*/
-            
-        } catch (Exception e) {
-            System.out.println("Error en la carga del JSON.");
-        }
-    }
-
+    
     /**
      * @param args the command line arguments
      */

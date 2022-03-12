@@ -16,7 +16,7 @@ public class Funciones_Ficheros {
     private File archivo = null;
     private Modulo_Admin admin;
     
-    public String archivo_Buscar(Modulo_Admin admin){
+    public FileReader archivo_Buscar(Modulo_Admin admin){
         accion = new JFileChooser("./");
         accion.setFileSelectionMode(0);
         FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JSON", "json");
@@ -25,33 +25,23 @@ public class Funciones_Ficheros {
         if (accion.showOpenDialog(admin) == JFileChooser.APPROVE_OPTION) {
             archivo = accion.getSelectedFile();
             admin.jLabelNombreArchivoEntrada.setText(archivo.getName());
-            System.out.println(accion.getSelectedFile().toString());
+            /*System.out.println(accion.getSelectedFile().toString());*/
             try {
                 /*Si existe el fichero*/
                 if (archivo.exists()) {
-                    BufferedReader leeArchivo = new BufferedReader(new FileReader(archivo));
-                    String Slinea, datos = "";
-                    /*Lee el fichero linea a linea hasta llegar a la ultima*/
-                    while ((Slinea = leeArchivo.readLine()) != null) {
-                        /*Imprime la linea leida*/
-                        datos = datos + Slinea + "\n";
-                        System.out.println(Slinea);
-                    }
-                    /*Cierra el flujo*/
-                    leeArchivo.close();
-                    return datos;
+                    return new FileReader(archivo);
                 } else {
                     System.out.println("Fichero No Existe");
-                    return "";
+                    return null;
                 }
             } catch (Exception ex) {
                 /*Captura un posible error y le imprime en pantalla*/
                 System.out.println(ex.getMessage());
-                return "";
+                return null;
             }
         }else{
             System.out.println("No se selecciono fichero");
-            return "";
+            return null;
         }
     }
 }

@@ -149,7 +149,6 @@ public class AvlTree<E extends Comparable<E>> {
     }
 
     //===============================RECORRIDOS===================================
-
     public void preOrden(AvlNode<E> actual_root){
         if(actual_root != null){
             System.out.println(actual_root.value);

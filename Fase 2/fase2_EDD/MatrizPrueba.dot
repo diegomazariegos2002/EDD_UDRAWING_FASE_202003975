@@ -88,6 +88,8 @@ N77 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 8 ]
 N88 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 9 ]; 
 N1010 [label = "", style = filled, fillcolor = "#FF0000", width = 1.5, group = 11 ]; 
 
+
+
 //............ ............ Enlaces de los nodos
 
 //Conexiones FILAS y ACCESO NODO 
@@ -130,8 +132,8 @@ N1010 -> F10;
 { rank = same; F10;N1010; }
 
 //Conexiones COLUMNAS y ACCESO NODO 
-C0 -> N00;
-N00 -> C0;
+C0 -> N00 [constraint=false];
+N00 -> C0 [constraint=false];
 C1 -> N01;
 N01 -> C1;
 C3 -> N03;

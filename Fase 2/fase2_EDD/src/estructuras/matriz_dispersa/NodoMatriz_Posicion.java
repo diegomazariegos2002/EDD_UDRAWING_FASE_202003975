@@ -8,9 +8,10 @@ package estructuras.matriz_dispersa;
  */
 public class NodoMatriz_Posicion<E> {
     public int fila, columna;
+    public int posX, posY; //variables que utilizo para posicionar el nodoPosicion en neato.
     public E valor;
     public NodoMatriz_Posicion derecha, izquierda, arriba, abajo;
-    public NodoMatriz_Encabezado accesoFila, accesoColumna;
+    public NodoMatriz_Encabezado accesoFila, accesoColumna; //Hago esto porque el proyecto me exigen una lista doblemente enlazada con los NodosPosicion y NodosEncabezado.
     /*
         Variable propia del proyecto, en una matriz dispersa normal no tendría que agregarla
     */

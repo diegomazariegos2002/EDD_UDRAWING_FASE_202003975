@@ -32,12 +32,12 @@ public class Matriz<E> {
      * proyecto=======================================
      */
     /**
-     * Método para crear el fichero .Dot de mi Matriz con las conexiones y
-     * encabezados. Dot.
+     * Método para crear el fichero .Neato_Con_Conexiones de mi Matriz con las
+     * conexiones y encabezados. Neato_Con_Conexiones.
      *
      * @param nombreFichero
      */
-    public void crearFicheroDot_MatrizSinConexiones(String nombreFichero) {
+    public void crearFicheroNeato_MatrizSinConexiones(String nombreFichero) {
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
         StringBuilder dot = new StringBuilder();
@@ -58,7 +58,7 @@ public class Matriz<E> {
         PrintWriter pw = null;
         //Parte de la creación de un fichero
         try {
-            fichero = new FileWriter("./" + nombreFichero + ".neato");
+            fichero = new FileWriter("./Capas/Neato_Sin_Conexiones/" + nombreFichero + ".neato");
             pw = new PrintWriter(fichero);
 
             pw.println(dot);
@@ -77,7 +77,7 @@ public class Matriz<E> {
             }
         }
         Graphviz gv = new Graphviz();
-        gv.dibujar("neato", "-Tpng", "./" + nombreFichero + ".neato", "./" + nombreFichero + ".png");
+        gv.dibujar("neato", "-Tpng", "./Capas/Neato_Sin_Conexiones/" + nombreFichero + ".neato", "./Capas/Imagenes_Sin_Conexiones/" + nombreFichero + ".png");
     }
 
     private String crearCuerpoTabla() {
@@ -90,7 +90,8 @@ public class Matriz<E> {
         while (eFila != null) {
             NodoMatriz_Posicion actual = eFila.accesoNodo;
             while (actual != null) {
-                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\",width = 1, height = 1,"
+                cadena += "/* Nodo F: " + actual.fila + " C: " + actual.columna + " */ \n";
+                cadena += "N" + actual.hashCode() + " [label = \"\",width = 1, height = 1,"
                         + " style = filled, fillcolor = \"" + actual.colorNodo + "\", "
                         + "pos = \"" + actual.fila + ",-" + actual.columna + "!\" ]; \n";
                 actual = actual.derecha;
@@ -120,6 +121,7 @@ public class Matriz<E> {
             eFila.accesoNodo = nuevo;
             nuevo.accesoFila = eFila;
             eFilas.setEncabezado(eFila);
+            nuevo.posY = eFila.posicion;
         } else {
             /*Si se llegase a insertar un nodo con menor nivel en columnas que la que tiene el acceso nodo*/
             if (nuevo.columna < eFila.accesoNodo.columna) {
@@ -132,6 +134,9 @@ public class Matriz<E> {
 
                 //Declarar al nuevo nodo de acceso.
                 eFila.accesoNodo = nuevo;
+
+                //Indicarle en que posición se encuentra el nodo ahora respecto a Y
+                nuevo.posY = eFila.posicion;
             } else {
                 NodoMatriz_Posicion actual = eFila.accesoNodo;
                 boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
@@ -152,18 +157,22 @@ public class Matriz<E> {
                             actual.derecha.izquierda = nuevo;
                             nuevo.izquierda = actual;
                             actual.derecha = nuevo;
+                            //Indicarle en que posición se encuentra el nodo ahora respecto a Y
+                            nuevo.posY = eFila.posicion;
                             break;
                         }
                         actual = actual.derecha;
                     }
-                    if (nuevo.columna == actual.columna) {  // si la superposición se da en un nodo cualquiera.
-                            actual.valor = nuevo.valor;
-                            actual.colorNodo = nuevo.colorNodo;
-                            superPosicion = true;
-                        }
+                    if (nuevo.columna == actual.columna) {  // si la superposición se da en el último nodo.
+                        actual.valor = nuevo.valor;
+                        actual.colorNodo = nuevo.colorNodo;
+                        superPosicion = true;
+                    }
                     if (actual.derecha == null && superPosicion == false) {
                         actual.derecha = nuevo;
                         nuevo.izquierda = actual;
+                        //Indicarle en que posición se encuentra el nodo ahora respecto a Y
+                        nuevo.posY = eFila.posicion;
                     }
                 }
             }
@@ -175,6 +184,7 @@ public class Matriz<E> {
             eColumna.accesoNodo = nuevo;
             nuevo.accesoColumna = eColumna;
             eColumnas.setEncabezado(eColumna);
+            nuevo.posX = eColumna.posicion;
         } else {
             /*Si se llegase a insertar un nodo con menor nivel en filas que la que tiene el acceso nodo*/
             if (nuevo.fila < eColumna.accesoNodo.fila) {
@@ -187,6 +197,9 @@ public class Matriz<E> {
 
                 //Declarar al nuevo nodo de acceso.
                 eColumna.accesoNodo = nuevo;
+
+                //Indicarle en que posición se encuentra el nodo ahora respecto a X
+                nuevo.posX = eColumna.posicion;
             } else {
                 NodoMatriz_Posicion actual = eColumna.accesoNodo;
                 boolean superPosicion = false; // variable bandera para validar si hubo superposición de un nodo ya existente.
@@ -207,18 +220,22 @@ public class Matriz<E> {
                             actual.abajo.arriba = nuevo;
                             nuevo.arriba = actual;
                             actual.abajo = nuevo;
+                            //Indicarle en que posición se encuentra el nodo ahora respecto a X
+                            nuevo.posX = eColumna.posicion;
                             break;
                         }
                         actual = actual.abajo;
                     }
-                    if (nuevo.fila == actual.fila) { // si la superposición se da en un nodo cualquiera
-                            actual.valor = nuevo.valor;
-                            actual.colorNodo = nuevo.colorNodo;
-                            superPosicion = true;
-                        }
+                    if (nuevo.fila == actual.fila) { // si la superposición se da en el último nodo
+                        actual.valor = nuevo.valor;
+                        actual.colorNodo = nuevo.colorNodo;
+                        superPosicion = true;
+                    }
                     if (actual.abajo == null && superPosicion == false) {
                         actual.abajo = nuevo;
                         nuevo.arriba = actual;
+                        //Indicarle en que posición se encuentra el nodo ahora respecto a X
+                        nuevo.posX = eColumna.posicion;
                     }
                 }
             }
@@ -263,12 +280,12 @@ public class Matriz<E> {
     }
 
     /**
-     * Método para crear el fichero .Dot de mi Matriz con las conexiones y
-     * encabezados. Dot.
+     * Método para crear el fichero .Neato_Con_Conexiones de mi Matriz con las
+     * conexiones y encabezados. Neato_Con_Conexiones.
      *
      * @param nombreFichero
      */
-    public void crearFicheroDot_MatrizConexiones(String nombreFichero) {
+    public void crearFicheroNeato_MatrizConexiones(String nombreFichero) {
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
         StringBuilder dot = new StringBuilder();
@@ -277,7 +294,7 @@ public class Matriz<E> {
         dot.append("node [shape=box] \n");
         dot.append("\n");
         dot.append("/* La matriz se envía al grupo 1 */\n");
-        dot.append("Mt[ label = \"Matriz\", width = 1.5, group = 1 ];\n");
+        dot.append("Mt[ label = \"Matriz\", width = 0.5, height=0.5, pos = \"0,-0!\"  ];\n");
         dot.append("\n");
 
         /**
@@ -287,14 +304,6 @@ public class Matriz<E> {
         dot.append("/* se incrementan los grupos porque son columnas */ \n");
         String nodosColumna = generarNodosColumna();
         dot.append(nodosColumna);
-        dot.append("\n");
-
-        /**
-         * Parte de agregar las conexiones entre columnas.
-         */
-        dot.append("//............ Enlaces de las columnas\n");
-        String conexionesColumna = generarConexionesColumna();
-        dot.append(conexionesColumna);
         dot.append("\n");
 
         dot.append("//............ ............ ............ ............ FILAS \n");
@@ -307,34 +316,19 @@ public class Matriz<E> {
         dot.append("\n");
 
         /**
-         * Parte de agregar las conexiones entre filas.
-         */
-        String conexionesFila = generarConexionesFila();
-        dot.append(conexionesFila);
-
-        /**
          * Parte de agregar los nodos a utilizar con su respectiva posición.
          */
         dot.append("\n//............ ............DECLARACIÓN NODOS POSICIÓN............................\n");
         String NodosPosicion = generarNodosPosicion();
         dot.append(NodosPosicion);
 
-        /**
-         * Parte agregar las conexiones de los nodos tanto con los encabezados
-         * como entre ellos.
-         */
-        dot.append("\n//............ ............ Enlaces de los nodos\n");
-        String conexionesNodos = generarConexionesNodos();
-        dot.append(conexionesNodos);
-
-        dot.append("    { rank = same;}\n");
         dot.append("}");
 
         FileWriter fichero = null;
         PrintWriter pw = null;
         //Parte de la creación de un fichero
         try {
-            fichero = new FileWriter("./" + nombreFichero + ".dot");
+            fichero = new FileWriter("./Capas/Neato_Con_Conexiones/" + nombreFichero + ".neato");
             pw = new PrintWriter(fichero);
 
             pw.println(dot);
@@ -353,70 +347,47 @@ public class Matriz<E> {
             }
         }
         Graphviz gv = new Graphviz();
-        gv.dibujar("dot", "-Tpng", "./" + nombreFichero + ".dot", "./" + nombreFichero + ".png");
+        gv.dibujar("neato", "-Tpng", "./Capas/Neato_Con_Conexiones/" + nombreFichero + ".neato", "./Capas/Imagenes_Con_Conexiones/" + nombreFichero + ".png");
     }
 
     /*====================================Métodos auxiliares para generar la gráfica de mi matriz================================*/
     private String generarNodosColumna() {
         String cadena = "";
         NodoMatriz_Encabezado actualColumna = this.eColumnas.primero;
-        int i = 0;
-        while (actualColumna != null) {
-            cadena += "C" + actualColumna.id + " [label = \"Column " + actualColumna.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = " + (actualColumna.id + 1) + " ];\n";
-            i++;
-            actualColumna = actualColumna.siguiente;
-        }
-        return cadena;
-    }
-
-    private String generarConexionesColumna() {
-        String cadena = "";
-        String cadenaRank = "// Posicionando en el mismo nivel \n";
-        cadenaRank += "{ rank = same; Mt; ";
-        NodoMatriz_Encabezado actualColumna = this.eColumnas.primero;
-        int i = 0;
+        int i = 1;
         while (actualColumna.siguiente != null) {
-            if (i == 0) {
-                cadena += "Mt -> C" + actualColumna.id + "; /*Enlace primer nodo Columna con el objeto Matriz*/\n";
+            if (actualColumna == this.eColumnas.primero) {
+                cadena += "Mt -> C" + actualColumna.hashCode() + "; /*Enlace primer nodo Columna con el objeto Matriz*/\n";
             }
-            cadena += "C" + actualColumna.id + " -> C" + actualColumna.siguiente.id + ";\n";
-            cadena += "C" + actualColumna.siguiente.id + " -> C" + actualColumna.id + ";\n";
-
-            cadenaRank += "C" + actualColumna.id + "; ";
-            i++;
+            //Declaración del nodo
+            cadena += "C" + actualColumna.hashCode() + " [label = \"C" + actualColumna.id + "\", width = 0.5, height=0.5, pos = \"" + (i) + ",0!\" ];\n";
+            //Conexiones del nodo declarado
+            cadena += "C" + actualColumna.hashCode() + " -> C" + actualColumna.siguiente.hashCode() + ";\n";
+            cadena += "C" + actualColumna.siguiente.hashCode() + " -> C" + actualColumna.hashCode() + ";\n";
             actualColumna = actualColumna.siguiente;
+            i++;
         }
-        cadenaRank += "C" + actualColumna.id + "; }\n";
-        cadena += cadenaRank;
+        cadena += "C" + actualColumna.hashCode() + " [label = \"C" + actualColumna.id + "\", width = 0.5, height=0.5, pos = \"" + (i) + ",0!\" ];\n";
         return cadena;
     }
 
     private String generarNodosFila() {
         String cadena = "";
         NodoMatriz_Encabezado actualFila = this.eFilas.primero;
-        int i = 0;
-        while (actualFila != null) {
-            cadena += "F" + actualFila.id + " [label = \"Row " + actualFila.id + "\"    pos = \"5.3,3.5!\" width = 1.5 group = 0 ];\n";
-            i++;
-            actualFila = actualFila.siguiente;
-        }
-        return cadena;
-    }
-
-    private String generarConexionesFila() {
-        String cadena = "//............ enlaces de las filas \n";
-        NodoMatriz_Encabezado actualFila = this.eFilas.primero;
-        int i = 0;
+        int i = 1;
         while (actualFila.siguiente != null) {
-            if (i == 0) {
-                cadena += "Mt -> F" + actualFila.id + "; /*Enlace primer nodo Columna con el objeto Matriz*/\n";
+            if (actualFila == this.eFilas.primero) {
+                cadena += "Mt -> F" + actualFila.hashCode() + "; /*Enlace primer nodo Columna con el objeto Matriz*/\n";
             }
-            cadena += "F" + actualFila.id + " -> F" + actualFila.siguiente.id + ";\n";
-            cadena += "F" + actualFila.siguiente.id + " -> F" + actualFila.id + ";\n";
-
-            i++;
+            //Declaración del nodo
+            cadena += "F" + actualFila.hashCode() + " [label = \"F" + actualFila.id + "\", width = 0.5, height=0.5, pos = \"0,-" + (i) + "!\" ];\n";
+            //Conexiones del nodo declarado
+            cadena += "F" + actualFila.hashCode() + " -> F" + actualFila.siguiente.hashCode() + ";\n";
+            cadena += "F" + actualFila.siguiente.hashCode() + " -> F" + actualFila.hashCode() + ";\n";
             actualFila = actualFila.siguiente;
+            i++;
         }
+        cadena += "F" + actualFila.hashCode() + " [label = \"F" + actualFila.id + "\", width = 0.5, height=0.5, pos = \"0,-" + (i) + "!\" ];\n";
         return cadena;
     }
 
@@ -424,72 +395,45 @@ public class Matriz<E> {
         String cadena = "";
         String cadenaConexiones = "//............ ............ Enlaces de los nodos \n";
         NodoMatriz_Encabezado eFila = eFilas.primero;
+        NodoMatriz_Encabezado eColuman = eColumnas.primero;
+        int i = 2;
         while (eFila != null) {
             NodoMatriz_Posicion actual = eFila.accesoNodo;
+            int j = 2;
             while (actual != null) {
-                cadena += "N" + actual.fila + "" + actual.columna + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 1.5, group = " + (actual.columna + 1) + " ]; \n";
-
-                actual = actual.derecha;
-            }
-
-            eFila = eFila.siguiente;
-        }
-        return cadena;
-    }
-
-    private String generarConexionesNodos() {
-        String conexionesNodosAccesoFila = "\n//Conexiones FILAS y ACCESO NODO \n";
-        String conexionesNodosAccesoColumna = "\n//Conexiones COLUMNAS y ACCESO NODO \n";
-        String conexionesNodosPosicion = "\n//Conexiones NODOS POSICION \n";
-        String conexionesNodos = "";
-        String rank = "";
-        /* Parte para manejar las conexiones de los nodos Acceso FILA */
-        NodoMatriz_Encabezado eFila = this.eFilas.primero;
-        while (eFila != null) {
-            NodoMatriz_Posicion actual = eFila.accesoNodo;
-            while (actual != null) {
-                /* Si el nodo es un nodo de Acceso FILA */
+                cadena += "// Nodo F:" + actual.fila + " C:" + actual.columna + " \n";
+                cadena += "N" + actual.hashCode() + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 0.5, height=0.5 pos = \"" + (actual.posX) + ",-" + (actual.posY) + "!\" ]; \n";
+                /*======================Conexiones del nodo==================================*/
+ /* Si el nodo es un nodo de Acceso FILA */
                 if (actual.accesoFila != null) {
-                    rank += "{ rank = same; F" + actual.fila + ";";
-                    conexionesNodosAccesoFila += "F" + actual.fila + " -> N" + actual.fila + "" + actual.columna + ";\n";
-                    conexionesNodosAccesoFila += "N" + actual.fila + "" + actual.columna + " -> F" + actual.fila + ";\n";
-                    rank += "N" + actual.fila + "" + actual.columna + ";";
-                    rank += " }\n";
+                    cadena += "F" + actual.accesoFila.hashCode() + " -> N" + actual.hashCode() + ";\n";
+                    cadena += "N" + actual.hashCode() + " -> F" + actual.accesoFila.hashCode() + ";\n";
                 }
                 /* Si el nodo es un nodo de Acceso COLUMNA */
                 if (actual.accesoColumna != null) {
-                    conexionesNodosAccesoColumna += "C" + actual.columna + " -> N" + actual.fila + "" + actual.columna + ";\n";
-                    conexionesNodosAccesoColumna += "N" + actual.fila + "" + actual.columna + " -> C" + actual.columna + ";\n";
+                    cadena += "C" + actual.accesoColumna.hashCode() + " -> N" + actual.hashCode() + ";\n";
+                    cadena += "N" + actual.hashCode() + " -> C" + actual.accesoColumna.hashCode() + ";\n";
                 }
-
                 /* Conexiones con el resto de nodos */
                 if (actual.arriba != null) {
-                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.arriba.fila + "" + actual.arriba.columna + ";\n";
+                    cadena += "N" + actual.hashCode() + " -> N" + actual.arriba.hashCode() + ";\n";
                 }
                 if (actual.abajo != null) {
-                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.abajo.fila + "" + actual.abajo.columna + ";\n";
+                    cadena += "N" + actual.hashCode() + " -> N" + actual.abajo.hashCode() + ";\n";
                 }
                 if (actual.derecha != null) {
-                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.derecha.fila + "" + actual.derecha.columna + ";\n";
-                    rank += "{ rank = same; N" + actual.fila + "" + actual.columna + ";";
-                    rank += "N" + actual.derecha.fila + "" + actual.derecha.columna + ";";
-                    rank += " }\n";
+                    cadena += "N" + actual.hashCode() + " -> N" + actual.derecha.hashCode() + ";\n";
                 }
                 if (actual.izquierda != null) {
-                    conexionesNodosPosicion += "N" + actual.fila + "" + actual.columna + " -> N" + actual.izquierda.fila + "" + actual.izquierda.columna + ";\n";
-                    rank += "{ rank = same; N" + actual.fila + "" + actual.columna + ";";
-                    rank += "N" + actual.izquierda.fila + "" + actual.izquierda.columna + ";";
-                    rank += " }\n";
+                    cadena += "N" + actual.hashCode() + " -> N" + actual.izquierda.hashCode() + ";\n";
                 }
                 actual = actual.derecha;
+                j++;
             }
-            eFila = eFila.siguiente;
-        }
-        conexionesNodos += conexionesNodosAccesoFila;
-        conexionesNodos += rank;
-        conexionesNodos += conexionesNodosAccesoColumna;
-        conexionesNodos += conexionesNodosPosicion;
-        return conexionesNodos;
-    }
 
+            eFila = eFila.siguiente;
+            i++;
+        }
+        return cadena;
+    }
 }

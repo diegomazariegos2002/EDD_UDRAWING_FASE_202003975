@@ -8,6 +8,7 @@ package estructuras.matriz_dispersa;
  */
 public class NodoMatriz_Encabezado {
     public int id;
+    public int posicion; //variables que utilizo para posicionar el nodoPosicion en neato.
     public NodoMatriz_Encabezado siguiente, anterior;
     public NodoMatriz_Posicion accesoNodo;
 
@@ -17,5 +18,6 @@ public class NodoMatriz_Encabezado {
      */
     public NodoMatriz_Encabezado(int id) {
         this.id = id;
+        this.posicion = 1;
     }
 }
