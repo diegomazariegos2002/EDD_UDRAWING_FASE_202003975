@@ -30,12 +30,12 @@ public class FuncionesJSON {
                 //Se manda a llamar al método de lectura de ficheros y que devuelve un FileReader
                 JsonElement datos = parser.parse(fr);
 
-                for (JsonElement capa : datos.getAsJsonArray()) {
+                for (JsonElement capa : datos.getAsJsonArray()) { //for que se repite por cada capa.
                     JsonObject jObjCapa = (JsonObject) capa;
                     int id = jObjCapa.get("id_capa").getAsInt();
                     Capa newCapa = new Capa(id);
 
-                    /*System.out.println(jObjCapa.get("id_capa"));*/
+                    System.out.println(jObjCapa.get("id_capa"));
                     JsonArray pixeles = (JsonArray) jObjCapa.get("pixeles");
                     for (JsonElement pixel : pixeles) {
                         JsonObject jObjPixel = (JsonObject) pixel;
@@ -47,18 +47,18 @@ public class FuncionesJSON {
                         String color = jObjPixel.get("color").getAsString();
                         newCapa.getMatriz_Capa().insertar(fila, columna, color, color);
                     }
-                    //Aquí se tendría que añadir la capa al árbol de capas.
-//                    if (id == 8) {
-//                        System.out.println("========================" + jObjCapa.get("id_capa") + "================================");
-//                        newCapa.getMatriz_Capa().mostrarMatrizFilas();
-//                    }
                     String rutaNeatoConConexiones = rutaCarpetaCapas + "/Neato_Con_Conexiones";
                     String rutaPngConConexiones = rutaCarpetaCapas + "/Imagenes_Con_Conexiones";
                     String rutaNeatoSinConexiones = rutaCarpetaCapas + "/Neato_Sin_Conexiones";
                     String rutaPngSinConexiones = rutaCarpetaCapas + "/Imagenes_Sin_Conexiones";
                     newCapa.getMatriz_Capa().crearFicheroNeato_MatrizConexiones(String.valueOf(id) + "_ConConexiones", rutaNeatoConConexiones, rutaPngConConexiones);
                     newCapa.getMatriz_Capa().crearFicheroNeato_MatrizSinConexiones(String.valueOf(id) + "_SinConexiones", rutaNeatoSinConexiones, rutaPngSinConexiones);
+                    
+                    // Se inserta la nueva capa en el árbol de capas generales del Cliente logeado.
+                    mca.clienteRegistrado.getArbol_CapasGenerales().insertar(newCapa);
                 }
+                mca.clienteRegistrado.getArbol_CapasGenerales().preOrden();
+                mca.clienteRegistrado.getArbol_CapasGenerales().crearFicheroDot_Arbol("Arbol_ABB_Capas", rutaCarpetaCapas+"/Arbol_AVL_Capas", rutaCarpetaCapas+"/Arbol_AVL_Capas");
             }
         } catch (Exception e) {
             System.out.println("Error en la carga del JSON.");

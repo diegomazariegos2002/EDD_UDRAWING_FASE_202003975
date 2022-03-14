@@ -15,6 +15,24 @@ public class Capa implements Comparable<Capa>{
     */
     private Matriz<String> matriz_Capa = new Matriz<>();
 
+    @Override
+    public String toString() {
+        return "" + id_Capa + "";
+    }
+    
+    /**
+     * Método abstracto que se utiliza para comparar dos capas.
+     * Recordar que esto lo hago mas por temas de los árboles binarios.
+     * @param capaAComparar
+     * @return 
+     */
+    @Override
+    public int compareTo(Capa capaAComparar) {
+        return this.id_Capa - capaAComparar.id_Capa;
+    }
+    
+    /*===================================MÉTODO GET AND SET=========================================*/
+    
     /**
      * Constructor de mi clase Capa
      * @param id_Capa 
@@ -49,16 +67,5 @@ public class Capa implements Comparable<Capa>{
      */
     public void setMatriz_Capa(Matriz<String> matriz_Capa) {
         this.matriz_Capa = matriz_Capa;
-    }
-
-    /**
-     * Método abstracto que se utiliza para comparar dos capas.
-     * Recordar que esto lo hago mas por temas de los árboles binarios.
-     * @param capaAComparar
-     * @return 
-     */
-    @Override
-    public int compareTo(Capa capaAComparar) {
-        return this.id_Capa - capaAComparar.id_Capa;
     }
 }

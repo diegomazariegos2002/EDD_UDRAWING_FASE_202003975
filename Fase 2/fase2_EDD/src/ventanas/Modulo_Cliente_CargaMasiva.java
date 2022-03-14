@@ -18,7 +18,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     /*=========================DECLARACIONES DE VARIABLES===============================*/
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
     FuncionesJSON fJSON = new FuncionesJSON();
-    Cliente clienteRegistrado = null;
+    public Cliente clienteRegistrado = null;
     
     /**
      * Creates new form Modulo_Cliente_CargaMasiva
@@ -60,6 +60,11 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         });
 
         jButton2.setText("Carga masiva de imagenes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Carga masiva de álbumes");
 
@@ -111,6 +116,14 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
             System.out.println("Error en el método JSON.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    /**
+     * Carga masiva IMAGENES
+     * @param evt 
+     */
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

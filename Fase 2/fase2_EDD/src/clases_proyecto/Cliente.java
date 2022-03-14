@@ -26,6 +26,8 @@ public class Cliente {
         this.DPI = DPI;
         this.nombre = nombre;
         this.password = password;
+        this.arbol_Imagenes = new AvlTree<>();
+        this.arbol_CapasGenerales = new AbbTree<>();
     }
     
     public int getDPI() {
