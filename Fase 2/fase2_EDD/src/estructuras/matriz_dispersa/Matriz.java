@@ -11,7 +11,7 @@ import estructuras.Graphviz;
  * @author Melissa
  * @param <E>
  */
-public class Matriz<E> {
+public class Matriz<E>{
 
     ListaEncabezado eFilas;
     ListaEncabezado eColumnas;
@@ -37,7 +37,7 @@ public class Matriz<E> {
      *
      * @param nombreFichero
      */
-    public void crearFicheroNeato_MatrizSinConexiones(String nombreFichero) {
+    public void crearFicheroNeato_MatrizSinConexiones(String nombreFichero) throws InterruptedException {
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
         StringBuilder dot = new StringBuilder();
@@ -93,7 +93,7 @@ public class Matriz<E> {
                 cadena += "/* Nodo F: " + actual.fila + " C: " + actual.columna + " */ \n";
                 cadena += "N" + actual.hashCode() + " [label = \"\",width = 1, height = 1,"
                         + " style = filled, fillcolor = \"" + actual.colorNodo + "\", "
-                        + "pos = \"" + actual.fila + ",-" + actual.columna + "!\" ]; \n";
+                        + "pos = \"" + (eColumnas.getEncabezado(actual.columna).posicion) + ",-" + (eFilas.getEncabezado(actual.fila).posicion) + "!\" ]; \n";
                 actual = actual.derecha;
             }
             eFila = eFila.siguiente;
@@ -390,7 +390,7 @@ public class Matriz<E> {
                 cadena += "// Nodo F:" + actual.fila + " C:" + actual.columna + " \n";
                 cadena += "N" + actual.hashCode() + " [label = \"\", style = filled, fillcolor = \"" + actual.colorNodo + "\", width = 0.5, height=0.5 pos = \"" + (eColumnas.getEncabezado(actual.columna).posicion) + ",-" + (eFilas.getEncabezado(actual.fila).posicion) + "!\" ]; \n";
                 /*======================Conexiones del nodo==================================*/
- /* Si el nodo es un nodo de Acceso FILA */
+                /* Si el nodo es un nodo de Acceso FILA */
                 if (actual.accesoFila != null) {
                     cadena += "F" + actual.accesoFila.hashCode() + " -> N" + actual.hashCode() + ";\n";
                     cadena += "N" + actual.hashCode() + " -> F" + actual.accesoFila.hashCode() + ";\n";

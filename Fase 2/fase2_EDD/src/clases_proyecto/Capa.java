@@ -6,7 +6,7 @@ import estructuras.matriz_dispersa.Matriz;
  * Clase capas que básicamente almacena su id y su respectiva matriz.
  * @author Melissa
  */
-public class Capa {
+public class Capa implements Comparable<Capa>{
     private int id_Capa;
     /*
         aquí le puse String pero básicamente el E valor de la matriz no lo utilizo
@@ -49,5 +49,16 @@ public class Capa {
      */
     public void setMatriz_Capa(Matriz<String> matriz_Capa) {
         this.matriz_Capa = matriz_Capa;
+    }
+
+    /**
+     * Método abstracto que se utiliza para comparar dos capas.
+     * Recordar que esto lo hago mas por temas de los árboles binarios.
+     * @param capaAComparar
+     * @return 
+     */
+    @Override
+    public int compareTo(Capa capaAComparar) {
+        return this.id_Capa - capaAComparar.id_Capa;
     }
 }

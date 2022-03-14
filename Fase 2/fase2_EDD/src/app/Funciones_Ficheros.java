@@ -1,5 +1,6 @@
 package app;
 
+import ventanas.Modulo_Admin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -59,7 +60,6 @@ public class Funciones_Ficheros {
      * @param nombreCarpeta
      */
     public void vaciar_Directorio(String rutaDirectorio) {
-        rutaDirectorio = "./ARBOLES_202003975/";
         File carpeta = new File(rutaDirectorio);
         if (carpeta.listFiles().length > 0) {
             for (File fichero : carpeta.listFiles()) {

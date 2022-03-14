@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package ventanas;
 
 //Librerías para leer JSON
+import app.FuncionesJSON;
+import app.Funciones_Ficheros;
 import java.io.FileReader;
 import com.google.gson.*;
 
@@ -18,8 +20,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
     /*=========================DECLARACIONES DE VARIABLES===============================*/
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
     FuncionesJSON fJSON = new FuncionesJSON();
-    
-    
+
     /**
      * Creates new form Modulo_Admin
      */
@@ -62,7 +63,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("BIENVENIDO AL MÓDULO DEL ADMINISTRADOR");
 
-        jButtonCargaMasiva.setText("CARGA MASIVA");
+        jButtonCargaMasiva.setText("CARGA MASIVA DE CLIENTES");
         jButtonCargaMasiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCargaMasivaActionPerformed(evt);
@@ -184,13 +185,17 @@ public class Modulo_Admin extends javax.swing.JFrame {
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
         try {
+            fFicheros.vaciar_Directorio("./Capas/Imagenes_Con_Conexiones");
+            fFicheros.vaciar_Directorio("./Capas/Imagenes_Sin_Conexiones");
+            fFicheros.vaciar_Directorio("./Capas/Neato_Con_Conexiones");
+            fFicheros.vaciar_Directorio("./Capas/Neato_Sin_Conexiones");
             fJSON.leerJSON_Capas(this, fFicheros);
             System.out.println("Se generaron las capas con éxito.");
         } catch (Exception e) {
             System.out.println("Error en el método JSON.");
         }
     }//GEN-LAST:event_jButtonCargaMasivaActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

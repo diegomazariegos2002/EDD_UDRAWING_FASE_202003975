@@ -158,7 +158,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonCargaMasiva">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CARGA MASIVA"/>
+        <Property name="text" type="java.lang.String" value="CARGA MASIVA DE CLIENTES"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCargaMasivaActionPerformed"/>
