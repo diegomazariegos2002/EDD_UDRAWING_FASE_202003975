@@ -37,7 +37,7 @@ public class Matriz<E>{
      *
      * @param nombreFichero
      */
-    public void crearFicheroNeato_MatrizSinConexiones(String nombreFichero) throws InterruptedException {
+    public void crearFicheroNeato_MatrizSinConexiones(String nombreFichero, String rutaNeato, String rutaPng) throws InterruptedException {
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
         StringBuilder dot = new StringBuilder();
@@ -58,7 +58,7 @@ public class Matriz<E>{
         PrintWriter pw = null;
         //Parte de la creación de un fichero
         try {
-            fichero = new FileWriter("./Capas/Neato_Sin_Conexiones/" + nombreFichero + ".neato");
+            fichero = new FileWriter(rutaNeato + "/" + nombreFichero + ".neato");
             pw = new PrintWriter(fichero);
 
             pw.println(dot);
@@ -77,7 +77,7 @@ public class Matriz<E>{
             }
         }
         Graphviz gv = new Graphviz();
-        gv.dibujar("neato", "-Tpng", "./Capas/Neato_Sin_Conexiones/" + nombreFichero + ".neato", "./Capas/Imagenes_Sin_Conexiones/" + nombreFichero + ".png");
+        gv.dibujar("neato", "-Tpng", rutaNeato + "/" + nombreFichero + ".neato", rutaPng + "/" + nombreFichero + ".png");
     }
 
     private String crearCuerpoTabla() {
@@ -271,7 +271,7 @@ public class Matriz<E>{
      *
      * @param nombreFichero
      */
-    public void crearFicheroNeato_MatrizConexiones(String nombreFichero) {
+    public void crearFicheroNeato_MatrizConexiones(String nombreFichero, String rutaNeato, String rutaPng) {
         //Parte del String o texto que va a llevar el fichero
         // (en este caso un archivo .dot)
         StringBuilder dot = new StringBuilder();
@@ -314,7 +314,7 @@ public class Matriz<E>{
         PrintWriter pw = null;
         //Parte de la creación de un fichero
         try {
-            fichero = new FileWriter("./Capas/Neato_Con_Conexiones/" + nombreFichero + ".neato");
+            fichero = new FileWriter(rutaNeato + "/" + nombreFichero + ".neato");
             pw = new PrintWriter(fichero);
 
             pw.println(dot);
@@ -333,7 +333,7 @@ public class Matriz<E>{
             }
         }
         Graphviz gv = new Graphviz();
-        gv.dibujar("neato", "-Tpng", "./Capas/Neato_Con_Conexiones/" + nombreFichero + ".neato", "./Capas/Imagenes_Con_Conexiones/" + nombreFichero + ".png");
+        gv.dibujar("neato", "-Tpng", rutaNeato + "/" + nombreFichero + ".neato", rutaPng + "/" + nombreFichero + ".png");
     }
 
     /*====================================Métodos auxiliares para generar la gráfica de mi matriz================================*/

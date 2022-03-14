@@ -1,6 +1,6 @@
 package app;
 
-import ventanas.Modulo_Admin;
+import ventanas.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -20,12 +20,12 @@ public class FuncionesJSON {
      * Método para la lectura del JSON capas. Este método además hace la
      * construcción de las capas de una vez.
      */
-    public void leerJSON_Capas(Modulo_Admin modAdmin, Funciones_Ficheros ff) {
+    public void leerJSON_Capas(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaCapas) {
         try {
             //Make object GSON
             Gson gson = new Gson();
             JsonParser parser = new JsonParser();
-            FileReader fr = ff.archivo_Buscar(modAdmin);
+            FileReader fr = ff.archivo_Buscar(mca);
             if (fr != null) {
                 //Se manda a llamar al método de lectura de ficheros y que devuelve un FileReader
                 JsonElement datos = parser.parse(fr);
@@ -52,9 +52,12 @@ public class FuncionesJSON {
 //                        System.out.println("========================" + jObjCapa.get("id_capa") + "================================");
 //                        newCapa.getMatriz_Capa().mostrarMatrizFilas();
 //                    }
-                    newCapa.getMatriz_Capa().crearFicheroNeato_MatrizConexiones(String.valueOf(id) + "_ConConexiones");
-                    newCapa.getMatriz_Capa().crearFicheroNeato_MatrizSinConexiones(String.valueOf(id) + "_SinConexiones");
-                    
+                    String rutaNeatoConConexiones = rutaCarpetaCapas + "/Neato_Con_Conexiones";
+                    String rutaPngConConexiones = rutaCarpetaCapas + "/Imagenes_Con_Conexiones";
+                    String rutaNeatoSinConexiones = rutaCarpetaCapas + "/Neato_Sin_Conexiones";
+                    String rutaPngSinConexiones = rutaCarpetaCapas + "/Imagenes_Sin_Conexiones";
+                    newCapa.getMatriz_Capa().crearFicheroNeato_MatrizConexiones(String.valueOf(id) + "_ConConexiones", rutaNeatoConConexiones, rutaPngConConexiones);
+                    newCapa.getMatriz_Capa().crearFicheroNeato_MatrizSinConexiones(String.valueOf(id) + "_SinConexiones", rutaNeatoSinConexiones, rutaPngSinConexiones);
                 }
             }
         } catch (Exception e) {

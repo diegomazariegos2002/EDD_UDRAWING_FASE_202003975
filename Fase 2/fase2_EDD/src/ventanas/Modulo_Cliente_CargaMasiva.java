@@ -5,21 +5,25 @@
  */
 package ventanas;
 
+import app.FuncionesJSON;
+import app.Funciones_Ficheros;
 import clases_proyecto.Cliente;
-
 
 /**
  *
  * @author Melissa
  */
-public class Modulo_Cliente extends javax.swing.JFrame {
-
+public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
+    
+    /*=========================DECLARACIONES DE VARIABLES===============================*/
+    Funciones_Ficheros fFicheros = new Funciones_Ficheros();
+    FuncionesJSON fJSON = new FuncionesJSON();
     Cliente clienteRegistrado = null;
     
     /**
-     * Constructor de mi JForm.
+     * Creates new form Modulo_Cliente_CargaMasiva
      */
-    public Modulo_Cliente() {
+    public Modulo_Cliente_CargaMasiva() {
         initComponents();
     }
     
@@ -27,11 +31,11 @@ public class Modulo_Cliente extends javax.swing.JFrame {
      * Constructor de mi JForm pero con el cliente registrado actualmente.
      * @param clienteRegistrado
      */
-    public Modulo_Cliente(Cliente clienteRegistrado){
-        initComponents();
+    public Modulo_Cliente_CargaMasiva(Cliente clienteRegistrado){
         this.clienteRegistrado = clienteRegistrado;
+        initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,36 +52,36 @@ public class Modulo_Cliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Reportes de usuario");
-
-        jButton2.setText("Gestión de imágenes");
-
-        jButton3.setText("Carga masiva");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Carga masiva de capas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cerrar sesión");
+        jButton2.setText("Carga masiva de imagenes");
+
+        jButton3.setText("Carga masiva de álbumes");
+
+        jButton4.setText("Regresar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(177, 177, 177)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(80, 80, 80)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -85,17 +89,28 @@ public class Modulo_Cliente extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Modulo_Cliente_CargaMasiva mca = new Modulo_Cliente_CargaMasiva(this.clienteRegistrado);
-        mca.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    /**
+     * Carga masiva CAPAS.
+     * @param evt 
+     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String pathCapas = "./Clientes/Cliente_"+clienteRegistrado.getDPI()+"/Capas";
+            fFicheros.vaciar_Directorio(pathCapas+"/Imagenes_Con_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas+"/Imagenes_Sin_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas+"/Neato_Con_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas+"/Neato_Sin_Conexiones");
+            fJSON.leerJSON_Capas(this, fFicheros, pathCapas);
+            System.out.println("Se generaron las capas con éxito.");
+        } catch (Exception e) {
+            System.out.println("Error en el método JSON.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,26 +129,24 @@ public class Modulo_Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modulo_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modulo_Cliente_CargaMasiva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modulo_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modulo_Cliente_CargaMasiva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modulo_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modulo_Cliente_CargaMasiva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modulo_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modulo_Cliente_CargaMasiva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Modulo_Cliente().setVisible(true);
+                new Modulo_Cliente_CargaMasiva().setVisible(true);
             }
         });
     }
 
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
