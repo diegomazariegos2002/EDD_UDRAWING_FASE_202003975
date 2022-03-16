@@ -30,6 +30,11 @@ public class Cliente {
         this.arbol_CapasGenerales = new AbbTree<>();
     }
     
+    
+    
+    
+    /*================================================MÉTODOS GET AND SET================================================*/
+    
     public int getDPI() {
         return DPI;
     }

@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.FileReader;
 import clases_proyecto.Capa;
+import clases_proyecto.Imagen;
 
 /**
  * Clase para manejar las funciones que se realizan con JSON en el proyecto.
@@ -17,8 +18,12 @@ import clases_proyecto.Capa;
 public class FuncionesJSON {
 
     /**
-     * Método para la lectura del JSON capas. Este método además hace la
+     * Método para la lectura del JSON capas.Este método además hace la
      * construcción de las capas de una vez.
+     *
+     * @param mca
+     * @param ff
+     * @param rutaCarpetaCapas
      */
     public void leerJSON_Capas(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaCapas) {
         try {
@@ -53,16 +58,73 @@ public class FuncionesJSON {
                     String rutaPngSinConexiones = rutaCarpetaCapas + "/Imagenes_Sin_Conexiones";
                     newCapa.getMatriz_Capa().crearFicheroNeato_MatrizConexiones(String.valueOf(id) + "_ConConexiones", rutaNeatoConConexiones, rutaPngConConexiones);
                     newCapa.getMatriz_Capa().crearFicheroNeato_MatrizSinConexiones(String.valueOf(id) + "_SinConexiones", rutaNeatoSinConexiones, rutaPngSinConexiones);
-                    
+
                     // Se inserta la nueva capa en el árbol de capas generales del Cliente logeado.
                     mca.clienteRegistrado.getArbol_CapasGenerales().insertar(newCapa);
                 }
                 mca.clienteRegistrado.getArbol_CapasGenerales().preOrden();
-                mca.clienteRegistrado.getArbol_CapasGenerales().crearFicheroDot_Arbol("Arbol_ABB_Capas", rutaCarpetaCapas+"/Arbol_AVL_Capas", rutaCarpetaCapas+"/Arbol_AVL_Capas");
+                mca.clienteRegistrado.getArbol_CapasGenerales().crearFicheroDot_Arbol("Arbol_ABB_Capas", rutaCarpetaCapas + "/Arbol_ABB_Capas", rutaCarpetaCapas + "/Arbol_ABB_Capas");
             }
         } catch (Exception e) {
-            System.out.println("Error en la carga del JSON.");
+            System.out.println("Error en la carga del JSON CAPAS.");
         }
     }
 
+    /**
+     * Método para la lectura del JSON Imagenes.Este método además hace la
+     * construcción de las imagenes de una vez.
+     *
+     * @param mca
+     * @param ff
+     * @param rutaCarpetaCapas
+     */
+    public void leerJSON_Imagenes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaCapas) {
+        try {
+            //Make object GSON
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            FileReader fr = ff.archivo_Buscar(mca);
+            if (fr != null) {
+                //Se manda a llamar al método de lectura de ficheros y que devuelve un FileReader
+                JsonElement datos = parser.parse(fr);
+
+                for (JsonElement imagen : datos.getAsJsonArray()) { //for que se repite por cada imagen.
+                    JsonObject jObjImagen = (JsonObject) imagen;
+                    int id = jObjImagen.get("id").getAsInt();
+                    Imagen newImagen = new Imagen(id);
+                    
+                    System.out.println("capa: "+jObjImagen.get("id"));
+                    JsonArray id_Capas = (JsonArray) jObjImagen.get("capas");
+                    for (JsonElement id_Capa : id_Capas) {
+                        System.out.println(id_Capa.getAsInt());
+                        /*
+                            Recordar que cada ventana de carga masiva tiene un cliente registrado que a su vez tiene un árbol de capas generales
+                            ya para cuando ejecute esta opción, entonces podemos obtener el valor de sus nodos por medio de crear una instancia 
+                            temporal que es la parte de new CAPA(...); y así buscar dentro de su árbol abb e insertar la dirección de dicha capa
+                            encontrada en el árbol abb de las capas que conforman cada imagen.
+                        */
+                        Capa capaTemporal = mca.clienteRegistrado.getArbol_CapasGenerales().getValue(new Capa(id_Capa.getAsInt()));
+                        if (capaTemporal != null) {
+                            newImagen.getCapasImagen().insertar(capaTemporal);
+                        }else{
+                            System.out.println("No existe una capa con el id: "+id_Capa.getAsInt());
+                        }
+                        
+                    }
+                    /*
+                        Generar la unión de las capas en la imagen nueva y a su vez esto
+                        genera la matriz con las capas unidas.
+                    */
+                    
+                    
+                    /*
+                        Agregar la imagen ya procesada al árbol de imágenes.
+                    */
+                    
+                }
+            }
+        } catch (Exception error) {
+            System.out.println("Error en la carga del JSON IMAGENES.");
+        }
+    }
 }

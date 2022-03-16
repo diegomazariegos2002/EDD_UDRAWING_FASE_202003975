@@ -14,7 +14,7 @@ public class Capa implements Comparable<Capa>{
         nodoColor de una vez para ahorrarme casteos futuros.
     */
     private Matriz<String> matriz_Capa = new Matriz<>();
-
+    
     @Override
     public String toString() {
         return "" + id_Capa + "";
@@ -29,6 +29,7 @@ public class Capa implements Comparable<Capa>{
     @Override
     public int compareTo(Capa capaAComparar) {
         return this.id_Capa - capaAComparar.id_Capa;
+        
     }
     
     /*===================================MÉTODO GET AND SET=========================================*/

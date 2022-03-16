@@ -115,6 +115,11 @@ public class Funciones_Ficheros {
         }
     }
 
+    /**
+     * Método para crear nuevos carpetas si es que no existen.
+     * @param rutaCompleta
+     * @throws IOException 
+     */
     public void crearNuevoDirectorio(String rutaCompleta) throws IOException {
         Path path = Paths.get(rutaCompleta);
         if (!Files.exists(path)) {

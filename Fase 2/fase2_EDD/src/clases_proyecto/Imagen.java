@@ -19,8 +19,19 @@ public class Imagen implements Comparable<Imagen>{
      */
     public Imagen(int id_Imagen) {
         this.id_Imagen = id_Imagen;
+        this.capasImagen = new AbbTree<>();
+        this.capasUnidas = new Matriz<>();
     }  
     
+    @Override
+    public int compareTo(Imagen imagenAComparar) {
+        return this.id_Imagen - imagenAComparar.id_Imagen;
+    }
+    
+    /*==============================================UNIÓN DE LAS CAPAS DE LA IMAGEN==============================================*/
+    
+    
+    /*==============================================MÉTODOS GET AND SET==============================================*/ 
     /**
      * @return the id_Imagen
      */
@@ -61,10 +72,5 @@ public class Imagen implements Comparable<Imagen>{
      */
     public void setCapasUnidas(Matriz<Capa> capasUnidas) {
         this.capasUnidas = capasUnidas;
-    }
-
-    @Override
-    public int compareTo(Imagen imagenAComparar) {
-        return this.id_Imagen - imagenAComparar.id_Imagen;
     }
 }

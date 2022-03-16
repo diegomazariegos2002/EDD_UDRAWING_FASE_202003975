@@ -5,45 +5,45 @@ node [shape=box]
 /* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */
 
 /* Nodo F: 23 C: 4 */ 
-N1109252576 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-1!" ]; 
+N1539453371 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-1!" ]; 
 /* Nodo F: 23 C: 5 */ 
-N2024045063 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-1!" ]; 
+N31832854 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-1!" ]; 
 /* Nodo F: 23 C: 6 */ 
-N944383527 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "6,-1!" ]; 
+N687485322 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "6,-1!" ]; 
 /* Nodo F: 24 C: 2 */ 
-N138068637 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-2!" ]; 
+N1869322983 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-2!" ]; 
 /* Nodo F: 24 C: 3 */ 
-N1414862572 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-2!" ]; 
+N140058239 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-2!" ]; 
 /* Nodo F: 24 C: 4 */ 
-N866845679 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-2!" ]; 
+N1324659691 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-2!" ]; 
 /* Nodo F: 24 C: 5 */ 
-N347352968 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-2!" ]; 
+N1652530071 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-2!" ]; 
 /* Nodo F: 24 C: 8 */ 
-N214282235 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "8,-2!" ]; 
+N744360079 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "8,-2!" ]; 
 /* Nodo F: 24 C: 9 */ 
-N1861858003 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "9,-2!" ]; 
+N951338716 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "9,-2!" ]; 
 /* Nodo F: 24 C: 10 */ 
-N2076160032 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "10,-2!" ]; 
+N692084999 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "10,-2!" ]; 
 /* Nodo F: 24 C: 11 */ 
-N2045258870 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "11,-2!" ]; 
+N1864250394 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "11,-2!" ]; 
 /* Nodo F: 25 C: 1 */ 
-N480903373 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "1,-3!" ]; 
+N347763856 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "1,-3!" ]; 
 /* Nodo F: 25 C: 2 */ 
-N1028093053 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-3!" ]; 
+N1901467582 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "2,-3!" ]; 
 /* Nodo F: 25 C: 3 */ 
-N675889890 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-3!" ]; 
+N512843245 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "3,-3!" ]; 
 /* Nodo F: 25 C: 4 */ 
-N1983464284 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-3!" ]; 
+N756957306 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "4,-3!" ]; 
 /* Nodo F: 25 C: 5 */ 
-N1893414266 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-3!" ]; 
+N1823754624 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "5,-3!" ]; 
 /* Nodo F: 25 C: 6 */ 
-N1393946298 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "6,-3!" ]; 
+N1132110997 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "6,-3!" ]; 
 /* Nodo F: 25 C: 7 */ 
-N1700858681 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "7,-3!" ]; 
+N1368365129 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "7,-3!" ]; 
 /* Nodo F: 25 C: 9 */ 
-N1382428659 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "9,-3!" ]; 
+N1735842848 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "9,-3!" ]; 
 /* Nodo F: 25 C: 10 */ 
-N1520722651 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "10,-3!" ]; 
+N1971723984 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "10,-3!" ]; 
 /* Nodo F: 25 C: 11 */ 
-N445811983 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "11,-3!" ]; 
+N1045983749 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF0000", pos = "11,-3!" ]; 
 }

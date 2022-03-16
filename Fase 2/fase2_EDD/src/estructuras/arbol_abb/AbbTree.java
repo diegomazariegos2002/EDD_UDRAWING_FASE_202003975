@@ -69,6 +69,51 @@ public class AbbTree<E extends Comparable<E>> {
             preOrden(root.hijoDer);
         }
     }
+    
+    /**
+     * Parte 1 del método recursivo de busqueda en pre-orden del árbol.
+     * Este método busca por medio del objeto con el cual se comparo.
+     * Por eso se utiliza el método .ToCompare de cada objeto valor.
+     * @param valor
+     * @return 
+     */
+    public E getValue(E valor){
+        if(arbolVacio() != true){
+            return getValueNode(this.root, valor);
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * Parte 2 del método recursivo de busqueda en pre-orden del árbol.
+     * @param actualRoot
+     * @param valor
+     * @return 
+     */
+    private E getValueNode(AbbNode<E> actualRoot, E valor){
+        if(actualRoot != null){
+            if (valor.compareTo(actualRoot.valor) == 0) {
+                return actualRoot.valor;
+            }else if(valor.compareTo(actualRoot.valor) < 0){
+                return getValueNode(actualRoot.hijoIzq, valor);
+            }else{
+                return getValueNode(actualRoot.hijoDer, valor);
+            }
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * Método que sirve para verificar si la lista esta vacía.
+     * @return 
+     */
+    public boolean arbolVacio(){
+        return (this.root == null);
+    }
+    
+    /*==========================================MÉTODOS DE GRAPHVIZ==========================================*/
 
     /**
      * Parte 1 para graficar el árbol por medio de graphviz. Cuerpo en general.

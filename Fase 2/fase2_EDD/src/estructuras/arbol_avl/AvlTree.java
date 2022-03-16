@@ -32,7 +32,7 @@ public class AvlTree<E extends Comparable<E>> {
         }
     }
 
-    public AvlNode<E> insert_node(AvlNode<E> actual_root, AvlNode<E> newNode) {
+    private AvlNode<E> insert_node(AvlNode<E> actual_root, AvlNode<E> newNode) {
         if (actual_root != null) { // Recorrer hijos
             if (newNode.value.compareTo(actual_root.value) < 0) { //Cuando es menor
                 actual_root.left = this.insert_node(actual_root.left, newNode); // se manda al nodo izquierdo

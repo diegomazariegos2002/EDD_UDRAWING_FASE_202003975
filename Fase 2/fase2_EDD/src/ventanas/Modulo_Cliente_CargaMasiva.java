@@ -8,30 +8,36 @@ package ventanas;
 import app.FuncionesJSON;
 import app.Funciones_Ficheros;
 import clases_proyecto.Cliente;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Melissa
  */
 public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
-    
+
     /*=========================DECLARACIONES DE VARIABLES===============================*/
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
     FuncionesJSON fJSON = new FuncionesJSON();
     public Cliente clienteRegistrado = null;
-    
+
     /**
      * Creates new form Modulo_Cliente_CargaMasiva
      */
     public Modulo_Cliente_CargaMasiva() {
         initComponents();
     }
-    
+
     /**
      * Constructor de mi JForm pero con el cliente registrado actualmente.
+     *
      * @param clienteRegistrado
      */
-    public Modulo_Cliente_CargaMasiva(Cliente clienteRegistrado){
+    public Modulo_Cliente_CargaMasiva(Cliente clienteRegistrado) {
         this.clienteRegistrado = clienteRegistrado;
         initComponents();
     }
@@ -49,6 +55,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,60 +78,110 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
 
         jButton4.setText("Regresar");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Árbol ABB capas", "Árbol AVL imagenes", "Estructura álbumes" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 393, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Carga masiva CAPAS.
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String pathCapas = "./Clientes/Cliente_"+clienteRegistrado.getDPI()+"/Capas";
-            fFicheros.vaciar_Directorio(pathCapas+"/Imagenes_Con_Conexiones");
-            fFicheros.vaciar_Directorio(pathCapas+"/Imagenes_Sin_Conexiones");
-            fFicheros.vaciar_Directorio(pathCapas+"/Neato_Con_Conexiones");
-            fFicheros.vaciar_Directorio(pathCapas+"/Neato_Sin_Conexiones");
+            String pathCapas = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas";
+            fFicheros.vaciar_Directorio(pathCapas + "/Imagenes_Con_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas + "/Imagenes_Sin_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas + "/Neato_Con_Conexiones");
+            fFicheros.vaciar_Directorio(pathCapas + "/Neato_Sin_Conexiones");
             fJSON.leerJSON_Capas(this, fFicheros, pathCapas);
             System.out.println("Se generaron las capas con éxito.");
         } catch (Exception e) {
-            System.out.println("Error en el método JSON.");
+            System.out.println("Error en el método JSON CAPAS.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     /**
      * Carga masiva IMAGENES
-     * @param evt 
+     *
+     * @param evt
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        try {
+            if (!clienteRegistrado.getArbol_CapasGenerales().arbolVacio()) {
+                String pathImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
+                fJSON.leerJSON_Imagenes(this, fFicheros, pathImagenes);
+                System.out.println("Se generaron las imagenes con éxito.");
+            }else{
+                JOptionPane.showMessageDialog(this, "No posee capas actualmente, se necesita el ingreso de capas.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error en el método JSON IMAGENES.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String rutaImagenes = "";
+        String nombreFinalImagen = "";
+        if (jComboBox1.getSelectedItem().toString().equals("Árbol ABB capas")) {
+            System.out.println("Eligió mostrar las capas.");
+            System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas/Arbol_ABB_Capas/Arbol_ABB_Capas.png");
+            mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas/Arbol_ABB_Capas/Arbol_ABB_Capas.png");
+        } else if (jComboBox1.getSelectedItem().toString().equals("Árbol AVL imagenes")) {
+            System.out.println("Eligió mostrar las imagenes.");
+        } else {
+            System.out.println("Eligió mostrar los albumes.");
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    public void mostrarImagen(String rutaImagen) {
+        ImageIcon imagen = new ImageIcon(rutaImagen);
+        JLabel etiqueta = new JLabel(imagen);
+        jScrollPane1.setViewportView(etiqueta);
+    }
 
     /**
      * @param args the command line arguments
@@ -165,5 +223,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
