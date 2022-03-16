@@ -27,9 +27,18 @@ public class Imagen implements Comparable<Imagen>{
     public int compareTo(Imagen imagenAComparar) {
         return this.id_Imagen - imagenAComparar.id_Imagen;
     }
+
+    @Override
+    public String toString() {
+        return "Imagen " + id_Imagen + "";
+    }
+    
+    
     
     /*==============================================UNIÓN DE LAS CAPAS DE LA IMAGEN==============================================*/
-    
+    public void unirCapas(){
+         
+    }
     
     /*==============================================MÉTODOS GET AND SET==============================================*/ 
     /**

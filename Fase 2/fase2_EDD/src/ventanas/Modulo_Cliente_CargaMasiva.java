@@ -153,6 +153,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         try {
             if (!clienteRegistrado.getArbol_CapasGenerales().arbolVacio()) {
                 String pathImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
+                fFicheros.vaciar_Directorio(pathImagenes + "/Neato_Imagenes");
+                fFicheros.vaciar_Directorio(pathImagenes + "/Imagenes_Puras");
                 fJSON.leerJSON_Imagenes(this, fFicheros, pathImagenes);
                 System.out.println("Se generaron las imagenes con éxito.");
             }else{
@@ -167,13 +169,15 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         String rutaImagenes = "";
         String nombreFinalImagen = "";
         if (jComboBox1.getSelectedItem().toString().equals("Árbol ABB capas")) {
-            System.out.println("Eligió mostrar las capas.");
+            System.out.println("Eligió mostrar el árbol de capas.");
             System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas/Arbol_ABB_Capas/Arbol_ABB_Capas.png");
             mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas/Arbol_ABB_Capas/Arbol_ABB_Capas.png");
         } else if (jComboBox1.getSelectedItem().toString().equals("Árbol AVL imagenes")) {
-            System.out.println("Eligió mostrar las imagenes.");
+            System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+            mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+            System.out.println("Eligió mostrar el árbol de imagenes.");
         } else {
-            System.out.println("Eligió mostrar los albumes.");
+            System.out.println("Eligió mostrar la lista de albumes.");
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

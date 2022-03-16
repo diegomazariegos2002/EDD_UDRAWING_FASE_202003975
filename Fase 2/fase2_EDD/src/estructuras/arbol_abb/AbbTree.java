@@ -162,7 +162,7 @@ public class AbbTree<E extends Comparable<E>> {
     }
 
     /**
-     * Parte 3 para graficar el árbol por medio de graphviz. Método para
+     * Parte 2 para graficar el árbol por medio de graphviz. Método para
      * retornar las CONEXIONES ENTRE NODOS para el .Dot
      *
      * @param entrada

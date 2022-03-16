@@ -76,9 +76,9 @@ public class FuncionesJSON {
      *
      * @param mca
      * @param ff
-     * @param rutaCarpetaCapas
+     * @param rutaCarpetaImagenes
      */
-    public void leerJSON_Imagenes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaCapas) {
+    public void leerJSON_Imagenes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaImagenes) {
         try {
             //Make object GSON
             Gson gson = new Gson();
@@ -120,8 +120,10 @@ public class FuncionesJSON {
                     /*
                         Agregar la imagen ya procesada al árbol de imágenes.
                     */
-                    
+                    mca.clienteRegistrado.getArbol_Imagenes().insert(newImagen);
                 }
+                mca.clienteRegistrado.getArbol_Imagenes().preOrden();
+                mca.clienteRegistrado.getArbol_Imagenes().crearFicheroDot_Arbol("Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes");
             }
         } catch (Exception error) {
             System.out.println("Error en la carga del JSON IMAGENES.");

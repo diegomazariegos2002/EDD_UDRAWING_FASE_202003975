@@ -17,7 +17,7 @@ public class Capa implements Comparable<Capa>{
     
     @Override
     public String toString() {
-        return "" + id_Capa + "";
+        return "Capa " + id_Capa + "";
     }
     
     /**
