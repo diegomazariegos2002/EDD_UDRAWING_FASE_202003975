@@ -36,7 +36,7 @@ public class AbbTree<E extends Comparable<E>> {
      * @return
      */
     private AbbNode<E> insertarNodo(AbbNode<E> root, E valor) {
-        if (root == null) // si el árbol esta vacío.
+        if (root == null) // Si llegas al tope entonces se crea el nuevo nodo en el árbol.
         {
             root = new AbbNode<E>(valor);
         } else if (valor.compareTo(root.valor) < 0) // si el valor del nodo nuevo es menor al de su raíz actual.
@@ -189,5 +189,14 @@ public class AbbTree<E extends Comparable<E>> {
             cadena += getConexionNodos_PreOrden(cadena, actual.hijoDer);
         }
         return cadena;
+    }
+    
+    /*===========================================MÉTODOS GET AND SET===========================================*/
+        public AbbNode<E> getRoot() {
+        return root;
+    }
+
+    public void setRoot(AbbNode<E> root) {
+        this.root = root;
     }
 }

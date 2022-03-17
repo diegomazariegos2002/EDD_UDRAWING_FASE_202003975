@@ -1,0 +1,43 @@
+/* DIEGO ANDRÉ MAZARIEGOS BARRIENTOS */
+digraph Sparce_Matrix {   
+node [shape=box]
+
+/* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */
+
+/* Nodo F: 113 C: 54 */ 
+N366178488 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "1,-1!" ]; 
+/* Nodo F: 113 C: 55 */ 
+N1783982635 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "2,-1!" ]; 
+/* Nodo F: 113 C: 56 */ 
+N1321301316 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "3,-1!" ]; 
+/* Nodo F: 113 C: 57 */ 
+N1933170254 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "4,-1!" ]; 
+/* Nodo F: 113 C: 80 */ 
+N978868586 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "5,-1!" ]; 
+/* Nodo F: 113 C: 81 */ 
+N1383564319 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "6,-1!" ]; 
+/* Nodo F: 114 C: 54 */ 
+N568046415 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "1,-2!" ]; 
+/* Nodo F: 114 C: 55 */ 
+N1075415887 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "2,-2!" ]; 
+/* Nodo F: 114 C: 56 */ 
+N847050264 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "3,-2!" ]; 
+/* Nodo F: 114 C: 57 */ 
+N2138470549 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "4,-2!" ]; 
+/* Nodo F: 114 C: 80 */ 
+N1874965519 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "5,-2!" ]; 
+/* Nodo F: 114 C: 81 */ 
+N512359444 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "6,-2!" ]; 
+/* Nodo F: 115 C: 54 */ 
+N1717728678 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "1,-3!" ]; 
+/* Nodo F: 115 C: 55 */ 
+N81904809 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "2,-3!" ]; 
+/* Nodo F: 115 C: 56 */ 
+N1792601942 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "3,-3!" ]; 
+/* Nodo F: 115 C: 57 */ 
+N996202309 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "4,-3!" ]; 
+/* Nodo F: 115 C: 80 */ 
+N1314540234 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "5,-3!" ]; 
+/* Nodo F: 115 C: 81 */ 
+N1150552868 [label = "",width = 1, height = 1, style = filled, fillcolor = "#FF8B00", pos = "6,-3!" ]; 
+}

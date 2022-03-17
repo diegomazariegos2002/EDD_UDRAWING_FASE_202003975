@@ -181,6 +181,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed

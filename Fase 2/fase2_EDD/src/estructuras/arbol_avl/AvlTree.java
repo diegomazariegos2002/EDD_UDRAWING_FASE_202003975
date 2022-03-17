@@ -1,6 +1,7 @@
 package estructuras.arbol_avl;
 
 import estructuras.Graphviz;
+import estructuras.linkedlist.LinkedList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -38,8 +39,8 @@ public class AvlTree<E extends Comparable<E>> {
 
     private AvlNode<E> insert_node(AvlNode<E> actual_root, AvlNode<E> newNode) {
         if (actual_root != null) { // Recorrer hijos
-            if (newNode.value.compareTo(actual_root.value) < 0) { //Cuando es menor
-                actual_root.left = this.insert_node(actual_root.left, newNode); // se manda al nodo izquierdo
+            if (newNode.value.compareTo(actual_root.value) < 0) { // Cuando es menor
+                actual_root.left = this.insert_node(actual_root.left, newNode); // Se manda al nodo izquierdo
 
                 //Validaciones de balanceo
                 if (this.node_Heigth(actual_root.right) - this.node_Heigth(actual_root.left) == -2) {
@@ -50,8 +51,8 @@ public class AvlTree<E extends Comparable<E>> {
                         actual_root = this.left_Right_Rotation(actual_root);
                     }
                 }
-            } else if (newNode.value.compareTo(actual_root.value) > 0) {
-                actual_root.right = this.insert_node(actual_root.right, newNode);
+            } else if (newNode.value.compareTo(actual_root.value) > 0) { // Cuando es mayor
+                actual_root.right = this.insert_node(actual_root.right, newNode); // Se manda al nodo derecho
 
                 //Validaciones de balanceo
                 if (this.node_Heigth(actual_root.right) - this.node_Heigth(actual_root.left) == 2) {
@@ -104,7 +105,6 @@ public class AvlTree<E extends Comparable<E>> {
      * Método de rotación simple izquierda
      */
     public AvlNode<E> right_Rotation(AvlNode<E> node){
-
         AvlNode<E> aux = node.left;
         node.left = aux.right;
         aux.right = node;
@@ -133,7 +133,7 @@ public class AvlTree<E extends Comparable<E>> {
      * @return
      */
     public AvlNode<E> left_Right_Rotation(AvlNode<E> node){
-        node.left = this.left_Rotation(node.right);
+        node.left = this.left_Rotation(node.left);
         AvlNode<E> aux = this.right_Rotation(node);
         return aux;
     }
@@ -144,7 +144,7 @@ public class AvlTree<E extends Comparable<E>> {
      * @return
      */
     public AvlNode<E> right_left_Rotation(AvlNode<E> node){
-        node.right = this. right_Rotation(node.right);
+        node.right = this.right_Rotation(node.right);
         AvlNode<E> aux = this.left_Rotation(node);
         return aux;
     }
@@ -167,6 +167,38 @@ public class AvlTree<E extends Comparable<E>> {
             System.out.println(actual_root.value);
             this.preOrden(actual_root.left);
             this.preOrden(actual_root.right);
+        }
+    }
+    
+    /**
+     * Parte 1 Método para realizar el recorrido por amplitud del árbol avl.
+     * Recordar que este método es iterativo a diferencia de los otros recorridos y hace
+     * uso de una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     */
+    public void recorridoAmplitud(){
+        recorridoAmplitud(this.root);
+    }
+    
+    /**
+     * Parte 2 Método para realizar el recorrido por amplitud del árbol avl.
+     * Recordar que este método es iterativo a diferencia de los otros recorridos y hace
+     * uso de una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     */
+    private void recorridoAmplitud(AvlNode<E> actual_Root){
+        if (this.root != null) {
+            LinkedList<AvlNode> colaNodos = new LinkedList<>();
+            colaNodos.insertElement_AtEnding(root);
+            AvlNode aux = null;
+            while (colaNodos.getlength() != 0) {
+                aux = colaNodos.extractElement_AtBeggining().getValor();
+                System.out.println(aux.value);
+                if (aux.left != null) {
+                    colaNodos.insertElement_AtEnding(aux.left);
+                }
+                if (aux.right != null) {
+                    colaNodos.insertElement_AtEnding(aux.right);
+                }
+            }
         }
     }
 
@@ -249,5 +281,12 @@ public class AvlTree<E extends Comparable<E>> {
         return cadena;
     }
     
-    
+    /*================================================MÉTODOS GET AND SET================================================*/
+    public AvlNode<E> getRoot() {
+        return root;
+    }
+
+    public void setRoot(AvlNode<E> root) {
+        this.root = root;
+    }
 }

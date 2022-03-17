@@ -28,8 +28,7 @@ public class Matriz<E>{
     }
 
     /**
-     * ===============================================Métodos propios del
-     * proyecto=======================================
+     * ===============================================Métodos propios del proyecto=======================================
      */
     /**
      * Método para crear el fichero .Neato_Con_Conexiones de mi Matriz con las
@@ -80,6 +79,10 @@ public class Matriz<E>{
         gv.dibujar("neato", "-Tpng", rutaNeato + "/" + nombreFichero + ".neato", rutaPng + "/" + nombreFichero + ".png");
     }
 
+    /**
+     * Métood parte de crearFicheroNeato
+     * @return 
+     */
     private String crearCuerpoTabla() {
         String cadena = "";
         /*
@@ -99,6 +102,19 @@ public class Matriz<E>{
             eFila = eFila.siguiente;
         }
         return cadena;
+    }
+    
+    public Matriz superPonerMatriz(Matriz matrizDeEncima){
+        NodoMatriz_Encabezado eFila = matrizDeEncima.eFilas.primero;
+        while (eFila != null) {
+            NodoMatriz_Posicion nodoActual = eFila.accesoNodo;
+            while (nodoActual != null) {
+                this.insertar(nodoActual.fila, nodoActual.columna, (E)nodoActual.valor, nodoActual.colorNodo);
+                nodoActual = nodoActual.derecha;
+            }
+            eFila = eFila.siguiente;
+        }
+        return null;
     }
 
     //==============================================Métodos Fundamentales==================================

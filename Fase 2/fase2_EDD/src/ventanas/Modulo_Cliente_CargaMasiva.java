@@ -77,6 +77,11 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         jButton3.setText("Carga masiva de álbumes");
 
         jButton4.setText("Regresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Árbol ABB capas", "Árbol AVL imagenes", "Estructura álbumes" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +129,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Carga masiva CAPAS.
@@ -180,6 +186,12 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
             System.out.println("Eligió mostrar la lista de albumes.");
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado);
+        mc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void mostrarImagen(String rutaImagen) {
         ImageIcon imagen = new ImageIcon(rutaImagen);

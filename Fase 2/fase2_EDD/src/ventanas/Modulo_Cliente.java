@@ -41,25 +41,33 @@ public class Modulo_Cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonReporteUsuarios = new javax.swing.JButton();
+        jButtonGestionImagenes = new javax.swing.JButton();
+        jButtonCargaMasiva = new javax.swing.JButton();
+        jButtonCerrarSesion = new javax.swing.JButton();
+        jButtonReporteEstructuras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Reportes de usuario");
+        jButtonReporteUsuarios.setText("Reportes de usuario");
 
-        jButton2.setText("Gestión de imágenes");
-
-        jButton3.setText("Carga masiva");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGestionImagenes.setText("Control de imágenes");
+        jButtonGestionImagenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonGestionImagenesActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cerrar sesión");
+        jButtonCargaMasiva.setText("Carga masiva");
+        jButtonCargaMasiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCargaMasivaActionPerformed(evt);
+            }
+        });
+
+        jButtonCerrarSesion.setText("Cerrar sesión");
+
+        jButtonReporteEstructuras.setText("Reporte de estructuras");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,34 +76,44 @@ public class Modulo_Cliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(174, Short.MAX_VALUE))
+                    .addComponent(jButtonReporteEstructuras)
+                    .addComponent(jButtonCerrarSesion)
+                    .addComponent(jButtonCargaMasiva)
+                    .addComponent(jButtonGestionImagenes)
+                    .addComponent(jButtonReporteUsuarios))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addComponent(jButtonReporteUsuarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReporteEstructuras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGestionImagenes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCargaMasiva)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCerrarSesion)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
         Modulo_Cliente_CargaMasiva mca = new Modulo_Cliente_CargaMasiva(this.clienteRegistrado);
         mca.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCargaMasivaActionPerformed
+
+    private void jButtonGestionImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionImagenesActionPerformed
+        Cliente_GestionImagenes cgi = new Cliente_GestionImagenes(this.clienteRegistrado);
+        cgi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonGestionImagenesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,9 +153,10 @@ public class Modulo_Cliente extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCargaMasiva;
+    private javax.swing.JButton jButtonCerrarSesion;
+    private javax.swing.JButton jButtonGestionImagenes;
+    private javax.swing.JButton jButtonReporteEstructuras;
+    private javax.swing.JButton jButtonReporteUsuarios;
     // End of variables declaration//GEN-END:variables
 }

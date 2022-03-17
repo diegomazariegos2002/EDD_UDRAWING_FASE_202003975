@@ -109,21 +109,23 @@ public class FuncionesJSON {
                         }else{
                             System.out.println("No existe una capa con el id: "+id_Capa.getAsInt());
                         }
-                        
                     }
                     /*
-                        Generar la unión de las capas en la imagen nueva y a su vez esto
-                        genera la matriz con las capas unidas.
+                        Generar recorrido por amplitud de cada capa en cada imagen.
                     */
-                    
-                    
+                    newImagen.unirCapasAmplitud();
+                    newImagen.getCapasUnidas().crearFicheroNeato_MatrizSinConexiones("Imagen_"+newImagen.getId_Imagen(), rutaCarpetaImagenes + "/Neato_Imagenes", rutaCarpetaImagenes + "/Imagenes_Puras");
                     /*
                         Agregar la imagen ya procesada al árbol de imágenes.
                     */
                     mca.clienteRegistrado.getArbol_Imagenes().insert(newImagen);
                 }
+                System.out.println("Recorrido PreOrden del árbol de imágenes");
                 mca.clienteRegistrado.getArbol_Imagenes().preOrden();
+                System.out.println("Recorrido por amplitud del árbol de imagenes");
+                mca.clienteRegistrado.getArbol_Imagenes().recorridoAmplitud();
                 mca.clienteRegistrado.getArbol_Imagenes().crearFicheroDot_Arbol("Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes");
+                
             }
         } catch (Exception error) {
             System.out.println("Error en la carga del JSON IMAGENES.");

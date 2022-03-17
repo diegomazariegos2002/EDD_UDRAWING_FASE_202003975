@@ -1,25 +1,53 @@
 digraph binaryTree { 
 node[shape = circle]; 
 
-Nodo819280155[label = "Capa 3"];
+Nodo1419219190[label = "Capa 0"];
 
-Nodo819280155 -> Nodo267839849; 
+Nodo1419219190 -> Nodo410700775; 
 
-Nodo819280155 -> Nodo605321854; 
+Nodo410700775[label = "Capa 1"];
 
-Nodo267839849[label = "Capa 0"];
+Nodo410700775 -> Nodo1922478043; 
 
-Nodo267839849 -> Nodo508647549; 
+Nodo1922478043[label = "Capa 2"];
 
-Nodo508647549[label = "Capa 2"];
+Nodo1922478043 -> Nodo680586236; 
 
-Nodo508647549 -> Nodo672666297; 
+Nodo680586236[label = "Capa 3"];
 
-Nodo672666297[label = "Capa 1"];
+Nodo680586236 -> Nodo1075315187; 
 
-Nodo605321854[label = "Capa 5"];
+Nodo1075315187[label = "Capa 4"];
 
-Nodo605321854 -> Nodo278727538; 
+Nodo1075315187 -> Nodo242474980; 
 
-Nodo278727538[label = "Capa 4"];
+Nodo242474980[label = "Capa 5"];
+
+Nodo242474980 -> Nodo1239171462; 
+
+Nodo1239171462[label = "Capa 6"];
+
+Nodo1239171462 -> Nodo1715244106; 
+
+Nodo1715244106[label = "Capa 7"];
+
+Nodo1715244106 -> Nodo1722486503; 
+
+Nodo1722486503[label = "Capa 8"];
+
+Nodo1722486503 -> Nodo1991729449; 
+
+Nodo1991729449[label = "Capa 9"];
+
+Nodo1991729449 -> Nodo1573703176; 
+
+Nodo1573703176[label = "Capa 10"];
+
+Nodo1573703176 -> Nodo1594906407; 
+
+Nodo1594906407[label = "Capa 11"];
+
+Nodo1594906407 -> Nodo1634907668; 
+
+Nodo1634907668[label = "Capa 12"];
 }
