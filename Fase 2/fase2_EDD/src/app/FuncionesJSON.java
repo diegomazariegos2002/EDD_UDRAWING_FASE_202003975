@@ -113,8 +113,8 @@ public class FuncionesJSON {
                     /*
                         Generar recorrido por amplitud de cada capa en cada imagen.
                     */
-                    newImagen.unirCapasAmplitud();
-                    newImagen.getCapasUnidas().crearFicheroNeato_MatrizSinConexiones("Imagen_"+newImagen.getId_Imagen(), rutaCarpetaImagenes + "/Neato_Imagenes", rutaCarpetaImagenes + "/Imagenes_Puras");
+//                    newImagen.unirCapasAmplitud();
+//                    newImagen.getCapasUnidas().crearFicheroNeato_MatrizSinConexiones("Imagen_"+newImagen.getId_Imagen(), rutaCarpetaImagenes + "/Neato_Imagenes", rutaCarpetaImagenes + "/Imagenes_Puras");
                     /*
                         Agregar la imagen ya procesada al árbol de imágenes.
                     */
@@ -131,4 +131,6 @@ public class FuncionesJSON {
             System.out.println("Error en la carga del JSON IMAGENES.");
         }
     }
+
+    
 }

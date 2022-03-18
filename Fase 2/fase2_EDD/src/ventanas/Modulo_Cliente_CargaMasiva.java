@@ -9,7 +9,9 @@ import app.FuncionesJSON;
 import app.Funciones_Ficheros;
 import clases_proyecto.Cliente;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -75,6 +77,11 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         });
 
         jButton3.setText("Carga masiva de álbumes");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Regresar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -193,10 +200,31 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            if (!clienteRegistrado.getArbol_Imagenes().arbolVacio()) {
+                String pathImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
+                fFicheros.vaciar_Directorio(pathImagenes + "/Neato_Imagenes");
+                fFicheros.vaciar_Directorio(pathImagenes + "/Imagenes_Puras");
+                fJSON.leerJSON_Imagenes(this, fFicheros, pathImagenes);
+                System.out.println("Se generaron las imagenes con éxito.");
+            }else{
+                JOptionPane.showMessageDialog(this, "No posee imágenes actualmente, se necesita el ingreso de imágenes.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error en el método JSON ÁLBUMES.");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void mostrarImagen(String rutaImagen) {
         ImageIcon imagen = new ImageIcon(rutaImagen);
-        JLabel etiqueta = new JLabel(imagen);
-        jScrollPane1.setViewportView(etiqueta);
+        try {
+            BufferedImage bimg = ImageIO.read(new File(rutaImagen));
+            ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(bimg.getWidth(), bimg.getHeight(), Image.SCALE_SMOOTH));
+            jScrollPane1.setViewportView(new JLabel(icono));
+        } catch (Exception error) {
+
+        }
     }
 
     /**

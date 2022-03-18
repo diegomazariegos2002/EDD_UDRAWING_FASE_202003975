@@ -148,6 +148,50 @@ public class AvlTree<E extends Comparable<E>> {
         AvlNode<E> aux = this.left_Rotation(node);
         return aux;
     }
+    
+    
+    /**
+     * Parte 1 del método recursivo de busqueda en pre-orden del árbol.
+     * Este método busca por medio del objeto con el cual se comparo.
+     * Por eso se utiliza el método .ToCompare de cada objeto valor.
+     * @param valor
+     * @return 
+     */
+    public E getValue(E valor){
+        if(arbolVacio() != true){
+            return getValueNode(this.root, valor);
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * Parte 2 del método recursivo de busqueda en pre-orden del árbol.
+     * @param actualRoot
+     * @param valor
+     * @return 
+     */
+    private E getValueNode(AvlNode<E> actualRoot, E valor){
+        if(actualRoot != null){
+            if (valor.compareTo(actualRoot.value) == 0) {
+                return actualRoot.value;
+            }else if(valor.compareTo(actualRoot.value) < 0){
+                return getValueNode((AvlNode<E>)actualRoot.left, valor);
+            }else{
+                return getValueNode((AvlNode<E>)actualRoot.right, valor);
+            }
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * Método que sirve para verificar si la lista esta vacía.
+     * @return 
+     */
+    public boolean arbolVacio(){
+        return (this.root == null);
+    }
 
     //===============================RECORRIDOS===================================
     /**

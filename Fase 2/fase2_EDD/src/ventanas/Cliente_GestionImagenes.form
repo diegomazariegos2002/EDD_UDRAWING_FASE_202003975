@@ -40,11 +40,15 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="226" max="32767" attributes="0"/>
-                      <Component id="jButtonEliminarImagen1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSiguienteImagen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jComboBoxImagenesMostrar" min="-2" pref="181" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelImagenActual" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -59,11 +63,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jComboBoxImagenesMostrar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jComboBoxImagenesMostrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelImagenActual" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonEliminarImagen1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSiguienteImagen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -82,6 +90,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegresarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -162,6 +173,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar imagen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegistrarImagenActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEliminarImagen">
           <Properties>
@@ -287,7 +301,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButtonCrearAmplitud">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear imagen con el id buscado"/>
+                <Property name="text" type="java.lang.String" value="Crear imagen buscando el id ingresado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCrearAmplitudActionPerformed"/>
@@ -468,6 +482,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Events>
+        <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="jScrollPane1MouseWheelMoved"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
@@ -480,13 +497,29 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxImagenesMostrarActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonEliminarImagen1">
+    <Component class="javax.swing.JButton" name="jButtonSiguienteImagen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Siguiente imagen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSiguienteImagenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Imagen Actual: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelImagenActual">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
     </Component>
   </SubComponents>

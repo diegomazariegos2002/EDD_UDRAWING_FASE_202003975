@@ -6,6 +6,14 @@
 package ventanas;
 
 import clases_proyecto.Cliente;
+import clases_proyecto.Imagen;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +22,8 @@ import clases_proyecto.Cliente;
 public class Cliente_GestionImagenes extends javax.swing.JFrame {
 
     Cliente clienteRegistrado = null;
-    
+    int contadorImagenesCarpeta;
+
     /**
      * Creates new form Cliente_GestionImagenes
      */
@@ -24,13 +33,15 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
 
     /**
      * Constructor de mi JForm pero con el cliente registrado actualmente.
+     *
      * @param clienteRegistrado
      */
-    public Cliente_GestionImagenes(Cliente clienteRegistrado){
+    public Cliente_GestionImagenes(Cliente clienteRegistrado) {
         initComponents();
         this.clienteRegistrado = clienteRegistrado;
+        contadorImagenesCarpeta = 0;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,11 +81,18 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
         jButtonCrearImagenCapas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jComboBoxImagenesMostrar = new javax.swing.JComboBox<>();
-        jButtonEliminarImagen1 = new javax.swing.JButton();
+        jButtonSiguienteImagen = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabelImagenActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestión de imágenes"));
         jPanel1.setToolTipText("");
@@ -84,6 +102,11 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
         jLabel2.setText("Ingresar id para eliminar imagen:");
 
         jButtonRegistrarImagen.setText("Registrar imagen");
+        jButtonRegistrarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarImagenActionPerformed(evt);
+            }
+        });
 
         jButtonEliminarImagen.setText("Eliminar imagen");
 
@@ -137,7 +160,7 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
 
         jPanelArbolImagenes.setBorder(javax.swing.BorderFactory.createTitledBorder("Recorrido árbol de capas en imagen (en amplitud)"));
 
-        jButtonCrearAmplitud.setText("Crear imagen con el id buscado");
+        jButtonCrearAmplitud.setText("Crear imagen buscando el id ingresado");
         jButtonCrearAmplitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCrearAmplitudActionPerformed(evt);
@@ -294,9 +317,29 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBoxImagenesMostrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar árbol de imágenes", "Mostrar imágenes" }));
+        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPane1MouseWheelMoved(evt);
+            }
+        });
 
-        jButtonEliminarImagen1.setText("Siguiente imagen");
+        jComboBoxImagenesMostrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar árbol de imágenes", "Mostrar imágenes" }));
+        jComboBoxImagenesMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxImagenesMostrarActionPerformed(evt);
+            }
+        });
+
+        jButtonSiguienteImagen.setText("Siguiente imagen");
+        jButtonSiguienteImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSiguienteImagenActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Imagen Actual: ");
+
+        jLabelImagenActual.setText("...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -316,10 +359,14 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 226, Short.MAX_VALUE)
-                        .addComponent(jButtonEliminarImagen1)
+                        .addComponent(jButtonSiguienteImagen)
                         .addGap(233, 233, 233))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxImagenesMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelImagenActual)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -330,11 +377,14 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxImagenesMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxImagenesMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabelImagenActual))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEliminarImagen1)
+                        .addComponent(jButtonSiguienteImagen)
                         .addGap(5, 5, 5))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,8 +398,135 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCrearAmplitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearAmplitudActionPerformed
-        
+        try {
+            if (!jTextFieldIdImagenGenerar.getText().equals("")) {
+
+                Imagen imagenBuscada = new Imagen(Integer.valueOf(jTextFieldIdImagenGenerar.getText()));
+                imagenBuscada = clienteRegistrado.getArbol_Imagenes().getValue(imagenBuscada);
+                if (imagenBuscada != null) {
+
+                    String rutaImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
+                    imagenBuscada.unirCapasAmplitud();
+                    imagenBuscada.getCapasUnidas().crearFicheroNeato_MatrizSinConexiones("Imagen_" + imagenBuscada.getId_Imagen(), rutaImagenes + "/Neato_Imagenes", rutaImagenes + "/Imagenes_Puras");
+                    JOptionPane.showMessageDialog(this, "Imagen generada con éxito!!!");
+                    rutaImagenes += "/Imagenes_Puras/Imagen_" + imagenBuscada.getId_Imagen() + ".png";
+                    jLabelImagenActual.setText("Imagen_" + imagenBuscada.getId_Imagen() + ".png");
+                    mostrarImagenCompacta(rutaImagenes);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "El id que ingreso no existe dentro del árbol de imágenes, intente de nuevo con otro.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Es necesario que llene el campo de ingreso del id de busqueda.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Algo fallo al generar la imagen, elimine la imagen y vuelva intentar más tarde, asegurese de que todo este correcto.");
+        }
     }//GEN-LAST:event_jButtonCrearAmplitudActionPerformed
+
+    private void jComboBoxImagenesMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxImagenesMostrarActionPerformed
+        String rutaImagenes = "";
+        String nombreFinalImagen = "";
+        if (jComboBoxImagenesMostrar.getSelectedItem().toString().equals("Mostrar árbol de imágenes")) {
+            System.out.println("Eligió mostrar el árbol avl de imágenes.");
+            System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+            jLabelImagenActual.setText("Arbol_AVL_Imagenes.png");
+            mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+        } else {
+            System.out.println("Eligió mostrar imagenes generadas.");
+            contadorImagenesCarpeta = 0;
+            rutaImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Imagenes_Puras/";
+            File carpeta = new File(rutaImagenes);
+            nombreFinalImagen = carpeta.list()[contadorImagenesCarpeta];
+            rutaImagenes += nombreFinalImagen;
+            jLabelImagenActual.setText(nombreFinalImagen);
+            mostrarImagenCompacta(rutaImagenes);
+            contadorImagenesCarpeta++;
+        }
+    }//GEN-LAST:event_jComboBoxImagenesMostrarActionPerformed
+
+    private void jScrollPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPane1MouseWheelMoved
+
+    }//GEN-LAST:event_jScrollPane1MouseWheelMoved
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado);
+        mc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonSiguienteImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteImagenActionPerformed
+        if (jComboBoxImagenesMostrar.getSelectedItem().toString().equals("Mostrar imágenes")) {
+            String rutaImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Imagenes_Puras/";
+            File carpeta = new File(rutaImagenes);
+
+            if (contadorImagenesCarpeta >= carpeta.list().length) {
+                contadorImagenesCarpeta = 0;
+            }
+            String nombreFinalImagen = carpeta.list()[contadorImagenesCarpeta];
+            rutaImagenes += nombreFinalImagen;
+            jLabelImagenActual.setText(nombreFinalImagen);
+            mostrarImagenCompacta(rutaImagenes);
+            contadorImagenesCarpeta++;
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione \"Mostrar imágenes para avanzar\".");
+        }
+    }//GEN-LAST:event_jButtonSiguienteImagenActionPerformed
+
+    private void jButtonRegistrarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarImagenActionPerformed
+        if (!jTextFieldIdRegistrar.getText().equals("")) {
+            Imagen imagenBusqueda = new Imagen(Integer.valueOf(jTextFieldIdRegistrar.getText()));
+            imagenBusqueda = clienteRegistrado.getArbol_Imagenes().getValue(imagenBusqueda);
+            if (imagenBusqueda == null) {
+                //No existe una imagen con ese id por lo que se procede a registrar la nueva imagen dentro del árbol.
+                Imagen newImagen = new Imagen(Integer.valueOf(jTextFieldIdRegistrar.getText()));
+                clienteRegistrado.getArbol_Imagenes().insert(newImagen);
+
+                //Generar nuevo árbol .png con la imagen registrada.
+                String rutaArbolImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes";
+                clienteRegistrado.getArbol_Imagenes().crearFicheroDot_Arbol("Arbol_AVL_Imagenes", rutaArbolImagenes, rutaArbolImagenes);
+                JOptionPane.showMessageDialog(this, "Se registro la nueva imagen con éxito!!!");
+
+                //Reiniciar jScrollPane
+                //Mostrar imagen
+                System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+                jLabelImagenActual.setText("Arbol_AVL_Imagenes.png");
+                mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe una imagen con ese id, intente con un id diferente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Es necesario llenar el campo de id de registro.");
+        }
+    }//GEN-LAST:event_jButtonRegistrarImagenActionPerformed
+
+    /**
+     * Método para mostrar la imagen en JscrollPane tal cual como es.
+     *
+     * @param rutaImagen
+     */
+    public void mostrarImagen(String rutaImagen) {
+        ImageIcon imagen = new ImageIcon(rutaImagen);
+        try {
+            BufferedImage bimg = ImageIO.read(new File(rutaImagen));
+            ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(bimg.getWidth(), bimg.getHeight(), Image.SCALE_SMOOTH));
+            jScrollPane1.setViewportView(new JLabel(icono));
+        } catch (Exception error) {
+
+        }
+    }
+
+    /**
+     * Método para mostrar la imagen en JscrollPane pero con el tamaño de este.
+     *
+     * @param rutaImagen
+     */
+    public void mostrarImagenCompacta(String rutaImagen) {
+        ImageIcon imagen = new ImageIcon(rutaImagen);
+        ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(jScrollPane1.getWidth(), jScrollPane1.getHeight(), Image.SCALE_SMOOTH));
+        JLabel etiqueta = new JLabel(icono);
+        jScrollPane1.setViewportView(etiqueta);
+    }
 
     /**
      * @param args the command line arguments
@@ -392,13 +569,14 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCrearImagenCapas;
     private javax.swing.JButton jButtonCrearPorRecorrido;
     private javax.swing.JButton jButtonEliminarImagen;
-    private javax.swing.JButton jButtonEliminarImagen1;
     private javax.swing.JButton jButtonRegistrarImagen;
     private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JButton jButtonSiguienteImagen;
     private javax.swing.JComboBox<String> jComboBoxImagenesMostrar;
     private javax.swing.JComboBox<String> jComboBoxTipoCreacionImagen;
     private javax.swing.JComboBox<String> jComboBoxTipoRecorrido;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -407,6 +585,7 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelImagenActual;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelArbolImagenes;
