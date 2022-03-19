@@ -9,6 +9,7 @@ import com.google.gson.JsonParser;
 import java.io.FileReader;
 import clases_proyecto.Capa;
 import clases_proyecto.Imagen;
+import clases_proyecto.Album;
 
 /**
  * Clase para manejar las funciones que se realizan con JSON en el proyecto.
@@ -132,5 +133,52 @@ public class FuncionesJSON {
         }
     }
 
-    
+    /**
+     * Método para la lectura del JSON Albumes. Este método además hace la 
+     * construción de los álbumes de una vez.
+     * @param mca
+     * @param ff
+     * @param rutaCarpetaAlbumes 
+     */
+    public void leerJSON_Albumes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaAlbumes){
+        try {
+            //Make object GSON
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            FileReader fr = ff.archivo_Buscar(mca);
+            if (fr != null) {
+                //Se manda a llamar al método de lectura de ficheros y que devuelve un FileReader
+                JsonElement datos = parser.parse(fr);
+
+                for (JsonElement imagen : datos.getAsJsonArray()) { //for que se repite por cada imagen.
+                    JsonObject jObjImagen = (JsonObject) imagen;
+                    String nombreAlbum = jObjImagen.get("nombre_album").getAsString();
+                    
+                    //Se crea el nuevo album.
+                    Album newAlbum = new Album(nombreAlbum);
+                    
+                    System.out.println(nombreAlbum);
+                    JsonArray imgs = (JsonArray) jObjImagen.get("imgs");
+                    for (JsonElement id_Img : imgs) {
+                        System.out.println(id_Img.getAsInt());
+                        Imagen imagenTemporal = mca.clienteRegistrado.getArbol_Imagenes().getValue(new Imagen(id_Img.getAsInt()));
+                        if (imagenTemporal != null) {
+                            
+                            //Agregar la imagen al album.
+                            newAlbum.getListaImagenes().insertElement_AtEnding(imagenTemporal);
+                        }else{
+                            System.out.println("No existe una capa con el id: "+id_Img.getAsInt());
+                        }
+                    }
+                    
+                    //Ingresar el album a listado de álbumes del cliente.
+                    mca.clienteRegistrado.getLista_Albumes().insertElement_AtEnding(newAlbum);
+                }
+                System.out.println(rutaCarpetaAlbumes);
+                mca.clienteRegistrado.getLista_Albumes().crearFicheroDot_Albumes("Lista_Albumes", rutaCarpetaAlbumes, rutaCarpetaAlbumes);
+            }
+        } catch (Exception error) {
+            System.out.println("Error en la carga del JSON ÁLBUMES.");
+        }
+    }
 }

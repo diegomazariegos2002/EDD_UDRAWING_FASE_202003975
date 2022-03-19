@@ -190,6 +190,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
             mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
             System.out.println("Eligió mostrar el árbol de imagenes.");
         } else {
+            System.out.println("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
+            mostrarImagen("./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Albumes/Lista_Albumes.png");
             System.out.println("Eligió mostrar la lista de albumes.");
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -203,11 +205,10 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             if (!clienteRegistrado.getArbol_Imagenes().arbolVacio()) {
-                String pathImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
-                fFicheros.vaciar_Directorio(pathImagenes + "/Neato_Imagenes");
-                fFicheros.vaciar_Directorio(pathImagenes + "/Imagenes_Puras");
-                fJSON.leerJSON_Imagenes(this, fFicheros, pathImagenes);
-                System.out.println("Se generaron las imagenes con éxito.");
+                String pathAlbumes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Albumes";
+                fFicheros.vaciar_Directorio(pathAlbumes);
+                fJSON.leerJSON_Albumes(this, fFicheros, pathAlbumes);
+                System.out.println("Se genero la lista de álbumes con éxito.");
             }else{
                 JOptionPane.showMessageDialog(this, "No posee imágenes actualmente, se necesita el ingreso de imágenes.");
             }

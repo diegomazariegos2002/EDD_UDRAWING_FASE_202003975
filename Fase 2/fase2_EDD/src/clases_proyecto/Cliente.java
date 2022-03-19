@@ -15,6 +15,7 @@ public class Cliente {
     String password;
     AvlTree<Imagen> arbol_Imagenes;
     AbbTree<Capa> arbol_CapasGenerales;
+    LinkedList<Album> lista_Albumes;
 
     /**
      * Constructor de mi clase.
@@ -28,6 +29,7 @@ public class Cliente {
         this.password = password;
         this.arbol_Imagenes = new AvlTree<>();
         this.arbol_CapasGenerales = new AbbTree<>();
+        this.lista_Albumes = new LinkedList<>();
     }
     
     
@@ -73,5 +75,13 @@ public class Cliente {
 
     public void setArbol_CapasGenerales(AbbTree<Capa> arbol_CapasGenerales) {
         this.arbol_CapasGenerales = arbol_CapasGenerales;
+    }
+
+    public LinkedList<Album> getLista_Albumes() {
+        return lista_Albumes;
+    }
+
+    public void setLista_Albumes(LinkedList<Album> lista_Albumes) {
+        this.lista_Albumes = lista_Albumes;
     }
 }

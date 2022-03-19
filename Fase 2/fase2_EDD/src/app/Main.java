@@ -37,5 +37,6 @@ public class Main {
         ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Neato_Imagenes");
         ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Imagenes_Puras");
         ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Arbol_AVL_Imagenes");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Albumes");
     }
 }

@@ -1,5 +1,11 @@
 package estructuras.linkedlist;
 
+import clases_proyecto.Album;
+import clases_proyecto.Imagen;
+import estructuras.Graphviz;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 /**
  *
  * @author Melissa
@@ -8,6 +14,104 @@ public class LinkedList<E> {
     private LinkedList_Node<E> cabeza = null;
     private LinkedList_Node<E> cola = null;
     private int longitud = 0;
+    
+    //-------------------------------Métodos del proyecto-------------------------------------------
+    
+    /* Método para imprimir el .dot de los álbumes junto con su listado de imagenes. */
+
+    /**
+     *
+     * @param nombreFichero
+     * @param rutaDot
+     * @param rutaPng
+     */
+    public void crearFicheroDot_Albumes(String nombreFichero, String rutaDot, String rutaPng){
+        //Parte del String o texto que va a llevar el fichero 
+        // (en este caso un archivo .dot)
+        StringBuilder dot = new StringBuilder();
+
+        dot.append("digraph G { \n");
+        dot.append("node [shape=box]  \n");
+
+        String conexionesNodos = getCuerpoDotAlbumes();
+        dot.append(conexionesNodos);
+
+        dot.append("}");
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        //Parte de la creación de un fichero
+        try {
+            fichero = new FileWriter(rutaDot + "/" + nombreFichero + ".dot");
+            pw = new PrintWriter(fichero);
+
+            pw.println(dot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        new Graphviz().dibujar("dot", "-Tpng", rutaDot + "/" + nombreFichero + ".dot", rutaPng + "/" + nombreFichero + ".png");
+    }
+    
+    public String getCuerpoDotAlbumes(){
+        String cadena = "";
+        String declaracionAlbumes = "//............ ............ ............ ............ ALBUMES \n";
+        String conexionesAlbumes = "//............ Enlaces de los albumes \n";
+        String declaracionImagenes = "//............ ............ ............ ............ IMAGEN \n";
+        String conexionesImagenes = "//............ Enlaces de las imágenes \n";
+        //Generación del álbumes.
+        LinkedList_Node nodoAlbumActual = this.cabeza;
+        while (nodoAlbumActual != null) {
+            Album albumActual = (Album)nodoAlbumActual.getValor();
+            String nombreAlbum = albumActual.getNombreAlbum();
+            declaracionAlbumes += "Album"+albumActual.hashCode()+"[label = \""+nombreAlbum+"\" width = 1.5 ]; \n";
+            
+            //Generación de conexiones de álbumes.
+            if (nodoAlbumActual.siguiente != null) {
+                conexionesAlbumes += "Album"+albumActual.hashCode()+" -> Album"+((Album)nodoAlbumActual.siguiente.getValor()).hashCode()+" [constraint = false]; \n";
+                conexionesAlbumes += "Album"+((Album)nodoAlbumActual.siguiente.getValor()).hashCode()+" -> Album"+albumActual.hashCode()+" [constraint = false]; \n";
+            }
+            
+            //Generación de imágenes.
+            LinkedList_Node nodoImagenActual = albumActual.getListaImagenes().cabeza;
+            declaracionImagenes += "//Imagenes "+nombreAlbum + "\n";
+            while (nodoImagenActual != null) {
+                Imagen imagenActual = ((Imagen)nodoImagenActual.getValor());
+                int idImagen = imagenActual.getId_Imagen();
+                declaracionImagenes += "I"+imagenActual.hashCode()+"[label = \"Image "+idImagen+"\" width = 1.5 ];\n";
+                
+                //Generación de conexiones de imágenes.
+                conexionesImagenes += "//Imagenes "+nombreAlbum + "\n";;
+                if (nodoImagenActual == albumActual.getListaImagenes().cabeza) {
+                    conexionesImagenes += "Album"+albumActual.hashCode()+" -> I"+imagenActual.hashCode()+" [constraint = true];";
+                }
+                
+                if (nodoImagenActual.siguiente != null) {
+                    conexionesImagenes += "I"+imagenActual.hashCode()+" -> I"+((Imagen)nodoImagenActual.siguiente.getValor()).hashCode()+" [constraint = true];\n";
+                    conexionesImagenes += "I"+((Imagen)nodoImagenActual.siguiente.getValor()).hashCode()+" -> I"+imagenActual.hashCode()+" [constraint = true];\n";
+                }
+                
+                nodoImagenActual = nodoImagenActual.siguiente;
+            }
+            nodoAlbumActual = nodoAlbumActual.siguiente;
+        }
+        cadena += declaracionAlbumes;
+        cadena += conexionesAlbumes;
+        cadena += declaracionImagenes;
+        cadena += conexionesImagenes;
+        
+        return cadena;
+    }
 
     //-------------------------------Metodos Fundamentales de mi lista------------------------------------
     //Métodos de encapsulamiento que me serviran para mostrar los datos.
