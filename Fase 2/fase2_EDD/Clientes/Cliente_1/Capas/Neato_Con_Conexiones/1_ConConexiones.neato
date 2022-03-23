@@ -7,221 +7,221 @@ Mt[ label = "Matriz", width = 0.5, height=0.5, pos = "0,-0!"  ];
 
 //............ ............ ............ ............ COLUMNAS 
 /* se incrementan los grupos porque son columnas */ 
-Mt -> C228172908; /*Enlace primer nodo Columna con el objeto Matriz*/
-C228172908 [label = "C3", width = 0.5, height=0.5, pos = "1,0!" ];
-C228172908 -> C1865129103;
-C1865129103 -> C228172908;
-C1865129103 [label = "C4", width = 0.5, height=0.5, pos = "2,0!" ];
+Mt -> C1865129103; /*Enlace primer nodo Columna con el objeto Matriz*/
+C1865129103 [label = "C3", width = 0.5, height=0.5, pos = "1,0!" ];
 C1865129103 -> C357629746;
 C357629746 -> C1865129103;
-C357629746 [label = "C5", width = 0.5, height=0.5, pos = "3,0!" ];
+C357629746 [label = "C4", width = 0.5, height=0.5, pos = "2,0!" ];
 C357629746 -> C1696064073;
 C1696064073 -> C357629746;
-C1696064073 [label = "C6", width = 0.5, height=0.5, pos = "4,0!" ];
+C1696064073 [label = "C5", width = 0.5, height=0.5, pos = "3,0!" ];
 C1696064073 -> C636321859;
 C636321859 -> C1696064073;
-C636321859 [label = "C7", width = 0.5, height=0.5, pos = "5,0!" ];
+C636321859 [label = "C6", width = 0.5, height=0.5, pos = "4,0!" ];
 C636321859 -> C378650517;
 C378650517 -> C636321859;
-C378650517 [label = "C8", width = 0.5, height=0.5, pos = "6,0!" ];
+C378650517 [label = "C7", width = 0.5, height=0.5, pos = "5,0!" ];
 C378650517 -> C78281498;
 C78281498 -> C378650517;
-C78281498 [label = "C9", width = 0.5, height=0.5, pos = "7,0!" ];
+C78281498 [label = "C8", width = 0.5, height=0.5, pos = "6,0!" ];
 C78281498 -> C1593164908;
 C1593164908 -> C78281498;
-C1593164908 [label = "C10", width = 0.5, height=0.5, pos = "8,0!" ];
+C1593164908 [label = "C9", width = 0.5, height=0.5, pos = "7,0!" ];
 C1593164908 -> C399747177;
 C399747177 -> C1593164908;
-C399747177 [label = "C11", width = 0.5, height=0.5, pos = "9,0!" ];
+C399747177 [label = "C10", width = 0.5, height=0.5, pos = "8,0!" ];
+C399747177 -> C203804689;
+C203804689 -> C399747177;
+C203804689 [label = "C11", width = 0.5, height=0.5, pos = "9,0!" ];
 
 //............ ............ ............ ............ FILAS 
 /*  Se mantienen en el mismo grupo porque son filas */ 
-Mt -> F203804689; /*Enlace primer nodo Columna con el objeto Matriz*/
-F203804689 [label = "F2", width = 0.5, height=0.5, pos = "0,-1!" ];
-F203804689 -> F1535121444;
-F1535121444 -> F203804689;
-F1535121444 [label = "F3", width = 0.5, height=0.5, pos = "0,-2!" ];
+Mt -> F1535121444; /*Enlace primer nodo Columna con el objeto Matriz*/
+F1535121444 [label = "F2", width = 0.5, height=0.5, pos = "0,-1!" ];
 F1535121444 -> F723935644;
 F723935644 -> F1535121444;
-F723935644 [label = "F4", width = 0.5, height=0.5, pos = "0,-3!" ];
+F723935644 [label = "F3", width = 0.5, height=0.5, pos = "0,-2!" ];
 F723935644 -> F557585521;
 F557585521 -> F723935644;
-F557585521 [label = "F10", width = 0.5, height=0.5, pos = "0,-4!" ];
+F557585521 [label = "F4", width = 0.5, height=0.5, pos = "0,-3!" ];
 F557585521 -> F54263071;
 F54263071 -> F557585521;
-F54263071 [label = "F11", width = 0.5, height=0.5, pos = "0,-5!" ];
+F54263071 [label = "F10", width = 0.5, height=0.5, pos = "0,-4!" ];
 F54263071 -> F1478591588;
 F1478591588 -> F54263071;
-F1478591588 [label = "F12", width = 0.5, height=0.5, pos = "0,-6!" ];
+F1478591588 [label = "F11", width = 0.5, height=0.5, pos = "0,-5!" ];
 F1478591588 -> F1074996349;
 F1074996349 -> F1478591588;
-F1074996349 [label = "F13", width = 0.5, height=0.5, pos = "0,-7!" ];
+F1074996349 [label = "F12", width = 0.5, height=0.5, pos = "0,-6!" ];
 F1074996349 -> F30224274;
 F30224274 -> F1074996349;
-F30224274 [label = "F14", width = 0.5, height=0.5, pos = "0,-8!" ];
+F30224274 [label = "F13", width = 0.5, height=0.5, pos = "0,-7!" ];
 F30224274 -> F1573058993;
 F1573058993 -> F30224274;
-F1573058993 [label = "F15", width = 0.5, height=0.5, pos = "0,-9!" ];
+F1573058993 [label = "F14", width = 0.5, height=0.5, pos = "0,-8!" ];
 F1573058993 -> F160711881;
 F160711881 -> F1573058993;
-F160711881 [label = "F16", width = 0.5, height=0.5, pos = "0,-10!" ];
+F160711881 [label = "F15", width = 0.5, height=0.5, pos = "0,-9!" ];
+F160711881 -> F1350412618;
+F1350412618 -> F160711881;
+F1350412618 [label = "F16", width = 0.5, height=0.5, pos = "0,-10!" ];
 
 
 //............ ............DECLARACIÓN NODOS POSICIÓN............................
 // Nodo F:2 C:11 
-N1350412618 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-1!" ]; 
-F203804689 -> N1350412618;
-N1350412618 -> F203804689;
-C399747177 -> N1350412618;
-N1350412618 -> C399747177;
-N1350412618 -> N950316392;
-// Nodo F:3 C:10 
-N1919014076 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "8,-2!" ]; 
-F1535121444 -> N1919014076;
-N1919014076 -> F1535121444;
-C1593164908 -> N1919014076;
-N1919014076 -> C1593164908;
-N1919014076 -> N1509454901;
-N1919014076 -> N950316392;
-// Nodo F:3 C:11 
-N950316392 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-2!" ]; 
-N950316392 -> N1350412618;
-N950316392 -> N1685234105;
+N950316392 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-1!" ]; 
+F1535121444 -> N950316392;
+N950316392 -> F1535121444;
+C203804689 -> N950316392;
+N950316392 -> C203804689;
 N950316392 -> N1919014076;
+// Nodo F:3 C:10 
+N1509454901 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "8,-2!" ]; 
+F723935644 -> N1509454901;
+N1509454901 -> F723935644;
+C399747177 -> N1509454901;
+N1509454901 -> C399747177;
+N1509454901 -> N1685234105;
+N1509454901 -> N1919014076;
+// Nodo F:3 C:11 
+N1919014076 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-2!" ]; 
+N1919014076 -> N950316392;
+N1919014076 -> N2040565682;
+N1919014076 -> N1509454901;
 // Nodo F:4 C:11 
-N1685234105 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-3!" ]; 
-F723935644 -> N1685234105;
-N1685234105 -> F723935644;
-N1685234105 -> N950316392;
-N1685234105 -> N2040565682;
+N2040565682 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-3!" ]; 
+F557585521 -> N2040565682;
+N2040565682 -> F557585521;
+N2040565682 -> N1919014076;
+N2040565682 -> N93876238;
 // Nodo F:10 C:3 
-N93876238 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "1,-4!" ]; 
-F557585521 -> N93876238;
-N93876238 -> F557585521;
-C228172908 -> N93876238;
-N93876238 -> C228172908;
-N93876238 -> N534504788;
-// Nodo F:10 C:4 
-N534504788 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "2,-4!" ]; 
+N534504788 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "1,-4!" ]; 
+F54263071 -> N534504788;
+N534504788 -> F54263071;
 C1865129103 -> N534504788;
 N534504788 -> C1865129103;
 N534504788 -> N1851121791;
-N534504788 -> N334835480;
-N534504788 -> N93876238;
-// Nodo F:10 C:8 
-N334835480 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-4!" ]; 
-C378650517 -> N334835480;
-N334835480 -> C378650517;
-N334835480 -> N1437283688;
-N334835480 -> N354061260;
-N334835480 -> N534504788;
-// Nodo F:10 C:9 
-N354061260 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-4!" ]; 
-C78281498 -> N354061260;
-N354061260 -> C78281498;
-N354061260 -> N1418577672;
-N354061260 -> N334835480;
-// Nodo F:11 C:4 
-N1851121791 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "2,-5!" ]; 
-F54263071 -> N1851121791;
-N1851121791 -> F54263071;
+// Nodo F:10 C:4 
+N1851121791 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "2,-4!" ]; 
+C357629746 -> N1851121791;
+N1851121791 -> C357629746;
+N1851121791 -> N334835480;
+N1851121791 -> N1437283688;
 N1851121791 -> N534504788;
-N1851121791 -> N1857732462;
-// Nodo F:11 C:5 
-N1857732462 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-5!" ]; 
-C357629746 -> N1857732462;
-N1857732462 -> C357629746;
-N1857732462 -> N1656145828;
-N1857732462 -> N590570709;
-N1857732462 -> N1851121791;
-// Nodo F:11 C:6 
-N590570709 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-5!" ]; 
-C1696064073 -> N590570709;
-N590570709 -> C1696064073;
-N590570709 -> N423379516;
-N590570709 -> N583454650;
-N590570709 -> N1857732462;
-// Nodo F:11 C:7 
-N583454650 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "5,-5!" ]; 
-C636321859 -> N583454650;
-N583454650 -> C636321859;
-N583454650 -> N1989785505;
-N583454650 -> N1437283688;
-N583454650 -> N590570709;
-// Nodo F:11 C:8 
-N1437283688 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-5!" ]; 
-N1437283688 -> N334835480;
-N1437283688 -> N1320444011;
+// Nodo F:10 C:8 
+N1437283688 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-4!" ]; 
+C78281498 -> N1437283688;
+N1437283688 -> C78281498;
+N1437283688 -> N354061260;
 N1437283688 -> N1418577672;
-N1437283688 -> N583454650;
-// Nodo F:11 C:9 
-N1418577672 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-5!" ]; 
-N1418577672 -> N354061260;
-N1418577672 -> N895673891;
+N1437283688 -> N1851121791;
+// Nodo F:10 C:9 
+N1418577672 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-4!" ]; 
+C1593164908 -> N1418577672;
+N1418577672 -> C1593164908;
+N1418577672 -> N1857732462;
 N1418577672 -> N1437283688;
-// Nodo F:12 C:5 
-N1656145828 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-6!" ]; 
-F1478591588 -> N1656145828;
-N1656145828 -> F1478591588;
-N1656145828 -> N1857732462;
-N1656145828 -> N558715946;
+// Nodo F:11 C:4 
+N334835480 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "2,-5!" ]; 
+F1478591588 -> N334835480;
+N334835480 -> F1478591588;
+N334835480 -> N1851121791;
+N334835480 -> N1656145828;
+// Nodo F:11 C:5 
+N1656145828 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-5!" ]; 
+C1696064073 -> N1656145828;
+N1656145828 -> C1696064073;
+N1656145828 -> N590570709;
 N1656145828 -> N423379516;
-// Nodo F:12 C:6 
-N423379516 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-6!" ]; 
-N423379516 -> N590570709;
-N423379516 -> N450022173;
+N1656145828 -> N334835480;
+// Nodo F:11 C:6 
+N423379516 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-5!" ]; 
+C636321859 -> N423379516;
+N423379516 -> C636321859;
+N423379516 -> N583454650;
 N423379516 -> N1989785505;
 N423379516 -> N1656145828;
-// Nodo F:12 C:7 
-N1989785505 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "5,-6!" ]; 
-N1989785505 -> N583454650;
+// Nodo F:11 C:7 
+N1989785505 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "5,-5!" ]; 
+C378650517 -> N1989785505;
+N1989785505 -> C378650517;
 N1989785505 -> N1320444011;
+N1989785505 -> N354061260;
 N1989785505 -> N423379516;
-// Nodo F:12 C:8 
-N1320444011 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-6!" ]; 
-N1320444011 -> N1437283688;
+// Nodo F:11 C:8 
+N354061260 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-5!" ]; 
+N354061260 -> N1437283688;
+N354061260 -> N895673891;
+N354061260 -> N1857732462;
+N354061260 -> N1989785505;
+// Nodo F:11 C:9 
+N1857732462 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-5!" ]; 
+N1857732462 -> N1418577672;
+N1857732462 -> N558715946;
+N1857732462 -> N354061260;
+// Nodo F:12 C:5 
+N590570709 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-6!" ]; 
+F1074996349 -> N590570709;
+N590570709 -> F1074996349;
+N590570709 -> N1656145828;
+N590570709 -> N450022173;
+N590570709 -> N583454650;
+// Nodo F:12 C:6 
+N583454650 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-6!" ]; 
+N583454650 -> N423379516;
+N583454650 -> N2005423892;
+N583454650 -> N1320444011;
+N583454650 -> N590570709;
+// Nodo F:12 C:7 
+N1320444011 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "5,-6!" ]; 
 N1320444011 -> N1989785505;
+N1320444011 -> N895673891;
+N1320444011 -> N583454650;
+// Nodo F:12 C:8 
+N895673891 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "6,-6!" ]; 
+N895673891 -> N354061260;
+N895673891 -> N1320444011;
 // Nodo F:13 C:9 
-N895673891 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-7!" ]; 
-F1074996349 -> N895673891;
-N895673891 -> F1074996349;
-N895673891 -> N1418577672;
-// Nodo F:14 C:5 
-N558715946 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-8!" ]; 
+N558715946 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "7,-7!" ]; 
 F30224274 -> N558715946;
 N558715946 -> F30224274;
-N558715946 -> N1656145828;
-N558715946 -> N2005423892;
-N558715946 -> N450022173;
-// Nodo F:14 C:6 
-N450022173 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-8!" ]; 
-N450022173 -> N423379516;
+N558715946 -> N1857732462;
+// Nodo F:14 C:5 
+N450022173 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-8!" ]; 
+F1573058993 -> N450022173;
+N450022173 -> F1573058993;
+N450022173 -> N590570709;
 N450022173 -> N1434055736;
-N450022173 -> N1509454901;
-N450022173 -> N558715946;
-// Nodo F:14 C:10 
-N1509454901 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "8,-8!" ]; 
-N1509454901 -> N1919014076;
-N1509454901 -> N450022173;
-// Nodo F:15 C:5 
-N2005423892 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-9!" ]; 
-F1573058993 -> N2005423892;
-N2005423892 -> F1573058993;
-N2005423892 -> N558715946;
+N450022173 -> N2005423892;
+// Nodo F:14 C:6 
+N2005423892 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-8!" ]; 
+N2005423892 -> N583454650;
 N2005423892 -> N517867193;
-N2005423892 -> N1434055736;
-// Nodo F:15 C:6 
-N1434055736 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-9!" ]; 
+N2005423892 -> N1685234105;
+N2005423892 -> N450022173;
+// Nodo F:14 C:10 
+N1685234105 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "8,-8!" ]; 
+N1685234105 -> N1509454901;
+N1685234105 -> N2005423892;
+// Nodo F:15 C:5 
+N1434055736 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-9!" ]; 
+F160711881 -> N1434055736;
+N1434055736 -> F160711881;
 N1434055736 -> N450022173;
-N1434055736 -> N2040565682;
-N1434055736 -> N2005423892;
-// Nodo F:15 C:11 
-N2040565682 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-9!" ]; 
-N2040565682 -> N1685234105;
-N2040565682 -> N1434055736;
-// Nodo F:16 C:5 
-N517867193 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-10!" ]; 
-F160711881 -> N517867193;
-N517867193 -> F160711881;
+N1434055736 -> N307805276;
+N1434055736 -> N517867193;
+// Nodo F:15 C:6 
+N517867193 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "4,-9!" ]; 
 N517867193 -> N2005423892;
+N517867193 -> N93876238;
+N517867193 -> N1434055736;
+// Nodo F:15 C:11 
+N93876238 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "9,-9!" ]; 
+N93876238 -> N2040565682;
+N93876238 -> N517867193;
+// Nodo F:16 C:5 
+N307805276 [label = "", style = filled, fillcolor = "#FFFF9F", width = 0.5, height=0.5 pos = "3,-10!" ]; 
+F1350412618 -> N307805276;
+N307805276 -> F1350412618;
+N307805276 -> N1434055736;
 }

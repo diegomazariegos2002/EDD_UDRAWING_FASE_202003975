@@ -1,25 +1,25 @@
 digraph binaryTree { 
 node[shape = circle]; 
 
-Nodo1725748446[label = "Capa 3"];
+Nodo60768280[label = "Capa 3"];
 
-Nodo1725748446 -> Nodo1989790121; 
+Nodo60768280 -> Nodo1802725994; 
 
-Nodo1725748446 -> Nodo1802725994; 
+Nodo60768280 -> Nodo1410065568; 
 
-Nodo1989790121[label = "Capa 0"];
+Nodo1802725994[label = "Capa 0"];
 
-Nodo1989790121 -> Nodo1410065568; 
+Nodo1802725994 -> Nodo678650687; 
 
-Nodo1410065568[label = "Capa 2"];
+Nodo678650687[label = "Capa 2"];
 
-Nodo1410065568 -> Nodo678650687; 
+Nodo678650687 -> Nodo278868761; 
 
-Nodo678650687[label = "Capa 1"];
+Nodo278868761[label = "Capa 1"];
 
-Nodo1802725994[label = "Capa 5"];
+Nodo1410065568[label = "Capa 5"];
 
-Nodo1802725994 -> Nodo278868761; 
+Nodo1410065568 -> Nodo1615801178; 
 
-Nodo278868761[label = "Capa 4"];
+Nodo1615801178[label = "Capa 4"];
 }

@@ -38,6 +38,8 @@ public class Imagen implements Comparable<Imagen>{
     
     /*==============================================UNIÓN DE LAS CAPAS DE LA IMAGEN==============================================*/
     
+    
+    
     /**
      * Método para unir capas mediante el recorrido de amplitud en el árbol de capas de cada imagen.
      */

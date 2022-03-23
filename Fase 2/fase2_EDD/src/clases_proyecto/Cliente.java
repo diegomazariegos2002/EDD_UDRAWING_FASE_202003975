@@ -31,9 +31,11 @@ public class Cliente {
         this.arbol_CapasGenerales = new AbbTree<>();
         this.lista_Albumes = new LinkedList<>();
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Cliente{" + DPI+'}';
+    }
     
     /*================================================MÉTODOS GET AND SET================================================*/
     

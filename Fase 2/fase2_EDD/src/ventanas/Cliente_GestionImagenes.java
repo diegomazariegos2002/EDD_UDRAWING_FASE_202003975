@@ -193,6 +193,11 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
         jComboBoxTipoRecorrido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PreOrder", "InOrder", "PostOrder" }));
 
         jButtonCrearPorRecorrido.setText("Crear imagen con el id ingresado");
+        jButtonCrearPorRecorrido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearPorRecorridoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelRecorridoLimitadoLayout = new javax.swing.GroupLayout(jPanelRecorridoLimitado);
         jPanelRecorridoLimitado.setLayout(jPanelRecorridoLimitadoLayout);
@@ -496,9 +501,23 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Ya existe una imagen con ese id, intente con un id diferente.");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Es necesario llenar el campo de id de registro.");
+            JOptionPane.showMessageDialog(this, "Es necesario llenar el campo de 'id de registro'.");
         }
     }//GEN-LAST:event_jButtonRegistrarImagenActionPerformed
+
+    private void jButtonCrearPorRecorridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPorRecorridoActionPerformed
+        if (!jTextFieldIdRegistrar.getText().equals("")) {
+            Imagen imagenBusqueda = new Imagen(Integer.valueOf(jTextFieldIdRegistrar.getText()));
+            imagenBusqueda = clienteRegistrado.getArbol_Imagenes().getValue(imagenBusqueda);
+            if (imagenBusqueda == null) {
+                 
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe una imagen con ese id, intente con un id diferente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Es necesario llenar el campo de 'id de registro'.");
+        }
+    }//GEN-LAST:event_jButtonCrearPorRecorridoActionPerformed
 
     /**
      * Método para mostrar la imagen en JscrollPane tal cual como es.

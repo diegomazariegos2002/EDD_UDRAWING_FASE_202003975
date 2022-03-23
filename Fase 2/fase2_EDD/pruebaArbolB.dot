@@ -1,0 +1,15 @@
+digraph arbolB{
+rankr=TB;
+node[shape = box,fillcolor="azure2" color="black" style="filled"];
+node[shape=record label= "<p0>|{2}|<p1> |{5}|<p2> "]511754216;
+node[shape=record label= "<p0>|{0}|<p1> |{1}|<p2> "]1342443276;
+node[shape=record label= "<p0>|{3}|<p1> |{4}|<p2> "]769287236;
+node[shape=record label= "<p0>|{6}|<p1> |{7}|<p2> |{8}|<p3> |{9}|<p4> "]1587487668;
+
+511754216:p0->1342443276;
+
+511754216:p1->769287236;
+
+511754216:p2->1587487668;
+}
+

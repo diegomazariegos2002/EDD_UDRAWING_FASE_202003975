@@ -10,6 +10,7 @@ import java.io.FileReader;
 import clases_proyecto.Capa;
 import clases_proyecto.Imagen;
 import clases_proyecto.Album;
+import clases_proyecto.Cliente;
 
 /**
  * Clase para manejar las funciones que se realizan con JSON en el proyecto.
@@ -93,8 +94,8 @@ public class FuncionesJSON {
                     JsonObject jObjImagen = (JsonObject) imagen;
                     int id = jObjImagen.get("id").getAsInt();
                     Imagen newImagen = new Imagen(id);
-                    
-                    System.out.println("capa: "+jObjImagen.get("id"));
+
+                    System.out.println("capa: " + jObjImagen.get("id"));
                     JsonArray id_Capas = (JsonArray) jObjImagen.get("capas");
                     for (JsonElement id_Capa : id_Capas) {
                         System.out.println(id_Capa.getAsInt());
@@ -103,22 +104,22 @@ public class FuncionesJSON {
                             ya para cuando ejecute esta opción, entonces podemos obtener el valor de sus nodos por medio de crear una instancia 
                             temporal que es la parte de new CAPA(...); y así buscar dentro de su árbol abb e insertar la dirección de dicha capa
                             encontrada en el árbol abb de las capas que conforman cada imagen.
-                        */
+                         */
                         Capa capaTemporal = mca.clienteRegistrado.getArbol_CapasGenerales().getValue(new Capa(id_Capa.getAsInt()));
                         if (capaTemporal != null) {
                             newImagen.getCapasImagen().insertar(capaTemporal);
-                        }else{
-                            System.out.println("No existe una capa con el id: "+id_Capa.getAsInt());
+                        } else {
+                            System.out.println("No existe una capa con el id: " + id_Capa.getAsInt());
                         }
                     }
                     /*
                         Generar recorrido por amplitud de cada capa en cada imagen.
-                    */
+                     */
 //                    newImagen.unirCapasAmplitud();
 //                    newImagen.getCapasUnidas().crearFicheroNeato_MatrizSinConexiones("Imagen_"+newImagen.getId_Imagen(), rutaCarpetaImagenes + "/Neato_Imagenes", rutaCarpetaImagenes + "/Imagenes_Puras");
                     /*
                         Agregar la imagen ya procesada al árbol de imágenes.
-                    */
+                     */
                     mca.clienteRegistrado.getArbol_Imagenes().insert(newImagen);
                 }
                 System.out.println("Recorrido PreOrden del árbol de imágenes");
@@ -126,7 +127,7 @@ public class FuncionesJSON {
                 System.out.println("Recorrido por amplitud del árbol de imagenes");
                 mca.clienteRegistrado.getArbol_Imagenes().recorridoAmplitud();
                 mca.clienteRegistrado.getArbol_Imagenes().crearFicheroDot_Arbol("Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes", rutaCarpetaImagenes + "/Arbol_AVL_Imagenes");
-                
+
             }
         } catch (Exception error) {
             System.out.println("Error en la carga del JSON IMAGENES.");
@@ -134,13 +135,14 @@ public class FuncionesJSON {
     }
 
     /**
-     * Método para la lectura del JSON Albumes. Este método además hace la 
+     * Método para la lectura del JSON Albumes. Este método además hace la
      * construción de los álbumes de una vez.
+     *
      * @param mca
      * @param ff
-     * @param rutaCarpetaAlbumes 
+     * @param rutaCarpetaAlbumes
      */
-    public void leerJSON_Albumes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaAlbumes){
+    public void leerJSON_Albumes(Modulo_Cliente_CargaMasiva mca, Funciones_Ficheros ff, String rutaCarpetaAlbumes) {
         try {
             //Make object GSON
             Gson gson = new Gson();
@@ -153,24 +155,24 @@ public class FuncionesJSON {
                 for (JsonElement imagen : datos.getAsJsonArray()) { //for que se repite por cada imagen.
                     JsonObject jObjImagen = (JsonObject) imagen;
                     String nombreAlbum = jObjImagen.get("nombre_album").getAsString();
-                    
+
                     //Se crea el nuevo album.
                     Album newAlbum = new Album(nombreAlbum);
-                    
+
                     System.out.println(nombreAlbum);
                     JsonArray imgs = (JsonArray) jObjImagen.get("imgs");
                     for (JsonElement id_Img : imgs) {
                         System.out.println(id_Img.getAsInt());
                         Imagen imagenTemporal = mca.clienteRegistrado.getArbol_Imagenes().getValue(new Imagen(id_Img.getAsInt()));
                         if (imagenTemporal != null) {
-                            
+
                             //Agregar la imagen al album.
                             newAlbum.getListaImagenes().insertElement_AtEnding(imagenTemporal);
-                        }else{
-                            System.out.println("No existe una capa con el id: "+id_Img.getAsInt());
+                        } else {
+                            System.out.println("No existe una capa con el id: " + id_Img.getAsInt());
                         }
                     }
-                    
+
                     //Ingresar el album a listado de álbumes del cliente.
                     mca.clienteRegistrado.getLista_Albumes().insertElement_AtEnding(newAlbum);
                 }
@@ -179,6 +181,46 @@ public class FuncionesJSON {
             }
         } catch (Exception error) {
             System.out.println("Error en la carga del JSON ÁLBUMES.");
+        }
+    }
+
+    /**
+     * Método para la lectura del JSON Clientes. Este método además hace la
+     * construción de los clientes de una vez.
+     *
+     * @param ma
+     * @param ff
+     * @param rutaCarpetaClientes
+     */
+    public void leerJSON_Clientes(Modulo_Admin ma, Funciones_Ficheros ff, String rutaCarpetaClientes) {
+        try {
+            //Make object GSON
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            FileReader fr = ff.archivo_Buscar(ma);
+            if (fr != null) {
+                //Se manda a llamar al método de lectura de ficheros y que devuelve un FileReader
+                JsonElement datos = parser.parse(fr);
+
+                for (JsonElement cliente : datos.getAsJsonArray()) { //for que se repite por cada imagen.
+                    JsonObject jObjCliente = (JsonObject) cliente;
+                    int dpi = jObjCliente.get("dpi").getAsInt();
+                    String nombreCliente = jObjCliente.get("nombre_cliente").getAsString();
+                    String password = jObjCliente.get("password").getAsString();
+
+                    //Se crea el nuevo Cliente.
+                    Cliente newCliente = new Cliente(dpi, nombreCliente, password);
+
+                    System.out.println(newCliente);
+
+                    //Ingresar el cliente al árbol del cliente.
+                    ma.arbolClientes.insertarEnArbol(dpi);
+                }
+                System.out.println(rutaCarpetaClientes);
+                ma.arbolClientes.graficarArbolB("Arbol_Clientes", rutaCarpetaClientes, rutaCarpetaClientes);
+            }
+        } catch (Exception error) {
+            System.out.println("Error en la carga del JSON CLIENTES.");
         }
     }
 }

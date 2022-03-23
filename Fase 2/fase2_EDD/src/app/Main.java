@@ -3,7 +3,7 @@ package app;
 import ventanas.*;
 import clases_proyecto.Cliente;
 import java.io.IOException;
-
+import estructuras.arbolB.ArbolB;
 
 /**
  * Clase Main donde ejecuto todo el programa principal.
@@ -13,15 +13,37 @@ import java.io.IOException;
 public class Main {
     static Funciones_Ficheros ff = new Funciones_Ficheros();
     public static void main(String[] args) {
-        Cliente clientePrueba = new Cliente(1, "Diego", "1234");
+        ArbolB prueba = new ArbolB();
+        prueba.insertarEnArbol(0);
+        prueba.insertarEnArbol(1);
+        prueba.insertarEnArbol(2);
+        prueba.insertarEnArbol(3);
+        prueba.insertarEnArbol(4);
+        prueba.insertarEnArbol(5);
+        prueba.insertarEnArbol(6);
+        prueba.insertarEnArbol(7);
+        prueba.insertarEnArbol(8);
+        prueba.insertarEnArbol(9);
+        prueba.graficarArbolB("pruebaArbolB", "./", "./");
+        
+        ArbolB arbolClientes = new ArbolB();
         
         try{
-            crearDirectoriosCliente(clientePrueba);
-            Modulo_Cliente mc = new  Modulo_Cliente(clientePrueba);
-            mc.setVisible(true);
-        }catch(Exception e){
+            Modulo_Admin ma = new Modulo_Admin(arbolClientes);
+            ma.setVisible(true);
+        }catch(Exception error){
             
         }
+        
+//        Cliente clientePrueba = new Cliente(1, "Diego", "1234");
+//        
+//        try{
+//            crearDirectoriosCliente(clientePrueba);
+//            Modulo_Cliente mc = new  Modulo_Cliente(clientePrueba);
+//            mc.setVisible(true);
+//        }catch(Exception e){
+//            
+//        }
     }
 
     public static void crearDirectoriosCliente(Cliente clienteNuevo) throws IOException{
