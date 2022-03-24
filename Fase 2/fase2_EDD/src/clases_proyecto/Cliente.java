@@ -4,13 +4,14 @@ import estructuras.arbol_abb.AbbTree;
 import estructuras.arbol_avl.AvlTree;
 import estructuras.matriz_dispersa.Matriz;
 import estructuras.linkedlist.LinkedList;
+import java.lang.Math;
 
 /**
  * Clase Cliente la utilizo para manipular información de los clientes.
  * @author Melissa
  */
-public class Cliente {
-    int DPI;
+public class Cliente implements Comparable<Cliente>{
+    long DPI;
     String nombre;
     String password;
     AvlTree<Imagen> arbol_Imagenes;
@@ -23,7 +24,7 @@ public class Cliente {
      * @param nombre
      * @param password 
      */
-    public Cliente(int DPI, String nombre, String password) {
+    public Cliente(long DPI, String nombre, String password) {
         this.DPI = DPI;
         this.nombre = nombre;
         this.password = password;
@@ -34,16 +35,27 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + DPI+'}';
+        return "Cliente(" + DPI+')';
+    }
+    
+    @Override
+    public int compareTo(Cliente clienteAComparar) {
+        if(this.DPI < clienteAComparar.getDPI()){
+            return -1;
+        }else if(this.DPI > clienteAComparar.getDPI()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
     
     /*================================================MÉTODOS GET AND SET================================================*/
     
-    public int getDPI() {
+    public long getDPI() {
         return DPI;
     }
 
-    public void setDPI(int DPI) {
+    public void setDPI(long DPI) {
         this.DPI = DPI;
     }
 
@@ -86,4 +98,5 @@ public class Cliente {
     public void setLista_Albumes(LinkedList<Album> lista_Albumes) {
         this.lista_Albumes = lista_Albumes;
     }
+
 }

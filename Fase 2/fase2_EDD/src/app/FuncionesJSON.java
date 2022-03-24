@@ -204,7 +204,7 @@ public class FuncionesJSON {
 
                 for (JsonElement cliente : datos.getAsJsonArray()) { //for que se repite por cada imagen.
                     JsonObject jObjCliente = (JsonObject) cliente;
-                    int dpi = jObjCliente.get("dpi").getAsInt();
+                    long dpi = Long.valueOf(jObjCliente.get("dpi").getAsString());
                     String nombreCliente = jObjCliente.get("nombre_cliente").getAsString();
                     String password = jObjCliente.get("password").getAsString();
 
@@ -214,7 +214,7 @@ public class FuncionesJSON {
                     System.out.println(newCliente);
 
                     //Ingresar el cliente al árbol del cliente.
-                    ma.arbolClientes.insertarEnArbol(dpi);
+                    ma.arbolClientes.insertarEnArbol(newCliente);
                 }
                 System.out.println(rutaCarpetaClientes);
                 ma.arbolClientes.graficarArbolB("Arbol_Clientes", rutaCarpetaClientes, rutaCarpetaClientes);

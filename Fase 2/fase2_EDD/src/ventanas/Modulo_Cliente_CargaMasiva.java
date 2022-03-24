@@ -8,6 +8,9 @@ package ventanas;
 import app.FuncionesJSON;
 import app.Funciones_Ficheros;
 import clases_proyecto.Cliente;
+import estructuras.arbol_abb.AbbTree;
+import estructuras.arbol_avl.AvlTree;
+import estructuras.linkedlist.LinkedList;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -145,6 +148,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            clienteRegistrado.setArbol_CapasGenerales(new AbbTree<>());
             String pathCapas = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Capas";
             fFicheros.vaciar_Directorio(pathCapas + "/Imagenes_Con_Conexiones");
             fFicheros.vaciar_Directorio(pathCapas + "/Imagenes_Sin_Conexiones");
@@ -165,6 +169,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (!clienteRegistrado.getArbol_CapasGenerales().arbolVacio()) {
+                clienteRegistrado.setArbol_Imagenes(new AvlTree<>());
                 String pathImagenes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Imagenes";
                 fFicheros.vaciar_Directorio(pathImagenes + "/Neato_Imagenes");
                 fFicheros.vaciar_Directorio(pathImagenes + "/Imagenes_Puras");
@@ -205,6 +210,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             if (!clienteRegistrado.getArbol_Imagenes().arbolVacio()) {
+                clienteRegistrado.setLista_Albumes(new LinkedList<>());
                 String pathAlbumes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Albumes";
                 fFicheros.vaciar_Directorio(pathAlbumes);
                 fJSON.leerJSON_Albumes(this, fFicheros, pathAlbumes);

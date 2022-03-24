@@ -1,0 +1,12 @@
+digraph arbolB{
+rankr=TB;
+node[shape = box,fillcolor="azure2" color="black" style="filled"];
+node[shape=record label= "<p0>|{Cliente(4999062130101)}|<p1> "]1043179980;
+node[shape=record label= "<p0>|{Cliente(2299062130101)}|<p1> |{Cliente(2999062130101)}|<p2> |{Cliente(3999062130101)}|<p3> "]2026857843;
+node[shape=record label= "<p0>|{Cliente(6999062130101)}|<p1> |{Cliente(7999062130101)}|<p2> |{Cliente(8999062130101)}|<p3> |{Cliente(9999062130101)}|<p4> "]1240322673;
+
+1043179980:p0->2026857843;
+
+1043179980:p1->1240322673;
+}
+

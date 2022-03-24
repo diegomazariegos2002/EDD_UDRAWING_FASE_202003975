@@ -13,21 +13,7 @@ import estructuras.arbolB.ArbolB;
 public class Main {
     static Funciones_Ficheros ff = new Funciones_Ficheros();
     public static void main(String[] args) {
-        ArbolB prueba = new ArbolB();
-        prueba.insertarEnArbol(0);
-        prueba.insertarEnArbol(1);
-        prueba.insertarEnArbol(2);
-        prueba.insertarEnArbol(3);
-        prueba.insertarEnArbol(4);
-        prueba.insertarEnArbol(5);
-        prueba.insertarEnArbol(6);
-        prueba.insertarEnArbol(7);
-        prueba.insertarEnArbol(8);
-        prueba.insertarEnArbol(9);
-        prueba.graficarArbolB("pruebaArbolB", "./", "./");
-        
-        ArbolB arbolClientes = new ArbolB();
-        
+        ArbolB<Cliente> arbolClientes = new ArbolB();
         try{
             Modulo_Admin ma = new Modulo_Admin(arbolClientes);
             ma.setVisible(true);

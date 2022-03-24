@@ -8,6 +8,7 @@ package ventanas;
 //Librerías para leer JSON
 import app.FuncionesJSON;
 import app.Funciones_Ficheros;
+import clases_proyecto.Cliente;
 import java.io.FileReader;
 import com.google.gson.*;
 import estructuras.arbolB.ArbolB;
@@ -21,7 +22,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
     /*=========================DECLARACIONES DE VARIABLES===============================*/
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
     FuncionesJSON fJSON = new FuncionesJSON();
-    public ArbolB arbolClientes;
+    public ArbolB<Cliente> arbolClientes;
 
     /**
      * Creates new form Modulo_Admin
@@ -34,7 +35,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
      * Constructor del Modulo_Admin
      * @param arbolClientes 
      */
-    public Modulo_Admin(ArbolB arbolClientes) {
+    public Modulo_Admin(ArbolB<Cliente> arbolClientes) {
         this.arbolClientes = arbolClientes;
         initComponents();
     }
@@ -225,6 +226,7 @@ public class Modulo_Admin extends javax.swing.JFrame {
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
         try{
+            arbolClientes = new ArbolB<>();
             fJSON.leerJSON_Clientes(this, fFicheros, "./Clientes");
         }catch(Exception error){
             System.out.println("Error en el método JSON CLIENTES");
