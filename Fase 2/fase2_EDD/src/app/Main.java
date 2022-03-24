@@ -13,6 +13,12 @@ import estructuras.arbolB.ArbolB;
 public class Main {
     static Funciones_Ficheros ff = new Funciones_Ficheros();
     public static void main(String[] args) {
+        //Esto para que cada vez que se ejecute el proyecto se vacíe el directorio de Clientes que almacena todo.
+        try{
+        ff.vaciarTodoDirectorio("./Clientes");
+        }catch(Exception error){
+            
+        }
         ArbolB<Cliente> arbolClientes = new ArbolB();
         try{
             Modulo_Admin ma = new Modulo_Admin(arbolClientes);
@@ -30,21 +36,5 @@ public class Main {
 //        }catch(Exception e){
 //            
 //        }
-    }
-
-    public static void crearDirectoriosCliente(Cliente clienteNuevo) throws IOException{
-        ff.borrar_Directorio("./Clientes/Cliente_"+clienteNuevo.getDPI());
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI());
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Imagenes_Con_Conexiones");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Imagenes_Sin_Conexiones");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Neato_Con_Conexiones");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Neato_Sin_Conexiones");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Arbol_ABB_Capas");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Neato_Imagenes");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Imagenes_Puras");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Arbol_AVL_Imagenes");
-        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Albumes");
     }
 }

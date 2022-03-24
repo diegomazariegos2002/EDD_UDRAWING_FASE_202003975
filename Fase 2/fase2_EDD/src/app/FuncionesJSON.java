@@ -11,6 +11,7 @@ import clases_proyecto.Capa;
 import clases_proyecto.Imagen;
 import clases_proyecto.Album;
 import clases_proyecto.Cliente;
+import java.io.IOException;
 
 /**
  * Clase para manejar las funciones que se realizan con JSON en el proyecto.
@@ -210,9 +211,11 @@ public class FuncionesJSON {
 
                     //Se crea el nuevo Cliente.
                     Cliente newCliente = new Cliente(dpi, nombreCliente, password);
-
+                    
                     System.out.println(newCliente);
-
+                    
+                    crearDirectoriosCliente(ff, newCliente);
+                    
                     //Ingresar el cliente al árbol del cliente.
                     ma.arbolClientes.insertarEnArbol(newCliente);
                 }
@@ -222,5 +225,21 @@ public class FuncionesJSON {
         } catch (Exception error) {
             System.out.println("Error en la carga del JSON CLIENTES.");
         }
+    }
+    
+        public void crearDirectoriosCliente(Funciones_Ficheros ff, Cliente clienteNuevo) throws IOException{
+        ff.borrar_Directorio("./Clientes/Cliente_"+clienteNuevo.getDPI());
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI());
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Imagenes_Con_Conexiones");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Imagenes_Sin_Conexiones");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Neato_Con_Conexiones");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Neato_Sin_Conexiones");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Capas/Arbol_ABB_Capas");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Neato_Imagenes");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Imagenes_Puras");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Imagenes/Arbol_AVL_Imagenes");
+        ff.crearNuevoDirectorio("./Clientes/Cliente_"+clienteNuevo.getDPI()+"/Albumes");
     }
 }
