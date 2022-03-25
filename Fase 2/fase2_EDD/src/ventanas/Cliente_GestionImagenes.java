@@ -7,6 +7,7 @@ package ventanas;
 
 import clases_proyecto.Cliente;
 import clases_proyecto.Imagen;
+import estructuras.arbolB.ArbolB;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,6 +24,7 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
 
     Cliente clienteRegistrado = null;
     int contadorImagenesCarpeta;
+    ArbolB<Cliente> arbolClientes = null;
 
     /**
      * Creates new form Cliente_GestionImagenes
@@ -36,9 +38,10 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
      *
      * @param clienteRegistrado
      */
-    public Cliente_GestionImagenes(Cliente clienteRegistrado) {
+    public Cliente_GestionImagenes(Cliente clienteRegistrado, ArbolB<Cliente> arbolClientes) {
         initComponents();
         this.clienteRegistrado = clienteRegistrado;
+        this.arbolClientes = arbolClientes;
         contadorImagenesCarpeta = 0;
     }
 
@@ -455,7 +458,7 @@ public class Cliente_GestionImagenes extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane1MouseWheelMoved
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado);
+        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado, arbolClientes);
         mc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed

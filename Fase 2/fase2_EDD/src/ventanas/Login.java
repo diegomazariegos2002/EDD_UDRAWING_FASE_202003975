@@ -5,17 +5,32 @@
  */
 package ventanas;
 
+import clases_proyecto.Cliente;
+import estructuras.arbolB.ArbolB;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Melissa
  */
 public class Login extends javax.swing.JFrame {
 
+    ArbolB<Cliente> arbolClientes;
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        jTextFieldDPI.setVisible(false);
+        jLabelDPI.setVisible(false);
+    }
+
+    public Login(ArbolB<Cliente> arbolClientes) {
+        this.arbolClientes = arbolClientes;
+        initComponents();
+        jTextFieldDPI.setVisible(false);
+        jLabelDPI.setVisible(false);
     }
 
     /**
@@ -34,6 +49,10 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabelDPI = new javax.swing.JLabel();
+        jTextFieldDPI = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -41,6 +60,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Tipo de usuario: ");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cliente" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("LOGIN");
@@ -49,10 +73,25 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setText("Contraseña: ");
 
+        jButton1.setText("Iniciar sesión");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabelDPI.setText("DPI:");
+
+        jButton2.setText("¿No tienes una cuenta? Puedes registrate aquí!!!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(178, 178, 178))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,19 +100,22 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGap(178, 178, 178))
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(178, 178, 178))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabelDPI)
+                            .addGap(96, 96, 96)
+                            .addComponent(jTextFieldDPI))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(44, 44, 44)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldPassword)
+                                .addComponent(jTextFieldName)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +126,11 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDPI)
+                    .addComponent(jTextFieldDPI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -92,12 +138,74 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (jComboBox1.getSelectedItem().toString().equals("Administrador")) {
+            jTextFieldDPI.setVisible(false);
+            jLabelDPI.setVisible(false);
+            System.out.println("Modo admin");
+        } else {
+            jTextFieldDPI.setVisible(true);
+            jLabelDPI.setVisible(true);
+            System.out.println("Modo cliente");
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (jComboBox1.getSelectedItem().toString().equals("Administrador")) {
+            if (!jTextFieldName.getText().equals("") && !jTextFieldPassword.getText().equals("")) {
+                try {
+                    if (jTextFieldName.getText().equals("admin") && jTextFieldPassword.getText().equals("EDD2022")) {
+                        //Enviar al modulo de admin
+                        Modulo_Admin ma = new Modulo_Admin(arbolClientes);
+                        ma.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Nombre o contraseña de administrador incorrectos, verificar entrada.");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Ups!!! algo paso mal, intente de nuevo más tarde :(");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Se necesita completar los campos de Nombre y contraseña.");
+            }
+        } else {
+            if (!jTextFieldName.getText().equals("") && !jTextFieldPassword.getText().equals("") && !jTextFieldDPI.getText().equals("")) {
+                try {
+                    long idClienteBuscado = Long.valueOf(jTextFieldDPI.getText());
+                    String nombre = jTextFieldName.getText();
+                    String password = jTextFieldPassword.getText();
+                    Cliente clienteBuscado = new Cliente(idClienteBuscado, nombre, password);
+                    clienteBuscado = arbolClientes.getValorNodoB_byId(clienteBuscado);
+                    if (clienteBuscado != null) {
+                        if (clienteBuscado.getNombre().equals(nombre) && clienteBuscado.getPassword().equals(password)) {
+                            Modulo_Cliente mc = new Modulo_Cliente(clienteBuscado, arbolClientes);
+                            mc.setVisible(true);
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El nombre o contraseña del cliente con el id indicado no coinciden.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No existe ningún cliente con ese dpi.");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Ups!!! algo paso mal, intente de nuevo más tarde :( (revise sus entradas).");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Se necesita completar los campos de Id, Nombre y Contraseña.");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,11 +243,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelDPI;
+    private javax.swing.JTextField jTextFieldDPI;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPassword;
     // End of variables declaration//GEN-END:variables

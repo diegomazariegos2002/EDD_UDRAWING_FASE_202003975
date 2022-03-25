@@ -1,15 +1,15 @@
 digraph arbolB{
 rankr=TB;
 node[shape = box,fillcolor="azure2" color="black" style="filled"];
-node[shape=record label= "<p0>|{Cliente(3)}|<p1> |{Cliente(7)}|<p2> "]464327395;
-node[shape=record label= "<p0>|{Cliente(1)}|<p1> |{Cliente(2)}|<p2> "]693711469;
-node[shape=record label= "<p0>|{Cliente(5)}|<p1> |{Cliente(6)}|<p2> "]1241891083;
-node[shape=record label= "<p0>|{Cliente(8)}|<p1> |{Cliente(9)}|<p2> |{Cliente(12)}|<p3> "]862513210;
+node[shape=record label= "<p0>|{Cliente(3)}|<p1> |{Cliente(7)}|<p2> "]1669858403;
+node[shape=record label= "<p0>|{Cliente(1)}|<p1> |{Cliente(2)}|<p2> "]1539498428;
+node[shape=record label= "<p0>|{Cliente(5)}|<p1> |{Cliente(6)}|<p2> "]2117537448;
+node[shape=record label= "<p0>|{Cliente(8)}|<p1> |{Cliente(9)}|<p2> "]1301371604;
 
-464327395:p0->693711469;
+1669858403:p0->1539498428;
 
-464327395:p1->1241891083;
+1669858403:p1->2117537448;
 
-464327395:p2->862513210;
+1669858403:p2->1301371604;
 }
 

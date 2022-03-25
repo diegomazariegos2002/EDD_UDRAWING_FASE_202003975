@@ -1,0 +1,149 @@
+/* DIEGO ANDRÉ MAZARIEGOS BARRIENTOS */
+digraph Sparce_Matrix { 
+node [shape=box] 
+
+/* La matriz se envía al grupo 1 */
+Mt[ label = "Matriz", width = 0.5, height=0.5, pos = "0,-0!"  ];
+
+//............ ............ ............ ............ COLUMNAS 
+/* se incrementan los grupos porque son columnas */ 
+Mt -> C110055419; /*Enlace primer nodo Columna con el objeto Matriz*/
+C110055419 [label = "C54", width = 0.5, height=0.5, pos = "1,0!" ];
+C110055419 -> C789244383;
+C789244383 -> C110055419;
+C789244383 [label = "C55", width = 0.5, height=0.5, pos = "2,0!" ];
+C789244383 -> C1036059548;
+C1036059548 -> C789244383;
+C1036059548 [label = "C56", width = 0.5, height=0.5, pos = "3,0!" ];
+C1036059548 -> C12733066;
+C12733066 -> C1036059548;
+C12733066 [label = "C57", width = 0.5, height=0.5, pos = "4,0!" ];
+C12733066 -> C2085498366;
+C2085498366 -> C12733066;
+C2085498366 [label = "C80", width = 0.5, height=0.5, pos = "5,0!" ];
+C2085498366 -> C82999225;
+C82999225 -> C2085498366;
+C82999225 [label = "C81", width = 0.5, height=0.5, pos = "6,0!" ];
+
+//............ ............ ............ ............ FILAS 
+/*  Se mantienen en el mismo grupo porque son filas */ 
+Mt -> F823810392; /*Enlace primer nodo Columna con el objeto Matriz*/
+F823810392 [label = "F113", width = 0.5, height=0.5, pos = "0,-1!" ];
+F823810392 -> F597607403;
+F597607403 -> F823810392;
+F597607403 [label = "F114", width = 0.5, height=0.5, pos = "0,-2!" ];
+F597607403 -> F783428539;
+F783428539 -> F597607403;
+F783428539 [label = "F115", width = 0.5, height=0.5, pos = "0,-3!" ];
+
+
+//............ ............DECLARACIÓN NODOS POSICIÓN............................
+// Nodo F:113 C:54 
+N971689579 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "1,-1!" ]; 
+F823810392 -> N971689579;
+N971689579 -> F823810392;
+C110055419 -> N971689579;
+N971689579 -> C110055419;
+N971689579 -> N1515819159;
+N971689579 -> N260936108;
+// Nodo F:113 C:55 
+N260936108 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "2,-1!" ]; 
+C789244383 -> N260936108;
+N260936108 -> C789244383;
+N260936108 -> N811441173;
+N260936108 -> N1596687843;
+N260936108 -> N971689579;
+// Nodo F:113 C:56 
+N1596687843 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "3,-1!" ]; 
+C1036059548 -> N1596687843;
+N1596687843 -> C1036059548;
+N1596687843 -> N1239448505;
+N1596687843 -> N704873432;
+N1596687843 -> N260936108;
+// Nodo F:113 C:57 
+N704873432 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "4,-1!" ]; 
+C12733066 -> N704873432;
+N704873432 -> C12733066;
+N704873432 -> N1994530745;
+N704873432 -> N1977980955;
+N704873432 -> N1596687843;
+// Nodo F:113 C:80 
+N1977980955 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "5,-1!" ]; 
+C2085498366 -> N1977980955;
+N1977980955 -> C2085498366;
+N1977980955 -> N1066535085;
+N1977980955 -> N154747332;
+N1977980955 -> N704873432;
+// Nodo F:113 C:81 
+N154747332 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "6,-1!" ]; 
+C82999225 -> N154747332;
+N154747332 -> C82999225;
+N154747332 -> N1874888845;
+N154747332 -> N1977980955;
+// Nodo F:114 C:54 
+N1515819159 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "1,-2!" ]; 
+F597607403 -> N1515819159;
+N1515819159 -> F597607403;
+N1515819159 -> N971689579;
+N1515819159 -> N909963310;
+N1515819159 -> N811441173;
+// Nodo F:114 C:55 
+N811441173 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "2,-2!" ]; 
+N811441173 -> N260936108;
+N811441173 -> N432292132;
+N811441173 -> N1239448505;
+N811441173 -> N1515819159;
+// Nodo F:114 C:56 
+N1239448505 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "3,-2!" ]; 
+N1239448505 -> N1596687843;
+N1239448505 -> N1513100473;
+N1239448505 -> N1994530745;
+N1239448505 -> N811441173;
+// Nodo F:114 C:57 
+N1994530745 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "4,-2!" ]; 
+N1994530745 -> N704873432;
+N1994530745 -> N828337042;
+N1994530745 -> N1066535085;
+N1994530745 -> N1239448505;
+// Nodo F:114 C:80 
+N1066535085 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "5,-2!" ]; 
+N1066535085 -> N1977980955;
+N1066535085 -> N1613975575;
+N1066535085 -> N1874888845;
+N1066535085 -> N1994530745;
+// Nodo F:114 C:81 
+N1874888845 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "6,-2!" ]; 
+N1874888845 -> N154747332;
+N1874888845 -> N1539694676;
+N1874888845 -> N1066535085;
+// Nodo F:115 C:54 
+N909963310 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "1,-3!" ]; 
+F783428539 -> N909963310;
+N909963310 -> F783428539;
+N909963310 -> N1515819159;
+N909963310 -> N432292132;
+// Nodo F:115 C:55 
+N432292132 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "2,-3!" ]; 
+N432292132 -> N811441173;
+N432292132 -> N1513100473;
+N432292132 -> N909963310;
+// Nodo F:115 C:56 
+N1513100473 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "3,-3!" ]; 
+N1513100473 -> N1239448505;
+N1513100473 -> N828337042;
+N1513100473 -> N432292132;
+// Nodo F:115 C:57 
+N828337042 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "4,-3!" ]; 
+N828337042 -> N1994530745;
+N828337042 -> N1613975575;
+N828337042 -> N1513100473;
+// Nodo F:115 C:80 
+N1613975575 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "5,-3!" ]; 
+N1613975575 -> N1066535085;
+N1613975575 -> N1539694676;
+N1613975575 -> N828337042;
+// Nodo F:115 C:81 
+N1539694676 [label = "", style = filled, fillcolor = "#FF8B00", width = 0.5, height=0.5 pos = "6,-3!" ]; 
+N1539694676 -> N1874888845;
+N1539694676 -> N1613975575;
+}

@@ -6,6 +6,7 @@
 package ventanas;
 
 import clases_proyecto.Cliente;
+import estructuras.arbolB.ArbolB;
 
 
 /**
@@ -15,6 +16,7 @@ import clases_proyecto.Cliente;
 public class Modulo_Cliente extends javax.swing.JFrame {
 
     Cliente clienteRegistrado = null;
+    ArbolB<Cliente> arbolClientes = null;
     
     /**
      * Constructor de mi JForm.
@@ -27,9 +29,10 @@ public class Modulo_Cliente extends javax.swing.JFrame {
      * Constructor de mi JForm pero con el cliente registrado actualmente.
      * @param clienteRegistrado
      */
-    public Modulo_Cliente(Cliente clienteRegistrado){
+    public Modulo_Cliente(Cliente clienteRegistrado, ArbolB<Cliente> arbolClientes){
         initComponents();
         this.clienteRegistrado = clienteRegistrado;
+        this.arbolClientes = arbolClientes;
     }
     
     /**
@@ -66,8 +69,18 @@ public class Modulo_Cliente extends javax.swing.JFrame {
         });
 
         jButtonCerrarSesion.setText("Cerrar sesión");
+        jButtonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarSesionActionPerformed(evt);
+            }
+        });
 
         jButtonReporteEstructuras.setText("Reporte de estructuras");
+        jButtonReporteEstructuras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporteEstructurasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,16 +117,28 @@ public class Modulo_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargaMasivaActionPerformed
-        Modulo_Cliente_CargaMasiva mca = new Modulo_Cliente_CargaMasiva(this.clienteRegistrado);
+        Modulo_Cliente_CargaMasiva mca = new Modulo_Cliente_CargaMasiva(this.clienteRegistrado, arbolClientes);
         mca.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonCargaMasivaActionPerformed
 
     private void jButtonGestionImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionImagenesActionPerformed
-        Cliente_GestionImagenes cgi = new Cliente_GestionImagenes(this.clienteRegistrado);
+        Cliente_GestionImagenes cgi = new Cliente_GestionImagenes(this.clienteRegistrado, arbolClientes);
         cgi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonGestionImagenesActionPerformed
+
+    private void jButtonReporteEstructurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteEstructurasActionPerformed
+        Modulo_EstadoEstructuras mee = new Modulo_EstadoEstructuras(clienteRegistrado, arbolClientes);
+        mee.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonReporteEstructurasActionPerformed
+
+    private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
+        Login lg = new Login(arbolClientes);
+        lg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments

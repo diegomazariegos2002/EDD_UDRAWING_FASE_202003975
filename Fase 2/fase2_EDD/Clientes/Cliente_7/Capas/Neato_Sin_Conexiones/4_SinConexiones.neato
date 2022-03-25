@@ -1,0 +1,65 @@
+/* DIEGO ANDRÉ MAZARIEGOS BARRIENTOS */
+digraph Sparce_Matrix {   
+node [shape=box]
+
+/* ............ ............DECLARACIÓN NODOS POSICIÓN............................ */
+
+/* Nodo F: 2 C: 8 */ 
+N1210638092 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "3,-1!" ]; 
+/* Nodo F: 2 C: 9 */ 
+N805612727 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "4,-1!" ]; 
+/* Nodo F: 2 C: 10 */ 
+N1690735260 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-1!" ]; 
+/* Nodo F: 2 C: 13 */ 
+N444460397 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "8,-1!" ]; 
+/* Nodo F: 2 C: 14 */ 
+N1732891481 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "9,-1!" ]; 
+/* Nodo F: 3 C: 6 */ 
+N608890606 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "1,-2!" ]; 
+/* Nodo F: 3 C: 7 */ 
+N1361668495 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "2,-2!" ]; 
+/* Nodo F: 3 C: 8 */ 
+N741929864 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "3,-2!" ]; 
+/* Nodo F: 3 C: 9 */ 
+N1788407932 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "4,-2!" ]; 
+/* Nodo F: 3 C: 13 */ 
+N936113486 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "8,-2!" ]; 
+/* Nodo F: 4 C: 9 */ 
+N958437217 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "4,-3!" ]; 
+/* Nodo F: 4 C: 10 */ 
+N260675903 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-3!" ]; 
+/* Nodo F: 5 C: 10 */ 
+N1670703484 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-4!" ]; 
+/* Nodo F: 5 C: 11 */ 
+N1145932355 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-4!" ]; 
+/* Nodo F: 5 C: 12 */ 
+N1108225562 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-4!" ]; 
+/* Nodo F: 6 C: 10 */ 
+N2037088656 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-5!" ]; 
+/* Nodo F: 6 C: 11 */ 
+N110491837 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-5!" ]; 
+/* Nodo F: 6 C: 12 */ 
+N1733050570 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-5!" ]; 
+/* Nodo F: 7 C: 10 */ 
+N1341899250 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-6!" ]; 
+/* Nodo F: 7 C: 11 */ 
+N1711446176 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-6!" ]; 
+/* Nodo F: 7 C: 12 */ 
+N1431245956 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-6!" ]; 
+/* Nodo F: 8 C: 10 */ 
+N1342194935 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "5,-7!" ]; 
+/* Nodo F: 8 C: 11 */ 
+N1105587028 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-7!" ]; 
+/* Nodo F: 8 C: 12 */ 
+N860929104 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-7!" ]; 
+/* Nodo F: 9 C: 11 */ 
+N513172874 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-8!" ]; 
+/* Nodo F: 9 C: 12 */ 
+N1289993555 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-8!" ]; 
+/* Nodo F: 10 C: 11 */ 
+N573718736 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "6,-9!" ]; 
+/* Nodo F: 10 C: 12 */ 
+N339135226 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "7,-9!" ]; 
+/* Nodo F: 10 C: 13 */ 
+N274352135 [label = "",width = 1, height = 1, style = filled, fillcolor = "#0000FF", pos = "8,-9!" ]; 
+}

@@ -8,6 +8,7 @@ package ventanas;
 import app.FuncionesJSON;
 import app.Funciones_Ficheros;
 import clases_proyecto.Cliente;
+import estructuras.arbolB.ArbolB;
 import estructuras.arbol_abb.AbbTree;
 import estructuras.arbol_avl.AvlTree;
 import estructuras.linkedlist.LinkedList;
@@ -29,6 +30,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     Funciones_Ficheros fFicheros = new Funciones_Ficheros();
     FuncionesJSON fJSON = new FuncionesJSON();
     public Cliente clienteRegistrado = null;
+    ArbolB<Cliente> arbolClientes = null;
 
     /**
      * Creates new form Modulo_Cliente_CargaMasiva
@@ -42,8 +44,9 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
      *
      * @param clienteRegistrado
      */
-    public Modulo_Cliente_CargaMasiva(Cliente clienteRegistrado) {
+    public Modulo_Cliente_CargaMasiva(Cliente clienteRegistrado, ArbolB<Cliente> arbolClientes) {
         this.clienteRegistrado = clienteRegistrado;
+        this.arbolClientes = arbolClientes;
         initComponents();
     }
 
@@ -202,7 +205,7 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado);
+        Modulo_Cliente mc = new Modulo_Cliente(clienteRegistrado, arbolClientes);
         mc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
