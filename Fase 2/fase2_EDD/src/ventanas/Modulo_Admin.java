@@ -334,7 +334,9 @@ public class Modulo_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Modulo_ReportesAdmin mra = new Modulo_ReportesAdmin(arbolClientes);
+        mra.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void mostrarImagen(String rutaImagen) {

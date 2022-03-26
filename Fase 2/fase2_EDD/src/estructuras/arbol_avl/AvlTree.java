@@ -7,13 +7,14 @@ import java.io.PrintWriter;
 
 /**
  * Clase AvlTree diseñada para crear un árbol de tipo de Avl
+ *
  * @author Melissa
  * @param <E>
  */
 public class AvlTree<E extends Comparable<E>> {
-    
+
     public AvlNode<E> root;
-    
+
     /**
      * Constructor de mi clase AvlTree
      */
@@ -22,8 +23,8 @@ public class AvlTree<E extends Comparable<E>> {
     }
 
     /**
-     * Método de insertar un nodo nuevo (inserción).
-     * cuando no existe raíz en el árbol.
+     * Método de insertar un nodo nuevo (inserción). cuando no existe raíz en el
+     * árbol.
      *
      * @param value
      */
@@ -63,12 +64,12 @@ public class AvlTree<E extends Comparable<E>> {
                         actual_root = this.right_left_Rotation(actual_root);
                     }
                 }
-            }else {
-                    System.out.println("No se puede insertar el dato porque ya existe.");
-                }
+            } else {
+                System.out.println("No se puede insertar el dato porque ya existe.");
+            }
             actual_root.height = this.max_Height(this.node_Heigth(actual_root.right), this.node_Heigth(actual_root.left)) + 1;
             return actual_root;
-        }else{
+        } else {
             actual_root = newNode;
             return actual_root;
         }
@@ -76,27 +77,29 @@ public class AvlTree<E extends Comparable<E>> {
 
     /**
      * Retornar altura de los nodos.
+     *
      * @param nodo
      * @return
      */
-    public int node_Heigth(AvlNode<E> nodo){
-        if (nodo != null){
+    public int node_Heigth(AvlNode<E> nodo) {
+        if (nodo != null) {
             return nodo.height;
-        }else{
+        } else {
             return -1;
         }
     }
 
     /**
      * Retorna la altura mayor.
+     *
      * @param h1
      * @param h2
      * @return
      */
-    public int max_Height(int h1, int h2){
-        if(h2 >= h1){
+    public int max_Height(int h1, int h2) {
+        if (h2 >= h1) {
             return h2;
-        }else{
+        } else {
             return h1;
         }
     }
@@ -104,35 +107,37 @@ public class AvlTree<E extends Comparable<E>> {
     /**
      * Método de rotación simple izquierda
      */
-    public AvlNode<E> right_Rotation(AvlNode<E> node){
+    public AvlNode<E> right_Rotation(AvlNode<E> node) {
         AvlNode<E> aux = node.left;
         node.left = aux.right;
         aux.right = node;
         node.height = this.max_Height(this.node_Heigth(node.right), this.node_Heigth(node.left)) + 1;
-        aux.height = this.max_Height(node.height, this.node_Heigth(node.left))+1;
+        aux.height = this.max_Height(node.height, this.node_Heigth(node.left)) + 1;
         return aux;
     }
 
     /**
      * Método de rotación simple izquierda
+     *
      * @param node
      * @return
      */
-    public AvlNode<E> left_Rotation(AvlNode<E> node){
+    public AvlNode<E> left_Rotation(AvlNode<E> node) {
         AvlNode<E> aux = node.right;
         node.right = aux.left;
         aux.left = node;
-        node.height = this.max_Height(this.node_Heigth(node.left), this.node_Heigth(node.right))+1;
+        node.height = this.max_Height(this.node_Heigth(node.left), this.node_Heigth(node.right)) + 1;
         aux.height = this.max_Height(node.height, this.node_Heigth(node.right));
         return aux;
     }
 
     /**
      * Método de rotación doble izq-der
+     *
      * @param node
      * @return
      */
-    public AvlNode<E> left_Right_Rotation(AvlNode<E> node){
+    public AvlNode<E> left_Right_Rotation(AvlNode<E> node) {
         node.left = this.left_Rotation(node.left);
         AvlNode<E> aux = this.right_Rotation(node);
         return aux;
@@ -140,59 +145,78 @@ public class AvlTree<E extends Comparable<E>> {
 
     /**
      * Método de rotación de doble der-izq
+     *
      * @param node
      * @return
      */
-    public AvlNode<E> right_left_Rotation(AvlNode<E> node){
+    public AvlNode<E> right_left_Rotation(AvlNode<E> node) {
         node.right = this.right_Rotation(node.right);
         AvlNode<E> aux = this.left_Rotation(node);
         return aux;
     }
-    
-    
+
     /**
-     * Parte 1 del método recursivo de busqueda en pre-orden del árbol.
-     * Este método busca por medio del objeto con el cual se comparo.
-     * Por eso se utiliza el método .ToCompare de cada objeto valor.
+     * Parte 1 del método recursivo de busqueda en pre-orden del árbol. Este
+     * método busca por medio del objeto con el cual se comparo. Por eso se
+     * utiliza el método .ToCompare de cada objeto valor.
+     *
      * @param valor
-     * @return 
+     * @return
      */
-    public E getValue(E valor){
-        if(arbolVacio() != true){
+    public E getValue(E valor) {
+        if (arbolVacio() != true) {
             return getValueNode(this.root, valor);
-        }else{
+        } else {
             return null;
         }
     }
-    
+
     /**
      * Parte 2 del método recursivo de busqueda en pre-orden del árbol.
+     *
      * @param actualRoot
      * @param valor
-     * @return 
+     * @return
      */
-    private E getValueNode(AvlNode<E> actualRoot, E valor){
-        if(actualRoot != null){
+    private E getValueNode(AvlNode<E> actualRoot, E valor) {
+        if (actualRoot != null) {
             if (valor.compareTo(actualRoot.value) == 0) {
                 return actualRoot.value;
-            }else if(valor.compareTo(actualRoot.value) < 0){
-                return getValueNode((AvlNode<E>)actualRoot.left, valor);
-            }else{
-                return getValueNode((AvlNode<E>)actualRoot.right, valor);
+            } else if (valor.compareTo(actualRoot.value) < 0) {
+                return getValueNode((AvlNode<E>) actualRoot.left, valor);
+            } else {
+                return getValueNode((AvlNode<E>) actualRoot.right, valor);
             }
-        }else{
+        } else {
             return null;
         }
     }
-    
+
+    public int getLength() {
+        LinkedList<Integer> cont = new LinkedList<>();
+        cont.insertElement_AtEnding(0);
+        getLength(root, cont);
+        return (int) cont.getCabezaLista().getValor();
+    }
+
+    private void getLength(AvlNode<E> nodoActual, LinkedList<Integer> contador) {
+        if (nodoActual != null) {
+            System.out.print(nodoActual.value.toString());
+            contador.getCabezaLista().setValor((int) contador.getCabezaLista().getValor() + 1);
+            getLength(nodoActual.left, contador);
+            getLength(nodoActual.right, contador);
+        }
+    }
+
     /**
      * Método que sirve para verificar si la lista esta vacía.
-     * @return 
+     *
+     * @return
      */
-    public boolean arbolVacio(){
+    public boolean arbolVacio() {
         return (this.root == null);
     }
-    
+
     //=================================VOLVER LISTA EL ÁRBOL===================================
     public LinkedList<E> getLinkedList_PreOrden() {
         LinkedList<E> lista = new LinkedList<>();
@@ -216,35 +240,37 @@ public class AvlTree<E extends Comparable<E>> {
     public void preOrden() {
         preOrden(this.root);
     }
-    
+
     /**
      * Parte 2 del método recursivo de recorrido pre-orden del árbol.
      *
      * @param root
      */
-    private void preOrden(AvlNode<E> actual_root){
-        if(actual_root != null){
+    private void preOrden(AvlNode<E> actual_root) {
+        if (actual_root != null) {
             System.out.println(actual_root.value);
             this.preOrden(actual_root.left);
             this.preOrden(actual_root.right);
         }
     }
-    
+
     /**
      * Parte 1 Método para realizar el recorrido por amplitud del árbol avl.
-     * Recordar que este método es iterativo a diferencia de los otros recorridos y hace
-     * uso de una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     * Recordar que este método es iterativo a diferencia de los otros
+     * recorridos y hace uso de una cola para ir mostrando los nodos por niveles
+     * de izquierda a derecha.
      */
-    public void recorridoAmplitud(){
+    public void recorridoAmplitud() {
         recorridoAmplitud(this.root);
     }
-    
+
     /**
      * Parte 2 Método para realizar el recorrido por amplitud del árbol avl.
-     * Recordar que este método es iterativo a diferencia de los otros recorridos y hace
-     * uso de una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     * Recordar que este método es iterativo a diferencia de los otros
+     * recorridos y hace uso de una cola para ir mostrando los nodos por niveles
+     * de izquierda a derecha.
      */
-    private void recorridoAmplitud(AvlNode<E> actual_Root){
+    private void recorridoAmplitud(AvlNode<E> actual_Root) {
         if (this.root != null) {
             LinkedList<AvlNode> colaNodos = new LinkedList<>();
             colaNodos.insertElement_AtEnding(root);
@@ -262,9 +288,7 @@ public class AvlTree<E extends Comparable<E>> {
         }
     }
 
-    
     /*==========================================MÉTODOS DE GRAPHVIZ==========================================*/
-
     /**
      * Parte 1 para graficar el árbol por medio de graphviz. Cuerpo en general.
      *
@@ -340,7 +364,7 @@ public class AvlTree<E extends Comparable<E>> {
         }
         return cadena;
     }
-    
+
     /*================================================MÉTODOS GET AND SET================================================*/
     public AvlNode<E> getRoot() {
         return root;

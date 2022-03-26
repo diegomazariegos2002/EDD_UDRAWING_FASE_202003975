@@ -77,7 +77,7 @@ public class AbbTree<E extends Comparable<E>> {
     private void getLength(AbbNode<E> nodoActual, LinkedList<Integer> contador) {
         if (nodoActual != null) {
             System.out.print(nodoActual.valor.toString());
-            contador.getCabezaLista().setValor((int)contador.getCabezaLista().getValor()+1);;
+            contador.getCabezaLista().setValor((int)contador.getCabezaLista().getValor()+1);
             getLength(nodoActual.hijoIzq, contador);
             getLength(nodoActual.hijoDer, contador);
         }
