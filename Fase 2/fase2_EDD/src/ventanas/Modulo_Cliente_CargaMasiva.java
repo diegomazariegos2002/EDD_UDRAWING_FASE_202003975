@@ -158,6 +158,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
             fFicheros.vaciar_Directorio(pathCapas + "/Neato_Con_Conexiones");
             fFicheros.vaciar_Directorio(pathCapas + "/Neato_Sin_Conexiones");
             fJSON.leerJSON_Capas(this, fFicheros, pathCapas);
+            JOptionPane.showMessageDialog(this, "Carga masiva de capas realiza con éxito!!!");
+            mostrarImagen(pathCapas+"/Arbol_ABB_Capas/Arbol_ABB_Capas.png");
             System.out.println("Se generaron las capas con éxito.");
         } catch (Exception e) {
             System.out.println("Error en el método JSON CAPAS.");
@@ -177,6 +179,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
                 fFicheros.vaciar_Directorio(pathImagenes + "/Neato_Imagenes");
                 fFicheros.vaciar_Directorio(pathImagenes + "/Imagenes_Puras");
                 fJSON.leerJSON_Imagenes(this, fFicheros, pathImagenes);
+                JOptionPane.showMessageDialog(this, "Carga masiva de imágenes realiza con éxito!!!");
+                mostrarImagen(pathImagenes+"/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png");
                 System.out.println("Se generaron las imagenes con éxito.");
             }else{
                 JOptionPane.showMessageDialog(this, "No posee capas actualmente, se necesita el ingreso de capas.");
@@ -217,6 +221,8 @@ public class Modulo_Cliente_CargaMasiva extends javax.swing.JFrame {
                 String pathAlbumes = "./Clientes/Cliente_" + clienteRegistrado.getDPI() + "/Albumes";
                 fFicheros.vaciar_Directorio(pathAlbumes);
                 fJSON.leerJSON_Albumes(this, fFicheros, pathAlbumes);
+                JOptionPane.showMessageDialog(this, "Carga masiva de álbumes realiza con éxito!!!");
+                mostrarImagen(pathAlbumes+"/Lista_Albumes.png");
                 System.out.println("Se genero la lista de álbumes con éxito.");
             }else{
                 JOptionPane.showMessageDialog(this, "No posee imágenes actualmente, se necesita el ingreso de imágenes.");

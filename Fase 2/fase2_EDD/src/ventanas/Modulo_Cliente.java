@@ -53,6 +53,11 @@ public class Modulo_Cliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonReporteUsuarios.setText("Reportes de usuario");
+        jButtonReporteUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporteUsuariosActionPerformed(evt);
+            }
+        });
 
         jButtonGestionImagenes.setText("Control de imágenes");
         jButtonGestionImagenes.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +144,12 @@ public class Modulo_Cliente extends javax.swing.JFrame {
         lg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
+
+    private void jButtonReporteUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteUsuariosActionPerformed
+        Modulo_ReportesCliente mrc = new Modulo_ReportesCliente(clienteRegistrado, arbolClientes);
+        mrc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonReporteUsuariosActionPerformed
 
     /**
      * @param args the command line arguments

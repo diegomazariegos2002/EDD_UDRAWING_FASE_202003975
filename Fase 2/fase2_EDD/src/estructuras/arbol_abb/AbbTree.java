@@ -3,6 +3,7 @@ package estructuras.arbol_abb;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import estructuras.Graphviz;
+import estructuras.linkedlist.LinkedList;
 
 /**
  * Clase diseñada para manejar todo lo relacionado con el árbol ABB.
@@ -13,12 +14,134 @@ import estructuras.Graphviz;
 public class AbbTree<E extends Comparable<E>> {
 
     AbbNode<E> root;
+    int length;
 
     public AbbTree() {
         this.root = null;
     }
 
+    /*===================================================MÉTODOS PROPIOS DEL PROYECTO===================================================*/
+    public LinkedList<E> getLinkedList_PreOrden() {
+        LinkedList<E> lista = new LinkedList<>();
+        return getLinkedList_PreOrden(root, lista);
+    }
+
+    private LinkedList<E> getLinkedList_PreOrden(AbbNode<E> nodoActual, LinkedList<E> lista) {
+        if (nodoActual != null) {
+            System.out.print(nodoActual.valor.toString());
+            lista.insertElement_AtEnding(nodoActual.valor);
+            getLinkedList_PreOrden(nodoActual.hijoIzq, lista);
+            getLinkedList_PreOrden(nodoActual.hijoDer, lista);
+        }
+        return lista;
+    }
+
+    public LinkedList<E> getLinkedList_InOrden() {
+        LinkedList<E> lista = new LinkedList<>();
+        return getLinkedList_InOrden(root, lista);
+    }
+
+    private LinkedList<E> getLinkedList_InOrden(AbbNode<E> nodoActual, LinkedList<E> lista) {
+        if (nodoActual != null) {
+            getLinkedList_InOrden(nodoActual.hijoIzq, lista);
+            System.out.print(nodoActual.valor.toString());
+            lista.insertElement_AtEnding(nodoActual.valor);
+            getLinkedList_InOrden(nodoActual.hijoDer, lista);
+        }
+        return lista;
+    }
+
+    public LinkedList<E> getLinkedList_PostOrden() {
+        LinkedList<E> lista = new LinkedList<>();
+        return getLinkedList_PostOrden(root, lista);
+    }
+
+    private LinkedList<E> getLinkedList_PostOrden(AbbNode<E> nodoActual, LinkedList<E> lista) {
+        if (nodoActual != null) {
+            getLinkedList_PostOrden(nodoActual.hijoIzq, lista);
+            getLinkedList_PostOrden(nodoActual.hijoDer, lista);
+            System.out.print(nodoActual.valor.toString());
+            lista.insertElement_AtEnding(nodoActual.valor);
+        }
+        return lista;
+    }
+
     /*===================================================MÉTODOS FUNDAMENTALES================================================*/
+    public int getLength() {
+        int cont = 0;
+        return getLength(root, cont);
+    }
+
+    private int getLength(AbbNode<E> nodoActual, int contador) {
+        if (nodoActual != null) {
+            System.out.print(nodoActual.valor.toString());
+            contador++;
+            getLength(nodoActual.hijoIzq, contador);
+            getLength(nodoActual.hijoDer, contador);
+        }
+        return contador;
+    }
+
+    /**
+     * Parte 1 Método para realizar el recorrido por amplitud del árbol avl.
+     * Recordar que este método es iterativo a diferencia de los otros
+     * recorridos y hace uso de una cola para ir mostrando los nodos por niveles
+     * de izquierda a derecha.
+     */
+    public void recorridoAmplitud() {
+        recorridoAmplitud(this.root);
+    }
+
+    /**
+     * Parte 2 Método para realizar el recorrido por amplitud del árbol avl.
+     * Recordar que este método es iterativo a diferencia de los otros
+     * recorridos y hace uso de una cola para ir mostrando los nodos por niveles
+     * de izquierda a derecha.
+     */
+    private void recorridoAmplitud(AbbNode<E> actual_Root) {
+        if (this.root != null) {
+            LinkedList<AbbNode> colaNodos = new LinkedList<>();
+            colaNodos.insertElement_AtEnding(root);
+            AbbNode aux = null;
+            while (colaNodos.getlength() != 0) {
+                aux = colaNodos.extractElement_AtBeggining().getValor();
+                System.out.println(aux.getValor());
+                if (aux.hijoIzq != null) {
+                    colaNodos.insertElement_AtEnding(aux.hijoIzq);
+                }
+                if (aux.hijoIzq != null) {
+                    colaNodos.insertElement_AtEnding(aux.hijoDer);
+                }
+            }
+        }
+    }
+
+    
+    /**
+     * Parte 1 Método para ver la profundidad de mi árbol. Recordar que este
+     * método es iterativo a diferencia de los otros recorridos y hace uso de
+     * una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     */
+    public int getProfunidadArbol() {
+        LinkedList<Integer> maxProfundidad = new LinkedList<>();
+        maxProfundidad.insertElement_AtBeggining(0);
+        getProfundidadArbol(root, 0, maxProfundidad);
+        return (int)maxProfundidad.getCabezaLista().getValor();
+    }
+
+    /**
+     * Parte 2 Método para ver la profundidad de mi árbol. Recordar que este
+     * método es iterativo a diferencia de los otros recorridos y hace uso de
+     * una cola para ir mostrando los nodos por niveles de izquierda a derecha.
+     */
+    private void getProfundidadArbol(AbbNode<E> actual_Root, int profundidadNodo, LinkedList maxProfundidad) {
+        if(actual_Root != null){
+        if(actual_Root.hijoIzq!=null) getProfundidadArbol(actual_Root.hijoIzq, profundidadNodo+1, maxProfundidad); 
+        if(actual_Root.hijoDer!=null)   getProfundidadArbol(actual_Root.hijoDer, profundidadNodo+1, maxProfundidad);   
+        if((actual_Root.hijoDer == null && actual_Root.hijoIzq == null) && profundidadNodo > (int)maxProfundidad.getCabezaLista().getValor()) maxProfundidad.getCabezaLista().setValor(profundidadNodo);
+        }
+    }
+
     /**
      * Parte 1 del método recursivo de inserción de valors.
      *
@@ -69,52 +192,54 @@ public class AbbTree<E extends Comparable<E>> {
             preOrden(root.hijoDer);
         }
     }
-    
+
     /**
-     * Parte 1 del método recursivo de busqueda en pre-orden del árbol.
-     * Este método busca por medio del objeto con el cual se comparo.
-     * Por eso se utiliza el método .ToCompare de cada objeto valor.
+     * Parte 1 del método recursivo de busqueda en pre-orden del árbol. Este
+     * método busca por medio del objeto con el cual se comparo. Por eso se
+     * utiliza el método .ToCompare de cada objeto valor.
+     *
      * @param valor
-     * @return 
+     * @return
      */
-    public E getValue(E valor){
-        if(arbolVacio() != true){
+    public E getValue(E valor) {
+        if (arbolVacio() != true) {
             return getValueNode(this.root, valor);
-        }else{
+        } else {
             return null;
         }
     }
-    
+
     /**
      * Parte 2 del método recursivo de busqueda en pre-orden del árbol.
+     *
      * @param actualRoot
      * @param valor
-     * @return 
+     * @return
      */
-    private E getValueNode(AbbNode<E> actualRoot, E valor){
-        if(actualRoot != null){
+    private E getValueNode(AbbNode<E> actualRoot, E valor) {
+        if (actualRoot != null) {
             if (valor.compareTo(actualRoot.valor) == 0) {
                 return actualRoot.valor;
-            }else if(valor.compareTo(actualRoot.valor) < 0){
+            } else if (valor.compareTo(actualRoot.valor) < 0) {
                 return getValueNode(actualRoot.hijoIzq, valor);
-            }else{
+            } else {
                 return getValueNode(actualRoot.hijoDer, valor);
             }
-        }else{
+        } else {
             return null;
         }
     }
-    
+
     /**
      * Método que sirve para verificar si la lista esta vacía.
-     * @return 
+     *
+     * @return
      */
-    public boolean arbolVacio(){
+    public boolean arbolVacio() {
         return (this.root == null);
     }
-    
-    /*==========================================MÉTODOS DE GRAPHVIZ==========================================*/
 
+    /*==========================================MÉTODOS DE GRAPHVIZ==========================================*/
     /**
      * Parte 1 para graficar el árbol por medio de graphviz. Cuerpo en general.
      *
@@ -190,9 +315,9 @@ public class AbbTree<E extends Comparable<E>> {
         }
         return cadena;
     }
-    
+
     /*===========================================MÉTODOS GET AND SET===========================================*/
-        public AbbNode<E> getRoot() {
+    public AbbNode<E> getRoot() {
         return root;
     }
 

@@ -114,6 +114,15 @@ public class LinkedList<E> {
     }
 
     //-------------------------------Metodos Fundamentales de mi lista------------------------------------
+    //Método para imprimir
+    public void imprimir(){
+        LinkedList_Node<E> nodoActual = this.cabeza;
+        while (nodoActual != null) {
+            System.out.println(nodoActual.getValor());
+            nodoActual = nodoActual.siguiente;
+        }
+    }
+    
     //Métodos de encapsulamiento que me serviran para mostrar los datos.
     public LinkedList_Node<E> getCabezaLista() {
         return this.cabeza;
@@ -125,6 +134,25 @@ public class LinkedList<E> {
 
     public int getlength(){
         return longitud;
+    }
+    
+    /**
+     * Método para pasar a array mi linkelist esto solamente para uso en caso
+     * de utilizar tablas o cosas ya propiamente de java ya que algunas herramientas 
+     * solo aceptan arrays.
+     * @return 
+     */
+    public Object[] getArrayfromLinkedList(){
+        Object[] array = new Object[this.longitud];
+        LinkedList_Node nodoActual = cabeza;
+        int index = 0;
+        while (nodoActual != null) {
+            array[index] = nodoActual.getValor();
+            index++;
+            nodoActual = nodoActual.siguiente;
+        }
+        
+        return array;
     }
 
     //--------------------------------------Método de inserción de datos--------------------------------

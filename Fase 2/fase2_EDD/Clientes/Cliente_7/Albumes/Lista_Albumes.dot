@@ -1,0 +1,37 @@
+digraph G { 
+node [shape=box]  
+//............ ............ ............ ............ ALBUMES 
+Album420427267[label = "Album 1" width = 1.5 ]; 
+Album538704639[label = "Album 3" width = 1.5 ]; 
+Album1370981662[label = "Album 4" width = 1.5 ]; 
+Album2012501527[label = "Album 5" width = 1.5 ]; 
+Album1802473441[label = "Album 2" width = 1.5 ]; 
+//............ Enlaces de los albumes 
+Album420427267 -> Album538704639 [constraint = false]; 
+Album538704639 -> Album420427267 [constraint = false]; 
+Album538704639 -> Album1370981662 [constraint = false]; 
+Album1370981662 -> Album538704639 [constraint = false]; 
+Album1370981662 -> Album2012501527 [constraint = false]; 
+Album2012501527 -> Album1370981662 [constraint = false]; 
+Album2012501527 -> Album1802473441 [constraint = false]; 
+Album1802473441 -> Album2012501527 [constraint = false]; 
+//............ ............ ............ ............ IMAGEN 
+//Imagenes Album 1
+I1223569158[label = "Image 1" width = 1.5 ];
+//Imagenes Album 3
+I837295621[label = "Image 2" width = 1.5 ];
+I1314637509[label = "Image 3" width = 1.5 ];
+//Imagenes Album 4
+I445031042[label = "Image 4" width = 1.5 ];
+//Imagenes Album 5
+I2064781735[label = "Image 5" width = 1.5 ];
+//Imagenes Album 2
+//............ Enlaces de las imágenes 
+//Imagenes Album 1
+Album420427267 -> I1223569158 [constraint = true];//Imagenes Album 3
+Album538704639 -> I837295621 [constraint = true];I837295621 -> I1314637509 [constraint = true];
+I1314637509 -> I837295621 [constraint = true];
+//Imagenes Album 3
+//Imagenes Album 4
+Album1370981662 -> I445031042 [constraint = true];//Imagenes Album 5
+Album2012501527 -> I2064781735 [constraint = true];}
