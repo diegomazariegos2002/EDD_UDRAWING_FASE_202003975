@@ -1,15 +1,15 @@
 digraph arbolB{
 rankr=TB;
 node[shape = box,fillcolor="azure2" color="black" style="filled"];
-node[shape=record label= "<p0>|{Cliente(3)}|<p1> |{Cliente(7)}|<p2> "]234838416;
-node[shape=record label= "<p0>|{Cliente(1)}|<p1> |{Cliente(2)}|<p2> "]531721618;
-node[shape=record label= "<p0>|{Cliente(5)}|<p1> |{Cliente(6)}|<p2> "]584617942;
-node[shape=record label= "<p0>|{Cliente(8)}|<p1> |{Cliente(9)}|<p2> "]715894596;
+node[shape=record label= "<p0>|{Cliente(3)}|<p1> |{Cliente(7)}|<p2> "]1164948405;
+node[shape=record label= "<p0>|{Cliente(1)}|<p1> |{Cliente(2)}|<p2> "]309781704;
+node[shape=record label= "<p0>|{Cliente(5)}|<p1> |{Cliente(6)}|<p2> "]15101556;
+node[shape=record label= "<p0>|{Cliente(8)}|<p1> |{Cliente(9)}|<p2> "]1669858403;
 
-234838416:p0->531721618;
+1164948405:p0->309781704;
 
-234838416:p1->584617942;
+1164948405:p1->15101556;
 
-234838416:p2->715894596;
+1164948405:p2->1669858403;
 }
 

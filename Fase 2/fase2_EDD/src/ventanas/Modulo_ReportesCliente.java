@@ -7,6 +7,7 @@ package ventanas;
 
 import clases_proyecto.Capa;
 import clases_proyecto.Cliente;
+import clases_proyecto.Imagen;
 import estructuras.arbolB.ArbolB;
 import estructuras.linkedlist.LinkedList;
 import javax.swing.table.DefaultTableModel;
@@ -153,14 +154,31 @@ public class Modulo_ReportesCliente extends javax.swing.JFrame {
         }
         if (jComboBox1.getSelectedItem().equals("Top 5 de imágenes con más número de capas")) {
             jComboBox2.setVisible(false);
-            String[] titulo = new String[]{"Id imagen", "Cantidad de capas"};
+            String[] titulo = new String[]{"Id imagen"};
             dtm.setColumnIdentifiers(titulo);
             jTable1.setModel(dtm);
+            LinkedList<Imagen> listaImagenes = clienteRegistrado.getArbol_Imagenes().getLinkedList_PreOrden();
+            listaImagenes.ordenar_InsertionSort_MayorMenorNumeroCapas();
+            Object[] arrayImagenes = listaImagenes.getArrayfromLinkedList();
+            Object[] row;
+            for (int i = 0; i < arrayImagenes.length && i < 5; i++) {
+                row = new Object[1];
+                row[0] = arrayImagenes[i].toString();
+                dtm.addRow(row);
+            }
         } else if (jComboBox1.getSelectedItem().equals("Todas las capas que son hojas")) {
             jComboBox2.setVisible(false);
             String[] titulo = new String[]{"Id capas que son imágenes"};
             dtm.setColumnIdentifiers(titulo);
             jTable1.setModel(dtm);
+            LinkedList<Capa> listaHojas = clienteRegistrado.getArbol_CapasGenerales().getNodosHijos();
+            Object[] arrayHojas = listaHojas.getArrayfromLinkedList();
+            Object[] row;
+            for (int i = 0; i < arrayHojas.length; i++) {
+                row = new Object[1];
+                row[0] = arrayHojas[i].toString();
+                dtm.addRow(row);
+            }
             
         } else if (jComboBox1.getSelectedItem().equals("Profundidad de árbol de capas")) {
             jComboBox2.setVisible(false);

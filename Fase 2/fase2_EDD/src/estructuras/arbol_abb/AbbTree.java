@@ -68,18 +68,19 @@ public class AbbTree<E extends Comparable<E>> {
 
     /*===================================================MÉTODOS FUNDAMENTALES================================================*/
     public int getLength() {
-        int cont = 0;
-        return getLength(root, cont);
+        LinkedList<Integer> cont = new LinkedList<>();
+        cont.insertElement_AtEnding(0);
+        getLength(root, cont);
+        return (int)cont.getCabezaLista().getValor();
     }
 
-    private int getLength(AbbNode<E> nodoActual, int contador) {
+    private void getLength(AbbNode<E> nodoActual, LinkedList<Integer> contador) {
         if (nodoActual != null) {
             System.out.print(nodoActual.valor.toString());
-            contador++;
+            contador.getCabezaLista().setValor((int)contador.getCabezaLista().getValor()+1);;
             getLength(nodoActual.hijoIzq, contador);
             getLength(nodoActual.hijoDer, contador);
         }
-        return contador;
     }
 
     /**
@@ -115,7 +116,30 @@ public class AbbTree<E extends Comparable<E>> {
             }
         }
     }
-
+    
+    /**
+     * Parte 1) Método para conseguir una lista con los nodos que son hijos.
+     * @return 
+     */
+    public LinkedList<E> getNodosHijos(){
+        LinkedList<E> nodosHijos = new LinkedList<>();
+        getNodosHijos(root, nodosHijos);
+        return nodosHijos;
+    }
+    
+    /**
+     * Parte 2) Método para conseguir una lista con los nodos que son hijos.
+     * @return 
+     */
+    private void getNodosHijos(AbbNode<E> actualRoot, LinkedList<E> nodosHijos){
+        if (actualRoot != null) {
+            if (actualRoot.hijoIzq==null && actualRoot.hijoDer==null) { // solo si es hoja
+                nodosHijos.insertElement_AtEnding(actualRoot.valor);
+            }
+            getNodosHijos(actualRoot.hijoIzq, nodosHijos);
+            getNodosHijos(actualRoot.hijoDer, nodosHijos);
+        }
+    }
     
     /**
      * Parte 1 Método para ver la profundidad de mi árbol. Recordar que este

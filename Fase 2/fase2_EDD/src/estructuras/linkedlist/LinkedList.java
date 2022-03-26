@@ -16,6 +16,23 @@ public class LinkedList<E> {
     private int longitud = 0;
     
     //-------------------------------Métodos del proyecto-------------------------------------------
+    /**
+     * Método para ordenar de mayor a menor la lista de imagenes según el número de capas que posean cada una.
+     */
+    public void ordenar_InsertionSort_MayorMenorNumeroCapas(){
+        for (int i = 0; i < longitud; i++) {
+            int max = i;
+            for (int j = i + 1; j < longitud; j++) {
+                if (((Imagen)this.getNode(j).getValor()).getCapasImagen().getLength() > ((Imagen)this.getNode(max).getValor()).getCapasImagen().getLength()){
+                    max = j;
+                }
+            }
+            E aux = (this.getNode(i).getValor());
+            this.modifyElement_AtPosition(this.getNode(max).getValor(), i);
+            this.modifyElement_AtPosition(aux, max);
+        }
+    }
+    
     
     /* Método para imprimir el .dot de los álbumes junto con su listado de imagenes. */
 

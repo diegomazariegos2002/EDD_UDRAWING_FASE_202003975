@@ -192,6 +192,22 @@ public class AvlTree<E extends Comparable<E>> {
     public boolean arbolVacio(){
         return (this.root == null);
     }
+    
+    //=================================VOLVER LISTA EL ÁRBOL===================================
+    public LinkedList<E> getLinkedList_PreOrden() {
+        LinkedList<E> lista = new LinkedList<>();
+        return getLinkedList_PreOrden(root, lista);
+    }
+
+    private LinkedList<E> getLinkedList_PreOrden(AvlNode<E> nodoActual, LinkedList<E> lista) {
+        if (nodoActual != null) {
+            System.out.print(nodoActual.value.toString());
+            lista.insertElement_AtEnding(nodoActual.value);
+            getLinkedList_PreOrden(nodoActual.left, lista);
+            getLinkedList_PreOrden(nodoActual.right, lista);
+        }
+        return lista;
+    }
 
     //===============================RECORRIDOS===================================
     /**

@@ -32,7 +32,7 @@ public class Imagen implements Comparable<Imagen>{
 
     @Override
     public String toString() {
-        return "Imagen " + id_Imagen + "";
+        return "Imagen ID: " + id_Imagen;
     }
     
     
