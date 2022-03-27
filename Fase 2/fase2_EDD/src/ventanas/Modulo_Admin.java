@@ -345,7 +345,24 @@ public class Modulo_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarClienteActionPerformed
-        
+        if (!jTextFieldDPI2.getText().equals("")) {
+            try {
+                long dpi_ClienteBuscado = Long.valueOf(jTextFieldDPI2.getText());
+                Cliente clienteTemp = new Cliente(dpi_ClienteBuscado, "", "");
+                Cliente ClienteEncontrado = arbolClientes.getValorNodoB_byId(clienteTemp);
+                if (ClienteEncontrado != null) {
+                    ClienteEncontrado.setNombre(jTextFieldNombre2.getText());
+                    ClienteEncontrado.setPassword(jTextFieldPassword2.getText());
+                    JOptionPane.showMessageDialog(this, "Cliente modificado con éxito!!!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No existe un cliente con ese ID.");
+                }
+            } catch (Exception error) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un dato correcto al campo DPI.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "El campo del ID esta vacío para buscar un cliente se necesita que lo llene.");
+        }
     }//GEN-LAST:event_jButtonModificarClienteActionPerformed
 
     public void mostrarImagen(String rutaImagen) {

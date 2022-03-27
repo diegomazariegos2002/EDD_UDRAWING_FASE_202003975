@@ -32,7 +32,7 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
     public Modulo_ReportesAdmin(ArbolB<Cliente> arbolClientes) {
         this.arbolClientes = arbolClientes;
         initComponents();
-        String[] titulo = new String[]{"DPI", "Nombre", "Cantidad de imágenes totales"};
+        String[] titulo = new String[]{"DPI", "Nombre", "Contraseña", "Cantidad de imágenes totales"};
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
     }
@@ -260,10 +260,11 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
         Object[] arrayCliente = listaClientes.getArrayfromLinkedList();
         Object[] row;
         for (int i = 0; i < arrayCliente.length; i++) {
-            row = new Object[3];
+            row = new Object[4];
             row[0] = ((Cliente)arrayCliente[i]).getDPI();
             row[1] = ((Cliente)arrayCliente[i]).getNombre();
-            row[2] = ((Cliente)arrayCliente[i]).getArbol_Imagenes().getLength();
+            row[2] = ((Cliente)arrayCliente[i]).getPassword();
+            row[3] = ((Cliente)arrayCliente[i]).getArbol_Imagenes().getLength();
             dtm.addRow(row);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
