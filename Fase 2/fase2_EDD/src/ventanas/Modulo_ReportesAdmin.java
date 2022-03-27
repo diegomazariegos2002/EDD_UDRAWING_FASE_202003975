@@ -8,8 +8,10 @@ package ventanas;
 import clases_proyecto.Album;
 import clases_proyecto.Cliente;
 import estructuras.arbolB.ArbolB;
+import estructuras.linkedlist.LinkedList;
 import estructuras.linkedlist.LinkedList_Node;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +20,8 @@ import javax.swing.JOptionPane;
 public class Modulo_ReportesAdmin extends javax.swing.JFrame {
 
     ArbolB arbolClientes;
-    
+    DefaultTableModel dtm = new DefaultTableModel();
+
     /**
      * Creates new form Modulo_ReportesAdmin
      */
@@ -29,6 +32,9 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
     public Modulo_ReportesAdmin(ArbolB<Cliente> arbolClientes) {
         this.arbolClientes = arbolClientes;
         initComponents();
+        String[] titulo = new String[]{"DPI", "Nombre", "Cantidad de imágenes totales"};
+        dtm.setColumnIdentifiers(titulo);
+        jTable1.setModel(dtm);
     }
 
     /**
@@ -79,6 +85,11 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
         jLabel1.setText("DPI a buscar");
 
         jButton3.setText("Listar clientes");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,6 +211,7 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
@@ -217,27 +229,44 @@ public class Modulo_ReportesAdmin extends javax.swing.JFrame {
                 if (ClienteEncontrado != null) {
                     jLabelNombre.setText(ClienteEncontrado.getNombre());
                     jLabelContraseña.setText(ClienteEncontrado.getPassword());
-                    jLabelCantidadAlbumes.setText(""+ClienteEncontrado.getLista_Albumes().getlength());
+                    jLabelCantidadAlbumes.setText("" + ClienteEncontrado.getLista_Albumes().getlength());
                     /* Lo siguiente es para poder obtener el número de imágenes en todos los álbumes por eso necesitamos recorrer los álbumes*/
                     int contImagenes_En_Albumes = 0;
                     LinkedList_Node albumActual = ClienteEncontrado.getLista_Albumes().getCabezaLista();
                     while (albumActual != null) {
-                        contImagenes_En_Albumes += ((Album)albumActual.getValor()).getListaImagenes().getlength();
+                        contImagenes_En_Albumes += ((Album) albumActual.getValor()).getListaImagenes().getlength();
                         albumActual = albumActual.siguiente;
                     }
-                    jLabelCantImagenesAlbumes.setText(""+contImagenes_En_Albumes);
-                    jLabelImagenesTotales.setText(""+ClienteEncontrado.getArbol_Imagenes().getLength());
-                    jLabelCapasTotales.setText(""+ClienteEncontrado.getArbol_CapasGenerales().getLength());
-                }else{
+                    jLabelCantImagenesAlbumes.setText("" + contImagenes_En_Albumes);
+                    jLabelImagenesTotales.setText("" + ClienteEncontrado.getArbol_Imagenes().getLength());
+                    jLabelCapasTotales.setText("" + ClienteEncontrado.getArbol_CapasGenerales().getLength());
+                } else {
                     JOptionPane.showMessageDialog(this, "El cliente con el DPI solicitado no existe en el árbol de clientes.");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ingrese un DPI válido.");
-            } 
-        }else{
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "El campo de DPI a buscar es obligatorio llenarlo.");
         }
     }//GEN-LAST:event_jButtonBuscarDPIActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int filas = dtm.getRowCount();
+        for (int i = 0; i < filas; i++) {
+            dtm.removeRow(0);
+        }
+        LinkedList<Cliente> listaClientes = arbolClientes.getLinkedList_RecorridoAmplitud();
+        Object[] arrayCliente = listaClientes.getArrayfromLinkedList();
+        Object[] row;
+        for (int i = 0; i < arrayCliente.length; i++) {
+            row = new Object[3];
+            row[0] = ((Cliente)arrayCliente[i]).getDPI();
+            row[1] = ((Cliente)arrayCliente[i]).getNombre();
+            row[2] = ((Cliente)arrayCliente[i]).getArbol_Imagenes().getLength();
+            dtm.addRow(row);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

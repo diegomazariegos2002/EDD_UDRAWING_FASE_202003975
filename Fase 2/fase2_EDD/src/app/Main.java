@@ -23,6 +23,9 @@ public class Main {
             ff.crearNuevoDirectorio("./Clientes");
             Login login = new Login(arbolClientes);
             login.setVisible(true);
+//            Cliente clientePrueba = new Cliente(1, "Diego", "1234");
+//            Cliente_GestionImagenes cgi = new Cliente_GestionImagenes(clientePrueba, arbolClientes);
+//            cgi.setVisible(true);
         } catch (Exception error) {
 
         }

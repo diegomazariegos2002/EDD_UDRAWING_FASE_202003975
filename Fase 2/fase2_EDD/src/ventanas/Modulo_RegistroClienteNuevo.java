@@ -5,16 +5,31 @@
  */
 package ventanas;
 
+import app.FuncionesJSON;
+import app.Funciones_Ficheros;
+import clases_proyecto.Cliente;
+import estructuras.arbolB.ArbolB;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Melissa
  */
 public class Modulo_RegistroClienteNuevo extends javax.swing.JFrame {
 
+    Funciones_Ficheros fFicheros = new Funciones_Ficheros();
+    FuncionesJSON fJSON = new FuncionesJSON();
+    ArbolB arbolClientes;
+
     /**
      * Creates new form Modulo_RegistroClienteNuevo
      */
     public Modulo_RegistroClienteNuevo() {
+        initComponents();
+    }
+
+    public Modulo_RegistroClienteNuevo(ArbolB arbolClientes) {
+        this.arbolClientes = arbolClientes;
         initComponents();
     }
 
@@ -27,21 +42,122 @@ public class Modulo_RegistroClienteNuevo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelDPI = new javax.swing.JLabel();
+        jTextFieldDPI = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldPassword = new javax.swing.JTextField();
+        jButtonRegresar = new javax.swing.JButton();
+        jButtonRegistrarse = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabelDPI.setText("DPI:");
+
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setText("Contraseña: ");
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
+        jButtonRegistrarse.setText("Registrarse");
+        jButtonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(258, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabelDPI))
+                    .addGap(44, 44, 44)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldDPI)
+                        .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonRegistrarse, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                        .addComponent(jTextFieldPassword, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 261, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonRegresar)
+                .addContainerGap(229, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(60, 60, 60)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelDPI)
+                        .addComponent(jTextFieldDPI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                    .addComponent(jButtonRegistrarse)
+                    .addGap(61, 61, 61)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        Login lg = new Login(arbolClientes);
+        lg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
+        if (!jTextFieldName.getText().equals("") && !jTextFieldPassword.getText().equals("") && !jTextFieldDPI.getText().equals("")) {
+            try {
+                long idClienteBuscado = Long.valueOf(jTextFieldDPI.getText());
+                String nombre = jTextFieldName.getText();
+                String password = jTextFieldPassword.getText();
+                Cliente clienteBuscado = new Cliente(idClienteBuscado, nombre, password);
+                clienteBuscado = (Cliente) arbolClientes.getValorNodoB_byId(clienteBuscado);
+                if (clienteBuscado == null) {
+                    clienteBuscado = new Cliente(idClienteBuscado, nombre, password);
+                    arbolClientes.insertarEnArbol(clienteBuscado);
+                    fJSON.crearDirectoriosCliente(fFicheros, clienteBuscado);
+                    arbolClientes.graficarArbolB("Arbol_Clientes", "./Clientes", "./Clientes");
+                    JOptionPane.showMessageDialog(this, "Registro realizado con éxito");
+                    Login lg = new Login(arbolClientes);
+                    lg.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese dpi, escoja otro por favor.");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ups!!! algo paso mal, intente de nuevo más tarde :( (revise sus entradas).");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Se necesita completar los campos de Id, Nombre y Contraseña.");
+        }
+    }//GEN-LAST:event_jButtonRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +195,13 @@ public class Modulo_RegistroClienteNuevo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegistrarse;
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelDPI;
+    private javax.swing.JTextField jTextFieldDPI;
+    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTextField jTextFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

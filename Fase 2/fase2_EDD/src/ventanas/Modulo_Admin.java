@@ -112,6 +112,11 @@ public class Modulo_Admin extends javax.swing.JFrame {
         jLabel5.setText("Contraseña:");
 
         jButtonModificarCliente.setText("Modificar cliente con DPI");
+        jButtonModificarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarClienteActionPerformed(evt);
+            }
+        });
 
         jButtonEliminarCliente.setText("Eliminar cliente con DPI");
 
@@ -338,6 +343,10 @@ public class Modulo_Admin extends javax.swing.JFrame {
         mra.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarClienteActionPerformed
+        
+    }//GEN-LAST:event_jButtonModificarClienteActionPerformed
 
     public void mostrarImagen(String rutaImagen) {
         ImageIcon imagen = new ImageIcon(rutaImagen);

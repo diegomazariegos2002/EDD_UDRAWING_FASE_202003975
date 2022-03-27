@@ -1,6 +1,7 @@
 package estructuras.arbolB;
 
 import estructuras.Graphviz;
+import estructuras.linkedlist.LinkedList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -135,7 +136,7 @@ public class ArbolB<E extends Comparable<E>> {
         return nodoGenerado;
     }
 
-    //MÉTODOS DE BÚSQUEDA
+    //==================================================MÉTODOS DE BÚSQUEDA==================================================
     public E getValorNodoB_byId(E valorBuscado) {
         return getValorNodo_by_Id(raiz, valorBuscado);
     }
@@ -156,6 +157,39 @@ public class ArbolB<E extends Comparable<E>> {
             }
         }
         return null;
+    }
+    
+    //==================================================MÉTODOS DE RECORRIDOS==================================================
+    /**
+     * Parte 1) Método para convertir a una LinkedList mi árbol por medio del recorrido de amplitud.
+     */
+    public LinkedList<E> getLinkedList_RecorridoAmplitud(){
+        LinkedList<E> listaValores_E =  new LinkedList<>();
+        getLinkedList_RecorridoAmplitud(raiz, listaValores_E);
+        return listaValores_E;
+    }
+    
+    /**
+     * Parte 2) Método para convertir a una LinkedList mi árbol por medio del recorrido de amplitud.
+     * Recordar que este es un método iterativo que se acompaña de una cola.
+     */
+    private void getLinkedList_RecorridoAmplitud(Pagina root,  LinkedList<E> listaValores_E){
+        if (root != null) {
+            LinkedList<Pagina> colaPaginas = new LinkedList<>();
+            colaPaginas.insertElement_AtEnding(raiz);
+            Pagina paginaActual = null;
+            while (colaPaginas.getlength() != 0) {
+                paginaActual = colaPaginas.extractElement_AtBeggining().getValor();
+                //Recorremos todos los nodos de la pagina actual y encolamos las paginas de cada nodo.
+                NodoB<E> nodoActual = paginaActual.primero;
+                while (nodoActual != null) {
+                    listaValores_E.insertElement_AtEnding(nodoActual.valor);
+                    if (nodoActual.hijoIzq != null) colaPaginas.insertElement_AtEnding(nodoActual.hijoIzq);
+                    if (nodoActual.hijoDer != null) colaPaginas.insertElement_AtEnding(nodoActual.hijoDer);
+                    nodoActual = nodoActual.siguiente;
+                }
+            }
+        }
     }
 
     /*==============================================MÉTODOS GRAPHVIZ==============================================*/
