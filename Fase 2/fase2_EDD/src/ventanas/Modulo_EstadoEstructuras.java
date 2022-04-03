@@ -7,6 +7,7 @@ package ventanas;
 
 import clases_proyecto.Capa;
 import clases_proyecto.Cliente;
+import clases_proyecto.Imagen;
 import estructuras.arbolB.ArbolB;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -24,7 +25,8 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
 
     Cliente clienteRegistado;
     ArbolB<Cliente> arbolClientes = null;
-    
+    String ultimaDireccion = "";
+
     /**
      * Creates new form Modulo_EstadoEstructuras
      */
@@ -58,6 +60,7 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButtonRegresar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +82,13 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,20 +96,24 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addContainerGap()
+                                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jButton1)))
+                        .addGap(0, 18, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -108,6 +122,9 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonRegresar)
                         .addGap(150, 150, 150)
@@ -118,9 +135,9 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 179, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(43, 43, 43))))
         );
 
         pack();
@@ -131,12 +148,15 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
         String rutaCarpetaCliente = "./Clientes/Cliente_" + clienteRegistado.getDPI();
         if (jComboBox1.getSelectedItem().toString().equals("Ver árbol de imágenes")) {
             rutaCarpetaCliente += "/Imagenes/Arbol_AVL_Imagenes/Arbol_AVL_Imagenes.png";
+            ultimaDireccion = rutaCarpetaCliente;
             mostrarImagen(rutaCarpetaCliente);
         } else if (jComboBox1.getSelectedItem().toString().equals("Ver árbol de capas")) {
             rutaCarpetaCliente += "/Capas/Arbol_ABB_Capas/Arbol_ABB_Capas.png";
+            ultimaDireccion = rutaCarpetaCliente;
             mostrarImagen(rutaCarpetaCliente);
         } else if (jComboBox1.getSelectedItem().toString().equals("Ver listado de álbumes")) {
             rutaCarpetaCliente += "/Albumes/Lista_Albumes.png";
+            ultimaDireccion = rutaCarpetaCliente;
             mostrarImagen(rutaCarpetaCliente);
         } else if (jComboBox1.getSelectedItem().toString().equals("Ver capa")) {
             if (!jTextField1.getText().equals("")) {
@@ -145,9 +165,10 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
                     Capa capaBuscada = new Capa(idCapa);
                     capaBuscada = clienteRegistado.getArbol_CapasGenerales().getValue(capaBuscada);
                     if (capaBuscada != null) {
-                        rutaCarpetaCliente += "/Capas/Imagenes_Con_Conexiones/"+String.valueOf(idCapa)+"_ConConexiones.png";
+                        rutaCarpetaCliente += "/Capas/Imagenes_Con_Conexiones/" + String.valueOf(idCapa) + "_ConConexiones.png";
+                        ultimaDireccion = rutaCarpetaCliente;
                         mostrarImagenCompacta(rutaCarpetaCliente);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "No existe una capa con el ID ingresado.");
                     }
                 } catch (Exception e) {
@@ -160,7 +181,18 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
             if (!jTextField1.getText().equals("")) {
                 try {
                     //Aquí íria la imagen del árbol de imágenes junto con sus capas.
-                    
+                    Imagen imagenSeleccionada = new Imagen(Integer.valueOf(jTextField1.getText()));
+                    imagenSeleccionada = clienteRegistado.getArbol_Imagenes().getValue(imagenSeleccionada);
+                    if (imagenSeleccionada != null) {
+                        rutaCarpetaCliente += "/Imagenes";
+                        ultimaDireccion = rutaCarpetaCliente;
+                        clienteRegistado.getArbol_Imagenes().crearFicheroDot_Arbol("ImagenConCapa", rutaCarpetaCliente, rutaCarpetaCliente, imagenSeleccionada);
+                        JOptionPane.showMessageDialog(this, "Imagen generada con éxito");
+                        mostrarImagen(rutaCarpetaCliente + "/ImagenConCapa.png");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "No existe una imagen con ese id.");
+                    }
+
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Ingrese un ID válido.");
                 }
@@ -175,6 +207,10 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
         ma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mostrarImagenCompacta(ultimaDireccion);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * Método para mostrar la imagen en JscrollPane tal cual como es.
@@ -241,6 +277,7 @@ public class Modulo_EstadoEstructuras extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

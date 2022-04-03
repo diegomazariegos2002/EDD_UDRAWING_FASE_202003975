@@ -1,0 +1,59 @@
+digraph Sparce_Matrix {
+
+    node [shape=box]
+    
+    /* La matriz se envía al grupo 1 */
+    Mt[ label = "Matrix", width = 1.5, style = filled, fillcolor = firebrick1, group = 1 ];
+    
+    //............ ............ ............ ............ COLUMNAS
+    /* se incrementan los grupos porque son columnas*/ 
+    C0 [label = "Column 0"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 2 ];
+    C1 [label = "Column 1"          width = 1.5 style = filled, fillcolor = bisque1, group = 3 ];
+
+    //............ Enlaces de las columnas
+    C0 -> C1;
+    C1 -> C0;
+
+
+    //............ ............ ............ ............ FILAS
+    /* Se mantienen en el mismo grupo porque son filas */
+    F0 [label = "Row 0"   width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+    F1 [label = "Row 1"  width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+
+    //............ enlaces de la filas
+    F0 -> F1;
+    F1 -> F0;
+
+    //............ Enlaces de la matriz a la lista de encabezados
+    Mt -> C0;
+    Mt -> F0;
+
+    { rank = same; Mt; C0; C1;}
+
+    //............ ............ NODOS POSICIÓN............................
+    N00 [label = "2" width = 1.5, group = 2 ];
+    N11 [label = "0" width = 1.5, group = 3 ];
+
+
+    //............ ............ ............ ............ ............ L I N K I N G
+    //............ ............ Enlaces de los nodos
+
+    //Enlaces de los nodos Encabezado con los nodos Acceso
+    C0 -> N00;
+    F0 -> N00;
+    N00 -> C0;
+    N00 -> F0;
+
+
+    C1 -> N11;
+    N11 -> C1;
+    F1 -> N11;
+    N11 -> F1;
+
+    //Enlaces entre nodos harían falta
+
+    { rank = same; F0; N00; }
+    { rank = same; F1; N11; }
+    { rank = same;}
+    
+}

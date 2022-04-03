@@ -1,0 +1,25 @@
+digraph binaryTree { 
+node[shape = circle]; 
+
+Nodo692698044[label = "Imagen ID: 4"];
+
+Nodo692698044 -> Nodo1987912459; 
+
+Nodo692698044 -> Nodo24151043; 
+
+Nodo1987912459[label = "Imagen ID: 2"];
+
+Nodo1987912459 -> Nodo1945979951; 
+
+Nodo1987912459 -> Nodo395156919; 
+
+Nodo1945979951[label = "Imagen ID: 1"];
+
+Nodo395156919[label = "Imagen ID: 3"];
+
+Nodo24151043[label = "Imagen ID: 5"];
+
+Nodo24151043 -> Nodo150438198; 
+
+Nodo150438198[label = "Imagen ID: 6"];
+}

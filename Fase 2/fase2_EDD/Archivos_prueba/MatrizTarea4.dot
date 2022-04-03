@@ -1,0 +1,159 @@
+/* DIEGO ANDRÉ MAZARIEGOS BARRIENTOS */
+digraph Sparce_Matrix { 
+node [shape=box] 
+
+/* La matriz se envía al grupo 1 */
+Mt[ label = "Matriz", width = 1.5, style = filled, fillcolor = "#FF0060", group = 1 ];
+
+//............ ............ ............ ............ COLUMNAS 
+/* se incrementan los grupos porque son columnas */ 
+C1 [label = "Column 1"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];
+C2 [label = "Column 2"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 2 ];
+C3 [label = "Column 3"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 3 ];
+C4 [label = "Column 4"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 4 ];
+C5 [label = "Column 5"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 5 ];
+C6 [label = "Column 6"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 6 ];
+C7 [label = "Column 7"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 7 ];
+C8 [label = "Column 8"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 8 ];
+C10 [label = "Column 10"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 10 ];
+
+//............ Enlaces de las columnas
+Mt -> C1; /*Enlace primer nodo Columna con el objeto Matriz*/
+C1 -> C2;
+C2 -> C1;
+C2 -> C3;
+C3 -> C2;
+C3 -> C4;
+C4 -> C3;
+C4 -> C5;
+C5 -> C4;
+C5 -> C6;
+C6 -> C5;
+C6 -> C7;
+C7 -> C6;
+C7 -> C8;
+C8 -> C7;
+C8 -> C10;
+C10 -> C8;
+// Posicionando en el mismo nivel 
+{ rank = same; Mt; C1; C2; C3; C4; C5; C6; C7; C8; C10; }
+
+//............ ............ ............ ............ FILAS 
+/*  Se mantienen en el mismo grupo porque son filas */ 
+F0 [label = "Row 0"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F1 [label = "Row 1"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F2 [label = "Row 2"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F3 [label = "Row 3"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F4 [label = "Row 4"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F5 [label = "Row 5"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F6 [label = "Row 6"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F7 [label = "Row 7"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F8 [label = "Row 8"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+F10 [label = "Row 10"    pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1 ];
+
+//............ enlaces de las filas 
+Mt -> F0; /*Enlace primer nodo Columna con el objeto Matriz*/
+F0 -> F1;
+F1 -> F0;
+F1 -> F2;
+F2 -> F1;
+F2 -> F3;
+F3 -> F2;
+F3 -> F4;
+F4 -> F3;
+F4 -> F5;
+F5 -> F4;
+F5 -> F6;
+F6 -> F5;
+F6 -> F7;
+F7 -> F6;
+F7 -> F8;
+F8 -> F7;
+F8 -> F10;
+F10 -> F8;
+
+//............ ............DECLARACIÓN NODOS POSICIÓN............................
+N01 [label = "2" width = 1.5, group = 1 ]; 
+N03 [label = "22" width = 1.5, group = 3 ]; 
+N11 [label = "0" width = 1.5, group = 1 ]; 
+N22 [label = "2" width = 1.5, group = 2 ]; 
+N32 [label = "278" width = 1.5, group = 2 ]; 
+N33 [label = "0" width = 1.5, group = 3 ]; 
+N44 [label = "0" width = 1.5, group = 4 ]; 
+N55 [label = "3" width = 1.5, group = 5 ]; 
+N66 [label = "9" width = 1.5, group = 6 ]; 
+N77 [label = "7" width = 1.5, group = 7 ]; 
+N88 [label = "5" width = 1.5, group = 8 ]; 
+N1010 [label = "10" width = 1.5, group = 10 ]; 
+
+//............ ............ Enlaces de los nodos
+
+//Conexiones FILAS y ACCESO NODO 
+F0 -> N01;
+N01 -> F0;
+F1 -> N11;
+N11 -> F1;
+F2 -> N22;
+N22 -> F2;
+F3 -> N32;
+N32 -> F3;
+F4 -> N44;
+N44 -> F4;
+F5 -> N55;
+N55 -> F5;
+F6 -> N66;
+N66 -> F6;
+F7 -> N77;
+N77 -> F7;
+F8 -> N88;
+N88 -> F8;
+F10 -> N1010;
+N1010 -> F10;
+{ rank = same; F0;N01; }
+{ rank = same; N01;N03; }
+{ rank = same; N03;N01; }
+{ rank = same; F1;N11; }
+{ rank = same; F2;N22; }
+{ rank = same; F3;N32; }
+{ rank = same; N32;N33; }
+{ rank = same; N33;N32; }
+{ rank = same; F4;N44; }
+{ rank = same; F5;N55; }
+{ rank = same; F6;N66; }
+{ rank = same; F7;N77; }
+{ rank = same; F8;N88; }
+{ rank = same; F10;N1010; }
+
+//Conexiones COLUMNAS y ACCESO NODO 
+C1 -> N01;
+N01 -> C1;
+C3 -> N03;
+N03 -> C3;
+C2 -> N22;
+N22 -> C2;
+C4 -> N44;
+N44 -> C4;
+C5 -> N55;
+N55 -> C5;
+C6 -> N66;
+N66 -> C6;
+C7 -> N77;
+N77 -> C7;
+C8 -> N88;
+N88 -> C8;
+C10 -> N1010;
+N1010 -> C10;
+
+//Conexiones NODOS POSICION 
+N01 -> N11;
+N01 -> N03;
+N03 -> N33;
+N03 -> N01;
+N11 -> N01;
+N22 -> N32;
+N32 -> N22;
+N32 -> N33;
+N33 -> N03;
+N33 -> N32;
+    { rank = same;}
+}

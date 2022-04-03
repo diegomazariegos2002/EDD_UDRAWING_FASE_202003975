@@ -1,6 +1,8 @@
 package estructuras.arbol_avl;
 
+import clases_proyecto.Imagen;
 import estructuras.Graphviz;
+import estructuras.arbol_abb.AbbNode;
 import estructuras.linkedlist.LinkedList;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -22,6 +24,117 @@ public class AvlTree<E extends Comparable<E>> {
         this.root = null;
     }
 
+    //========================================MÉTODOS PROPIOS DEL PROYECTO========================================
+     /**
+     * Parte 1 para graficar el árbol por medio de graphviz. Cuerpo en general.
+     *
+     * @param nombreFichero
+     * @param rutaDot
+     * @param rutaPng
+     */
+    public void crearFicheroDot_Arbol(String nombreFichero, String rutaDot, String rutaPng, Imagen imagenSolicitada) {
+        //Parte del String o texto que va a llevar el fichero 
+        // (en este caso un archivo .dot)
+        StringBuilder dot = new StringBuilder();
+
+        dot.append("digraph binaryTree { \n");
+        dot.append("node[shape = circle]; \n");
+        AvlNode actual = this.root;
+
+        String conexionesNodos = getConexionNodos_PreOrdenConImagen("", actual, imagenSolicitada);
+        dot.append(conexionesNodos);
+
+        dot.append("}");
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        //Parte de la creación de un fichero
+        try {
+            fichero = new FileWriter(rutaDot + "/" + nombreFichero + ".dot");
+            pw = new PrintWriter(fichero);
+
+            pw.println(dot);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        new Graphviz().dibujar("dot", "-Tpng", rutaDot + "/" + nombreFichero + ".dot", rutaPng + "/" + nombreFichero + ".png");
+    }
+
+    /**
+     * Parte 2 para graficar el árbol por medio de graphviz. Método para
+     * retornar las CONEXIONES ENTRE NODOS para el .Dot
+     *
+     * @param entrada
+     * @param actual
+     * @return
+     */
+    private String getConexionNodos_PreOrdenConImagen(String entrada, AvlNode actual, Imagen imagenSolicitada) {
+        String cadena = "";
+        if (actual != null) {
+            /**
+             * Estos if de aquí es para realizar las conexiones entre nodos hijo
+             * y nodo padre en el Dot.
+             */
+            cadena += "\nNodo" + actual.hashCode() + "[label = \"" + actual.value.toString() + "\"];\n";
+            
+            
+            
+            if (actual.left != null) {
+                cadena += String.format("\nNodo%d -> Nodo%d; \n", actual.hashCode(), actual.left.hashCode());
+            }
+            if (actual.right != null) {
+                cadena += String.format("\nNodo%d -> Nodo%d; \n", actual.hashCode(), actual.right.hashCode());
+            }
+
+            cadena += getConexionNodos_PreOrdenConImagen(cadena, actual.left, imagenSolicitada);
+            cadena += getConexionNodos_PreOrdenConImagen(cadena, actual.right, imagenSolicitada);
+            if (imagenSolicitada == actual.value) {
+                cadena += getConexionNodos_PreOrdenCapas(entrada, imagenSolicitada.getCapasImagen().getRoot(), actual);
+            }
+        }
+        return cadena;
+    }
+    
+    
+    private String getConexionNodos_PreOrdenCapas(String entrada, AbbNode actual, AvlNode nodoImagenSolicitada) {
+        String cadena = "";
+        if (actual != null) {
+            /**
+             * Estos if de aquí es para realizar las conexiones entre nodos hijo
+             * y nodo padre en el Dot.
+             */
+            cadena += "\nNodo" + actual.hashCode() + "[label = \"" + actual.getValor().toString() + "\"];\n";
+
+            if (actual == ((Imagen)nodoImagenSolicitada.value).getCapasImagen().getRoot()) {
+                cadena += String.format("\nNodo%d -> Nodo%d; \n", nodoImagenSolicitada.hashCode(), actual.hashCode());
+            }
+            
+            if (actual.getHijoIzq() != null) {
+                cadena += String.format("\nNodo%d -> Nodo%d; \n", actual.hashCode(), actual.getHijoIzq().hashCode());
+            }
+            if (actual.getHijoDer() != null) {
+                cadena += String.format("\nNodo%d -> Nodo%d; \n", actual.hashCode(), actual.getHijoDer().hashCode());
+            }
+
+            cadena += getConexionNodos_PreOrdenCapas(cadena, actual.getHijoIzq(), nodoImagenSolicitada);
+            cadena += getConexionNodos_PreOrdenCapas(cadena, actual.getHijoDer(), nodoImagenSolicitada);
+        }
+        return cadena;
+    }
+    
+    //=========================================MÉTODOS FUNDAMENTALES=========================================
+    
     /**
      * Método de insertar un nodo nuevo (inserción). cuando no existe raíz en el
      * árbol.
